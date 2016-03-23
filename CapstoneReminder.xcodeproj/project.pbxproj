@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		463E3F7C1CA2E79C00E55E92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */; };
-		463E3F7E1CA2E79C00E55E92 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463E3F7D1CA2E79C00E55E92 /* ViewController.swift */; };
 		463E3F811CA2E79C00E55E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F7F1CA2E79C00E55E92 /* Main.storyboard */; };
 		463E3F831CA2E79C00E55E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F821CA2E79C00E55E92 /* Assets.xcassets */; };
 		463E3F861CA2E79C00E55E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */; };
@@ -17,7 +16,6 @@
 /* Begin PBXFileReference section */
 		463E3F781CA2E79C00E55E92 /* CapstoneReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		463E3F7D1CA2E79C00E55E92 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		463E3F801CA2E79C00E55E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		463E3F821CA2E79C00E55E92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		463E3F851CA2E79C00E55E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */,
-				463E3F7D1CA2E79C00E55E92 /* ViewController.swift */,
 				463E3F7F1CA2E79C00E55E92 /* Main.storyboard */,
 				463E3F821CA2E79C00E55E92 /* Assets.xcassets */,
 				463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */,
@@ -135,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				463E3F7E1CA2E79C00E55E92 /* ViewController.swift in Sources */,
 				463E3F7C1CA2E79C00E55E92 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +248,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CapstoneReminder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SpencerCurtis.CapstoneReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -263,6 +260,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CapstoneReminder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SpencerCurtis.CapstoneReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -288,6 +286,7 @@
 				463E3F8C1CA2E79C00E55E92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
