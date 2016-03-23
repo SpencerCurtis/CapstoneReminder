@@ -9,10 +9,13 @@
 import UIKit
 
 class ReminderDetailViewController: UIViewController {
+    
+    @IBOutlet weak var notesTextView: UITextView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        editTextView()
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +24,21 @@ class ReminderDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func editTextView() {
+        self.notesTextView.layer.cornerRadius = 8
+        self.notesTextView.layer.borderWidth = 0.6
+        self.notesTextView.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).CGColor
+    }
 
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+    
+    
+    
+    }
     /*
     // MARK: - Navigation
 

@@ -64,9 +64,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Bgs-eX-4hf">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="QxL-ce-n0y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QxL-ce-n0y">
+                            <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="zg7-vV-5n2" kind="show" id="82J-TY-QJj"/>
+                                <segue destination="zg7-vV-5n2" kind="show" id="2XI-Cz-mIo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -89,9 +90,17 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aos-Ew-rEp">
                                 <rect key="frame" x="20" y="92" width="560" height="30"/>
+                                <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="D4U-Pm-COg">
+                                <rect key="frame" x="20" y="150" width="560" height="159"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wc-uS-RAX">
                                 <rect key="frame" x="23" y="72" width="42" height="21"/>
                                 <constraints>
@@ -121,7 +130,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-4v-VP3">
-                                <rect key="frame" x="20" y="337" width="555" height="29"/>
+                                <rect key="frame" x="20" y="337" width="560" height="29"/>
                                 <segments>
                                     <segment title="At A Time"/>
                                     <segment title="Upon Moving"/>
@@ -129,7 +138,7 @@
                                 <color key="tintColor" red="0.31145571360000002" green="0.79838580140000004" blue="0.96705251960000005" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gba-24-nEO">
-                                <rect key="frame" x="20" y="364" width="555" height="216"/>
+                                <rect key="frame" x="20" y="364" width="560" height="216"/>
                                 <color key="tintColor" red="0.31145571360000002" green="0.79838580140000004" blue="0.96705251960000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <date key="date" timeIntervalSinceReferenceDate="480454541.98724699">
                                     <!--2016-03-23 19:35:41 +0000-->
@@ -138,13 +147,6 @@
                                     <!--2000-01-01 11:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="D4U-Pm-COg">
-                                <rect key="frame" x="20" y="150" width="555" height="159"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -165,19 +167,22 @@
                             <constraint firstItem="Aos-Ew-rEp" firstAttribute="leading" secondItem="D4U-Pm-COg" secondAttribute="leading" id="XAr-ox-tKw"/>
                             <constraint firstItem="D4U-Pm-COg" firstAttribute="leading" secondItem="uhq-4v-VP3" secondAttribute="leading" id="b8F-ia-F7a"/>
                             <constraint firstItem="7o3-Q3-bIG" firstAttribute="top" secondItem="Aos-Ew-rEp" secondAttribute="bottom" constant="8" symbolic="YES" id="fJ2-w3-81Z"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="D4U-Pm-COg" secondAttribute="trailing" constant="5" id="jq1-qY-CZt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D4U-Pm-COg" secondAttribute="trailing" id="jq1-qY-CZt"/>
                             <constraint firstItem="Gba-24-nEO" firstAttribute="leading" secondItem="uhq-4v-VP3" secondAttribute="leading" id="kuW-Of-1fc"/>
                             <constraint firstItem="Gba-24-nEO" firstAttribute="trailing" secondItem="uhq-4v-VP3" secondAttribute="trailing" id="x6z-we-fnH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Reminder" id="XXr-dI-RUo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9Tc-a1-nHD">
-                            <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Nxo-Hj-njk">
                             <color key="tintColor" red="0.30980392156862746" green="0.80000000000000004" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="zg7-vV-5n2" id="fe1-eb-unS"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="notesTextView" destination="D4U-Pm-COg" id="gMn-nF-tZ0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uct-MB-x6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,8 +13,7 @@ class AppearanceController {
     
     static func initializeAppearanceDefaults() {
         UISegmentedControl.appearance().tintColor = UIColor.customCyanColor()
-        UITextView.appearance().layer.borderWidth = 1
-        UITextView.appearance().layer.cornerRadius = 20
+        UINavigationBar.appearance().tintColor = UIColor.customCyanColor()
     
     }
     
