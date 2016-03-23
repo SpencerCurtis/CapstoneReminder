@@ -11,6 +11,7 @@ import CoreData
 
 class ReminderController {
     
+    static let sharedController = ReminderController()
     
     var mockReminders: [Reminder]  {
         let r1 = Reminder(title: "Pay Rent", notes: "Mock Notes")
