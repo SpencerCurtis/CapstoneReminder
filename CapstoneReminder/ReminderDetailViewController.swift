@@ -29,10 +29,6 @@ class ReminderDetailViewController: UIViewController {
         self.notesTextView.layer.borderWidth = 0.6
         self.notesTextView.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).CGColor
     }
-
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
-        
-    }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
     
