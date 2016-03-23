@@ -12,6 +12,14 @@ import CoreData
 
 class Reminder: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    convenience init(title: String, notes: String, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+        
+        let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext: context)
+        
+        self.init(entity: entity!, insertIntoManagedObjectContext: context)
+        
+        self.title = title
+        self.notes = notes
+    }
 
 }
