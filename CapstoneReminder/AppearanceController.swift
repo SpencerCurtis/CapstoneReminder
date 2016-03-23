@@ -12,9 +12,10 @@ import UIKit
 class AppearanceController {
     
     static func initializeAppearanceDefaults() {
-        UISegmentedControl.appearance().tintColor = customcyan
-        
-        
+        UISegmentedControl.appearance().tintColor = UIColor.customCyanColor()
+        UITextView.appearance().layer.borderWidth = 1
+        UITextView.appearance().layer.cornerRadius = 20
+    
     }
     
     

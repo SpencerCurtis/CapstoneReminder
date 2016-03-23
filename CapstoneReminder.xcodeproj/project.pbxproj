@@ -13,6 +13,8 @@
 		463E3F861CA2E79C00E55E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */; };
 		466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304221CA3282D00EB5986 /* AppearanceController.swift */; };
 		466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304241CA3298000EB5986 /* AppColorPalette.swift */; };
+		466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */; };
+		466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		463E3F871CA2E79C00E55E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		466304221CA3282D00EB5986 /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		466304241CA3298000EB5986 /* AppColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColorPalette.swift; sourceTree = "<group>"; };
+		466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewController.swift; sourceTree = "<group>"; };
+		466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */,
 				463E3F7F1CA2E79C00E55E92 /* Main.storyboard */,
+				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
+				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
 				466304221CA3282D00EB5986 /* AppearanceController.swift */,
 				466304241CA3298000EB5986 /* AppColorPalette.swift */,
 				463E3F821CA2E79C00E55E92 /* Assets.xcassets */,
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				463E3F7C1CA2E79C00E55E92 /* AppDelegate.swift in Sources */,
+				466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */,
+				466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */,
 				466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */,
 				466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */,
 			);
