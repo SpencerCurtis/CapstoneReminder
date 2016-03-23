@@ -16,5 +16,6 @@ extension Reminder {
 
     @NSManaged var title: String?
     @NSManaged var notes: String?
+    @NSManaged var isComplete: NSNumber?
 
 }

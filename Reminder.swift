@@ -20,6 +20,7 @@ class Reminder: NSManagedObject {
         
         self.title = title
         self.notes = notes
+        self.isComplete = false
     }
 
 }
