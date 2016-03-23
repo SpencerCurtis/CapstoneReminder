@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Reminder List Table View Controller-->
+        <!--Remindr-->
         <scene sceneID="IAc-OB-Vqh">
             <objects>
                 <tableViewController id="Cam-WB-BLe" customClass="ReminderListTableViewController" customModule="CapstoneReminder" customModuleProvider="target" sceneMemberID="viewController">
@@ -63,7 +63,7 @@
                             <outlet property="delegate" destination="Cam-WB-BLe" id="PaA-ur-ffV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Bgs-eX-4hf">
+                    <navigationItem key="navigationItem" title="Remindr" id="Bgs-eX-4hf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QxL-ce-n0y">
                             <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
