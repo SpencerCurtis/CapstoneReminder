@@ -12,8 +12,9 @@ class ReminderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var alertLabel: UILabel!
     
-    var delegate: B
+    var delegate: ReminderTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +27,17 @@ class ReminderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    protocol ReminderTableViewCellDelegate {
-        func reminderCellTappe
+    
+}
+protocol ReminderTableViewCellDelegate {
+    func reminderCellTapped(sender: ReminderTableViewCell)
+}
+
+
+extension ReminderTableViewCell {
+    func updateWithReminder(reminder: Reminder) {
+        titleLabel.text = reminder.title
+        noteLabel.text = reminder.notes
+        
     }
-    
-    
-    
 }

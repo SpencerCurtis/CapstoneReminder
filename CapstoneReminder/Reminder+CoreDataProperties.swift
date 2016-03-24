@@ -18,5 +18,6 @@ extension Reminder {
     @NSManaged var notes: String?
     @NSManaged var title: String?
     @NSManaged var reminderTime: NSDate?
+    @NSManaged var alertLabelText: String?
 
 }

@@ -12,8 +12,7 @@ import CoreData
 
 class Reminder: NSManagedObject {
     
-    
-    convenience init(title: String, notes: String, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    convenience init(title: String, notes: String, isComplete: Bool = false, reminderTime: NSDate, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext: context)
         
@@ -23,6 +22,7 @@ class Reminder: NSManagedObject {
         self.notes = notes
         self.isComplete = false
         self.reminderTime = NSDate()
+        self.alertLabelText = ""
         
     }
 }

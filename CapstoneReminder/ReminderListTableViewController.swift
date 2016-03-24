@@ -36,12 +36,12 @@ class ReminderListTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
 
         let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
         
-        titleLabel.text = reminder.title
-        noteLabel.text = reminder.notes
+        cell.updateWithReminder(reminder)
+        cell.delegate = self
 
         return cell
     }

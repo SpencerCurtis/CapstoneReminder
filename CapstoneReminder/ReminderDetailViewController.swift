@@ -10,13 +10,26 @@ import UIKit
 
 class ReminderDetailViewController: UIViewController {
     
+    var alertTimeValue = NSDate?()
+    var reminder = Reminder?()
+    
+    
+    
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var alertSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var alertDatePicker: UIDatePicker!
 
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         editTextView()
         // Do any additional setup after loading the view.
+        let control = UISegmentedControl()
+        if control.selectedSegmentIndex == 0 {
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,9 +45,44 @@ class ReminderDetailViewController: UIViewController {
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
     
+        if alertSegmentedControl.selectedSegmentIndex == 0 {
+            let alertLabelText = "\(alertDatePicker.date)"
+        } else {
+            let alertLabelText = "Upon Moving"
+        }
     
     
     }
+    
+    
+    
+    func updateReminder() {
+        let title = titleTextField.text
+        let notes = notesTextView.text
+        let reminderTime = alertTimeValue
+        
+        if let reminder = self.reminder {
+            reminder.title = title
+            reminder.notes = notes
+            reminder.alertLabelText = "\(reminderTime)"
+        } else {
+            if let title = titleTextField.text {
+            let newReminder = Reminder(title: title, notes: notesTextView.text, reminderTime: alertDatePicker.date)
+                ReminderController.sharedController.addReminder(newReminder)
+            }
+            
+        }
+    }
+    
+    func updateWithReminder(reminder: Reminder) {
+        self.reminder = reminder
+        
+        title = titleTextField.text
+        if let notes = reminder.notes {
+            notesTextView.text = notes
+        }
+    }
+    
     
     /*
     // MARK: - Navigation

@@ -39,6 +39,14 @@ class ReminderController {
         return reminders.filter({!$0.isComplete!.boolValue})
     }
     
+    func addReminder(reminder: Reminder) {
+        saveToPersistentStorage()
+    }
+    
+    func removeReminder(reminder: Reminder) {
+        reminder.managedObjectContext?.deleteObject(reminder)
+        saveToPersistentStorage()
+    }
     
     // MARK: - Persistence
     
