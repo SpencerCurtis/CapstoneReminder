@@ -41,7 +41,8 @@ class ReminderListTableViewController: UITableViewController {
         let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
         
         cell.updateWithReminder(reminder)
-        cell.delegate = self
+        cell.alertLabel.text = reminder.alertLabelText
+//        cell.delegate = self
 
         return cell
     }

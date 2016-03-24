@@ -14,6 +14,8 @@ class ReminderController {
     static let sharedController = ReminderController()
     
     var mockReminders: [Reminder]  {
+        
+        
         let r1 = Reminder(title: "Pay Rent", notes: "Mock Notes")
         let r2 = Reminder(title: "Grab Lunch", notes: "Spencer: Turkey Club, Ryan: Barbeque Sandwich")
         let r3 = Reminder(title: "Renew Spotify Subscription", notes: "Renew subscription before it expires on 4/12/16")
@@ -66,6 +68,6 @@ class ReminderController {
         
         return entriesPath
     }
-
+    
     
 }
