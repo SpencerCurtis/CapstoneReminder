@@ -27,6 +27,21 @@ class ReminderTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func buttonTapped(sender: AnyObject) {
+        if let delegate = delegate {
+            delegate.reminderCellTapped(self)
+            
+        }
+    }
+    
+    func updateButton(isComplete: Bool) {
+        if isComplete {
+            checkboxButton.setImage(UIImage(named: "canvas0"), forState: .Selected)
+        } else {
+            checkboxButton.setImage(UIImage(named: "canvas1"), forState: .Normal)
+        }
+    }
+    
     
 }
 protocol ReminderTableViewCellDelegate {
@@ -39,6 +54,8 @@ extension ReminderTableViewCell {
         titleLabel.text = reminder.title
         noteLabel.text = reminder.notes
         alertLabel.text = reminder.alertLabelText
+        
+        updateButton((reminder.isComplete?.boolValue)!)
         
     }
 }

@@ -47,9 +47,9 @@ class ReminderListTableViewController: UITableViewController {
         let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
         reminder.alertLabelText = alertLabelText
         cell.alertLabel.text = "At \(alertLabelText)"
-
-
-        //        cell.delegate = ReminderTableViewCellDelegate
+        
+        
+//                cell.delegate = ReminderTableViewCellDelegate
         
         return cell
     }
@@ -66,17 +66,17 @@ class ReminderListTableViewController: UITableViewController {
      }
      */
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+    
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
+            ReminderController.sharedController.removeReminder(reminder)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
     
     /*
      // Override to support rearranging the table view.
@@ -126,7 +126,8 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         
         //use incomplete reminders below insteads of mockreminders
         let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
-        reminder.isComplete = !((reminder.isComplete?.boolValue)!)
+        reminder.isComplete = reminder.isComplete?.boolValue
+        
         ReminderController.sharedController.saveToPersistentStorage()
         
         tableView.reloadData()
