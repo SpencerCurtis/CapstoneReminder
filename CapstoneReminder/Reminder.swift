@@ -22,7 +22,7 @@ class Reminder: NSManagedObject {
         self.notes = notes
         self.isComplete = false
         self.reminderTime = NSDate()
-        self.alertLabelText = ""
+        
         
     }
 }

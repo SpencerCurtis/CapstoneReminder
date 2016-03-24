@@ -44,9 +44,8 @@ class ReminderDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        
-        
-        
+        updateReminder()
+        navigationController?.popViewControllerAnimated(true)
     }
     
     
@@ -72,6 +71,7 @@ class ReminderDetailViewController: UIViewController {
     func updateWithReminder(reminder: Reminder) {
         self.reminder = reminder
         
+        
         title = titleTextField.text
         if let title = reminder.title {
             titleTextField.text = title
@@ -80,7 +80,11 @@ class ReminderDetailViewController: UIViewController {
             notesTextView.text = notes
         }
         if alertSegmentedControl.selectedSegmentIndex == 0 {
-            reminder.alertLabelText = "\(alertDatePicker.date)"
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
+            reminder.alertLabelText = alertLabelText
+            
         } else {
             reminder.alertLabelText = "Upon Moving"
         }
