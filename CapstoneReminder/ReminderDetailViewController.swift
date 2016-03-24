@@ -80,11 +80,7 @@ class ReminderDetailViewController: UIViewController {
             notesTextView.text = notes
         }
         if alertSegmentedControl.selectedSegmentIndex == 0 {
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
-            reminder.alertLabelText = alertLabelText
-            
+//            reminder.alertLabelText = "\(alertDatePicker.date)"
         } else {
             reminder.alertLabelText = "Upon Moving"
         }

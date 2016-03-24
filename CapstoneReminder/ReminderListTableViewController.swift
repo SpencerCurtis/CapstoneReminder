@@ -15,6 +15,8 @@ class ReminderListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.estimatedRowHeight = 58
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,8 +43,11 @@ class ReminderListTableViewController: UITableViewController {
         let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
         
         cell.updateWithReminder(reminder)
-        cell.alertLabel.text = "\(reminder.reminderTime)"
-//        cell.alertLabel.text = reminder.alertLabelText
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
+        reminder.alertLabelText = alertLabelText
+        cell.alertLabel.text = "At \(alertLabelText)"
 
 
         //        cell.delegate = ReminderTableViewCellDelegate
@@ -50,6 +55,9 @@ class ReminderListTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -125,3 +133,4 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         tableView.reloadData()
     }
 }
+
