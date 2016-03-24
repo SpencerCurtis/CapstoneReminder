@@ -19,8 +19,8 @@ class ReminderDetailViewController: UIViewController {
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var alertSegmentedControl: UISegmentedControl!
     @IBOutlet weak var alertDatePicker: UIDatePicker!
-
-  
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class ReminderDetailViewController: UIViewController {
             
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,14 +44,9 @@ class ReminderDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-    
-        if alertSegmentedControl.selectedSegmentIndex == 0 {
-            let alertLabelText = "\(alertDatePicker.date)"
-        } else {
-            let alertLabelText = "Upon Moving"
-        }
-    
-    
+        
+        
+        
     }
     
     
@@ -67,7 +62,7 @@ class ReminderDetailViewController: UIViewController {
             reminder.alertLabelText = "\(reminderTime)"
         } else {
             if let title = titleTextField.text {
-            let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
+                let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
                 ReminderController.sharedController.addReminder(newReminder)
             }
             
@@ -78,21 +73,29 @@ class ReminderDetailViewController: UIViewController {
         self.reminder = reminder
         
         title = titleTextField.text
+        if let title = reminder.title {
+            titleTextField.text = title
+        }
         if let notes = reminder.notes {
             notesTextView.text = notes
+        }
+        if alertSegmentedControl.selectedSegmentIndex == 0 {
+            reminder.alertLabelText = "\(alertDatePicker.date)"
+        } else {
+            reminder.alertLabelText = "Upon Moving"
         }
         
     }
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

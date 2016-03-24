@@ -38,7 +38,7 @@ extension ReminderTableViewCell {
     func updateWithReminder(reminder: Reminder) {
         titleLabel.text = reminder.title
         noteLabel.text = reminder.notes
-        alertLabel.text = "\(reminder.reminderTime)"
+        alertLabel.text = reminder.alertLabelText
         
     }
 }

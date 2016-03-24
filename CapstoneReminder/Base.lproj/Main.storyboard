@@ -9,7 +9,7 @@
         <scene sceneID="IAc-OB-Vqh">
             <objects>
                 <tableViewController id="Cam-WB-BLe" customClass="ReminderListTableViewController" customModule="CapstoneReminder" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="APv-Au-5tw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="APv-Au-5tw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hX-TF-62S" id="ZBh-XT-WDC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKE-ux-m9g">
@@ -71,6 +71,7 @@
                                     <outlet property="alertLabel" destination="xaw-aF-8TI" id="8GE-kp-ApO"/>
                                     <outlet property="noteLabel" destination="Ugh-DO-M1G" id="yxM-R3-UsO"/>
                                     <outlet property="titleLabel" destination="ZKE-ux-m9g" id="lEK-zj-xXd"/>
+                                    <segue destination="zg7-vV-5n2" kind="show" identifier="editReminder" id="Z3S-Ek-mTp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -83,7 +84,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QxL-ce-n0y">
                             <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="zg7-vV-5n2" kind="show" id="2XI-Cz-mIo"/>
+                                <segue destination="zg7-vV-5n2" kind="show" identifier="addReminder" id="2XI-Cz-mIo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -229,4 +230,7 @@
     <resources>
         <image name="canvas1" width="34" height="33"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Z3S-Ek-mTp"/>
+    </inferredMetricsTieBreakers>
 </document>
