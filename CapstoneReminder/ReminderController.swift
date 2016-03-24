@@ -25,7 +25,7 @@ class ReminderController {
         let request = NSFetchRequest(entityName: "Reminder")
         
         do {
-            return try Stack.sharedStack.managedObjectContext.executeRequest(request) as! [Reminder]
+            return try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Reminder]
         } catch {
             return []
         }

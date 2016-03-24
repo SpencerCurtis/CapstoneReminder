@@ -10,6 +10,8 @@ import UIKit
 
 class ReminderListTableViewController: UITableViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

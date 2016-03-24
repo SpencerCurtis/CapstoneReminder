@@ -10,6 +10,11 @@ import UIKit
 
 class ReminderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
+    
+    var delegate: B
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +26,10 @@ class ReminderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    protocol ReminderTableViewCellDelegate {
+        func reminderCellTappe
+    }
+    
+    
+    
 }
