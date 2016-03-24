@@ -9,24 +9,24 @@
 import UIKit
 
 class ReminderTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var alertLabel: UILabel!
+    @IBOutlet weak var checkboxButton: UIButton!
     
     var delegate: ReminderTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
     
 }
 protocol ReminderTableViewCellDelegate {

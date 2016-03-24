@@ -18,38 +18,60 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hX-TF-62S" id="ZBh-XT-WDC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKE-ux-m9g">
-                                            <rect key="frame" x="52" y="8" width="428" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKE-ux-m9g">
+                                            <rect key="frame" x="44" y="4" width="436" height="23"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alert Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-aF-8TI">
-                                            <rect key="frame" x="488" y="8" width="83" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Alert Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-aF-8TI">
+                                            <rect key="frame" x="488" y="6" width="83" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugh-DO-M1G">
-                                            <rect key="frame" x="52" y="28" width="519" height="23"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugh-DO-M1G">
+                                            <rect key="frame" x="44" y="26" width="527" height="23"/>
                                             <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYm-lC-uhw">
-                                            <rect key="frame" x="8" y="10" width="36" height="37"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="AYm-lC-uhw">
+                                            <rect key="frame" x="6" y="13.5" width="32" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
+                                                <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
+                                            </constraints>
                                             <state key="normal" image="canvas1">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <state key="selected" image="canvas0"/>
                                         </button>
                                     </subviews>
+                                    <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ugh-DO-M1G" secondAttribute="bottom" constant="1" id="2YP-Tr-cez"/>
+                                        <constraint firstItem="Ugh-DO-M1G" firstAttribute="top" secondItem="xaw-aF-8TI" secondAttribute="bottom" constant="-1" id="88Y-hA-A1C"/>
+                                        <constraint firstItem="ZKE-ux-m9g" firstAttribute="leading" secondItem="ZBh-XT-WDC" secondAttribute="leadingMargin" constant="36" id="QSV-19-E9b"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="xaw-aF-8TI" secondAttribute="trailing" constant="21" id="V8a-ll-eve"/>
+                                        <constraint firstItem="AYm-lC-uhw" firstAttribute="centerY" secondItem="ZBh-XT-WDC" secondAttribute="centerY" id="X6g-Wb-ilO"/>
+                                        <constraint firstAttribute="topMargin" secondItem="xaw-aF-8TI" secondAttribute="top" constant="2" id="aeC-ms-zyK"/>
+                                        <constraint firstItem="Ugh-DO-M1G" firstAttribute="leading" secondItem="AYm-lC-uhw" secondAttribute="trailing" constant="6" id="cFy-2c-j4j"/>
+                                        <constraint firstItem="Ugh-DO-M1G" firstAttribute="leading" secondItem="ZKE-ux-m9g" secondAttribute="leading" id="cZn-Gh-Yga"/>
+                                        <constraint firstItem="xaw-aF-8TI" firstAttribute="leading" secondItem="ZKE-ux-m9g" secondAttribute="trailing" constant="8" id="hHK-oz-LiI"/>
+                                        <constraint firstItem="Ugh-DO-M1G" firstAttribute="trailing" secondItem="xaw-aF-8TI" secondAttribute="trailing" id="kEe-c9-ZxB"/>
+                                        <constraint firstItem="Ugh-DO-M1G" firstAttribute="top" secondItem="ZBh-XT-WDC" secondAttribute="topMargin" constant="18" id="lyC-ca-lFb"/>
+                                        <constraint firstItem="ZKE-ux-m9g" firstAttribute="top" secondItem="ZBh-XT-WDC" secondAttribute="topMargin" constant="-4" id="uSw-70-Noa"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="alertLabel" destination="xaw-aF-8TI" id="8GE-kp-ApO"/>
+                                    <outlet property="checkboxButton" destination="AYm-lC-uhw" id="kc3-AY-D8H"/>
                                     <outlet property="noteLabel" destination="Ugh-DO-M1G" id="yxM-R3-UsO"/>
                                     <outlet property="titleLabel" destination="ZKE-ux-m9g" id="lEK-zj-xXd"/>
                                     <segue destination="zg7-vV-5n2" kind="show" identifier="editReminder" id="Z3S-Ek-mTp"/>
@@ -209,7 +231,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="canvas1" width="34" height="33"/>
+        <image name="canvas0" width="66" height="63"/>
+        <image name="canvas1" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z3S-Ek-mTp"/>
