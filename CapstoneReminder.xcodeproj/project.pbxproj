@@ -21,6 +21,7 @@
 		466304321CA3390F00EB5986 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304311CA3390F00EB5986 /* Stack.swift */; };
 		466304361CA33DB300EB5986 /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304351CA33DB300EB5986 /* ReminderController.swift */; };
 		4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */; };
+		467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467EC8611CA5F20600BB8A0E /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		466304311CA3390F00EB5986 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		466304351CA33DB300EB5986 /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
+		467EC8611CA5F20600BB8A0E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				466304221CA3282D00EB5986 /* AppearanceController.swift */,
 				466304351CA33DB300EB5986 /* ReminderController.swift */,
 				466304241CA3298000EB5986 /* AppColorPalette.swift */,
+				467EC8611CA5F20600BB8A0E /* LocationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				466304321CA3390F00EB5986 /* Stack.swift in Sources */,
 				4656F9AE1CA5B4EE009F0E18 /* Reminder.swift in Sources */,
 				466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */,
+				467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */,
 				466304361CA33DB300EB5986 /* ReminderController.swift in Sources */,
 				466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */,
 				466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */,

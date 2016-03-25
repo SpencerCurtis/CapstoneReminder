@@ -10,13 +10,16 @@ import UIKit
 import CoreLocation
 
 class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
         
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
+        self.locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.delegate = self
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,7 +130,9 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         // Pass the selected object to the new view controller.
     }
     
+    // MARK: - Location
     
+   
 }
 
 extension ReminderListTableViewController: ReminderTableViewCellDelegate {
@@ -156,5 +161,5 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         
         tableView.reloadData()
     }
-}
+  }
 

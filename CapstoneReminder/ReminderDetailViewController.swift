@@ -31,15 +31,15 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         super.viewDidLoad()
 //        self.locationManager.delegate = self
 //        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.delegate = self
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.delegate = self
         editTextView()
         // Do any additional setup after loading the view.
-        let control = UISegmentedControl()
-        if control.selectedSegmentIndex == 0 {
-
-            
-        }
+//        let control = UISegmentedControl()
+//        if control.selectedSegmentIndex == 0 {
+//
+//            
+//        }
         
 //        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
 //            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
@@ -101,7 +101,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         } else {
             if let title = titleTextField.text {
                 let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
-                //                let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
+//              let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
                 ReminderController.sharedController.addReminder(newReminder)
             }
             
@@ -121,9 +121,13 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         }
         if alertSegmentedControl.selectedSegmentIndex == 0 {
             reminder.alertLabelText = "\(alertDatePicker.date)"
-        } else {
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             reminder.alertLabelText = "Upon Moving"
         }
+        
+    }
+    
+    func requestPermission() {
         
     }
     
@@ -139,39 +143,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
      */
     
     
-    // MARK: - Location
-    
-    var currentLocation: CLLocation?
-    
-    let locationManager = CLLocationManager()
-    
-    var remindersUsingLocationCount: Int = 0 {
-        didSet {
-            if remindersUsingLocationCount == 0 {
-                locationManager.stopUpdatingLocation()
-            }
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if currentLocation == nil {
-            currentLocation = locations.last
-        }
-        if let currentLocation = currentLocation {
-            if locations.last?.distanceFromLocation(currentLocation) > 10 {
-                let notification = UILocalNotification()
-                notification.alertBody = "Check your reminders!"
-                UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-                remindersUsingLocationCount -= 1
-            }
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        
-    }
-    
-    
+
     
 }
 
