@@ -9,10 +9,6 @@
 import UIKit
 
 class ReminderListTableViewController: UITableViewController {
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var noteLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
@@ -140,6 +136,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         if checkboxButton.selected.boolValue == false {
             reminder.isComplete = true
             checkboxButton.selected = true
+            tableView.reloadData()
 //            checkboxButton.imageView?.image = UIImage(named: "canvas0")
         } else {
             reminder.isComplete = false

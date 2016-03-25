@@ -13,22 +13,22 @@ class ReminderController {
     
     static let sharedController = ReminderController()
     
-    var mockReminders: [Reminder]  {
+//    var mockReminders: [Reminder]  {
+    
         
-        
-        let r1 = Reminder(title: "Pay Rent", notes: "Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes ", isComplete: false)
-        let r2 = Reminder(title: "Grab Lunch", notes: "Spencer: Turkey Club, Ryan: Barbeque Sandwich", isComplete: false)
-        let r3 = Reminder(title: "Renew Spotify Subscription", notes: "Renew subscription before it expires on 4/12/16", isComplete: false)
-        
-        return [r1, r2, r3]
-    }
+//        let r1 = Reminder(title: "Pay Rent", notes: "Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes Mock Notes ", isComplete: false)
+//        let r2 = Reminder(title: "Grab Lunch", notes: "Spencer: Turkey Club, Ryan: Barbeque Sandwich", isComplete: false)
+//        let r3 = Reminder(title: "Renew Spotify Subscription", notes: "Renew subscription before it expires on 4/12/16", isComplete: false)
+//        
+//        return [r1, r2, r3]
+//    }
     
     var reminders: [Reminder] {
         let request = NSFetchRequest(entityName: "Reminder")
         
         do {
             var reminders = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Reminder]
-            reminders.sortInPlace({$0.reminderTime?.timeIntervalSince1970 > $1.reminderTime?.timeIntervalSince1970})
+            reminders.sortInPlace({$0.creationDate?.timeIntervalSince1970 > $1.creationDate?.timeIntervalSince1970})
             return reminders
         } catch {
             return []

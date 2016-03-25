@@ -61,7 +61,8 @@ class ReminderDetailViewController: UIViewController {
             reminder.alertLabelText = "\(reminderTime)"
         } else {
             if let title = titleTextField.text {
-                let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
+                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
+                    //                let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
                 ReminderController.sharedController.addReminder(newReminder)
             }
             

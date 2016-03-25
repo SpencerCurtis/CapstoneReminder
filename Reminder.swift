@@ -2,7 +2,7 @@
 //  Reminder.swift
 //  CapstoneReminder
 //
-//  Created by Spencer Curtis on 3/24/16.
+//  Created by Spencer Curtis on 3/25/16.
 //  Copyright © 2016 Spencer Curtis. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import CoreData
 
 
 class Reminder: NSManagedObject {
-
-    convenience init(title: String, notes: String, isComplete: Bool = false, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    
+    convenience init(title: String, notes: String, reminderTime: NSDate, isComplete: Bool = false, creationDate: NSDate = NSDate(), context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext: context)
         
@@ -20,10 +20,8 @@ class Reminder: NSManagedObject {
         
         self.title = title
         self.notes = notes
-        self.isComplete = false
-        self.reminderTime = NSDate()
-        
-        
+        self.isComplete = isComplete
+        self.reminderTime = reminderTime
+        self.creationDate = creationDate
     }
-
 }
