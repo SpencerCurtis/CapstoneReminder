@@ -29,15 +29,27 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.locationManager.delegate = self
+//        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.delegate = self
         editTextView()
         // Do any additional setup after loading the view.
         let control = UISegmentedControl()
         if control.selectedSegmentIndex == 0 {
+
             
         }
-        self.locationManager.delegate = self
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+//        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
+//        }
+        
+        
+        
+        
+        
+        
         //        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
         //        let toolbar = UIToolbar().setItems([doneButton], animated: true)
         //        notesTextView.inputAccessoryView = toolbar
@@ -154,10 +166,17 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             }
         }
     }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+    }
+    
+    
+    
 }
 
 
 
 
 
-}
+

@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ReminderListTableViewController: UITableViewController {
+class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
+        
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
     }
     
     override func didReceiveMemoryWarning() {
