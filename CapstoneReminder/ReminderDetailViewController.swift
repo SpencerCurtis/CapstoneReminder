@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ReminderDetailViewController: UIViewController {
+class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate {
     
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
@@ -34,6 +35,10 @@ class ReminderDetailViewController: UIViewController {
         if control.selectedSegmentIndex == 0 {
             
         }
+        
+//        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
+//        let toolbar = UIToolbar().setItems([doneButton], animated: true)
+//        notesTextView.inputAccessoryView = toolbar
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,6 +57,17 @@ class ReminderDetailViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     
     
     func updateReminder() {
@@ -63,10 +79,11 @@ class ReminderDetailViewController: UIViewController {
             reminder.title = title
             reminder.notes = notes
             reminder.alertLabelText = "\(reminderTime)"
+            ReminderController.sharedController.saveToPersistentStorage()
         } else {
             if let title = titleTextField.text {
                 let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
-                    //                let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
+                //                let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
                 ReminderController.sharedController.addReminder(newReminder)
             }
             

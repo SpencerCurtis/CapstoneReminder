@@ -35,7 +35,7 @@ class ReminderListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ReminderController.sharedController.reminders.count
+        return ReminderController.sharedController.incompleteReminders.count
     }
     
     
@@ -77,6 +77,7 @@ class ReminderListTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
+//            ReminderController.sharedController.in
             ReminderController.sharedController.removeReminder(reminder)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

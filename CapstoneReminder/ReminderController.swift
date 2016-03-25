@@ -52,6 +52,10 @@ class ReminderController {
         saveToPersistentStorage()
     }
     
+//    func updateReminder(reminder: Reminder) {
+//        reminder.managedObjectContext?.setValue(, forKey: <#T##String#>)
+//    }
+    
     // MARK: - Persistence
     
     func saveToPersistentStorage() {
