@@ -32,7 +32,7 @@ class ReminderListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ReminderController.sharedController.mockReminders.count
+        return ReminderController.sharedController.reminders.count
     }
     
     
