@@ -35,10 +35,12 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         if control.selectedSegmentIndex == 0 {
             
         }
-        
-//        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
-//        let toolbar = UIToolbar().setItems([doneButton], animated: true)
-//        notesTextView.inputAccessoryView = toolbar
+        self.locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
+        //        let toolbar = UIToolbar().setItems([doneButton], animated: true)
+        //        notesTextView.inputAccessoryView = toolbar
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,6 +55,10 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
+        if alertSegmentedControl.selectedSegmentIndex == 1 {
+            locationManager.startUpdatingLocation()
+            remindersUsingLocationCount += 1
+        }
         updateReminder()
         navigationController?.popViewControllerAnimated(true)
     }
@@ -120,4 +126,38 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
      }
      */
     
+    
+    // MARK: - Location
+    
+    var currentLocation: CLLocation?
+    
+    let locationManager = CLLocationManager()
+    
+    var remindersUsingLocationCount: Int = 0 {
+        didSet {
+            if remindersUsingLocationCount == 0 {
+                locationManager.stopUpdatingLocation()
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if currentLocation == nil {
+            currentLocation = locations.last
+        }
+        if let currentLocation = currentLocation {
+            if locations.last?.distanceFromLocation(currentLocation) > 10 {
+                let notification = UILocalNotification()
+                notification.alertBody = "Check your reminders!"
+                UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+                remindersUsingLocationCount -= 1
+            }
+        }
+    }
+}
+
+
+
+
+
 }
