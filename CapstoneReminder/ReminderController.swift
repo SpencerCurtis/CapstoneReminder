@@ -27,7 +27,9 @@ class ReminderController {
         let request = NSFetchRequest(entityName: "Reminder")
         
         do {
-            return try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Reminder]
+            var reminders = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Reminder]
+            reminders.sortInPlace({$0.reminderTime?.timeIntervalSince1970 > $1.reminderTime?.timeIntervalSince1970})
+            return reminders
         } catch {
             return []
         }

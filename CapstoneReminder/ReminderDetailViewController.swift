@@ -53,7 +53,7 @@ class ReminderDetailViewController: UIViewController {
     func updateReminder() {
         let title = titleTextField.text
         let notes = notesTextView.text
-        let reminderTime = alertTimeValue
+        let reminderTime = alertDatePicker.date
         
         if let reminder = self.reminder {
             reminder.title = title
@@ -80,7 +80,7 @@ class ReminderDetailViewController: UIViewController {
             notesTextView.text = notes
         }
         if alertSegmentedControl.selectedSegmentIndex == 0 {
-//            reminder.alertLabelText = "\(alertDatePicker.date)"
+            reminder.alertLabelText = "\(alertDatePicker.date)"
         } else {
             reminder.alertLabelText = "Upon Moving"
         }

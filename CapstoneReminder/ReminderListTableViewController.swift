@@ -23,6 +23,13 @@ class ReminderListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+//    override func viewDidAppear(animated: Bool) {
+//        tableView.reloadData()
+//    }
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -38,8 +45,8 @@ class ReminderListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
-        
-        let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
+//        ReminderController.sharedController.reminders.sortInPlace({})
+        let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
         let formatter = NSDateFormatter()
@@ -51,7 +58,7 @@ class ReminderListTableViewController: UITableViewController {
         cell.updateButton(bool)
         
         }
-        //                cell.delegate = ReminderTableViewCellDelegate
+//                        cell.delegate = ReminderTableViewCellDelegate
         
         return cell
     }
@@ -108,7 +115,7 @@ class ReminderListTableViewController: UITableViewController {
                 
                 if let selectedRow = tableView.indexPathForSelectedRow?.row {
                     //Use incomplete Reminders below instead of mockreminders
-                    ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.mockReminders[selectedRow])
+                    ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.incompleteReminders[selectedRow])
                 }
             }
         }
@@ -127,12 +134,19 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         let indexPath = tableView.indexPathForCell(sender)!
         
         //use incomplete reminders below insteads of mockreminders
-        let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
+        let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
+        
         
         if checkboxButton.selected.boolValue == false {
             reminder.isComplete = true
+            checkboxButton.selected = true
+//            checkboxButton.imageView?.image = UIImage(named: "canvas0")
         } else {
             reminder.isComplete = false
+            checkboxButton.selected = false
+            
+//            checkboxButton.imageView?.image = UIImage(named: "canvas1")
+
         }
     
         ReminderController.sharedController.saveToPersistentStorage()
