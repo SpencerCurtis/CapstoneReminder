@@ -13,6 +13,10 @@ class ReminderDetailViewController: UIViewController {
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
     
     
     @IBOutlet weak var titleTextField: UITextField!
