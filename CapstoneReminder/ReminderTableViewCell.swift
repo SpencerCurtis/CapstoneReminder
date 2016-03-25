@@ -29,23 +29,23 @@ class ReminderTableViewCell: UITableViewCell {
     
     @IBAction func buttonTapped(sender: AnyObject) {
         if let delegate = delegate {
-            delegate.reminderCellTapped(self)
+            delegate.reminderCellTapped(checkboxButton, sender: self)
             
         }
     }
     
     func updateButton(isComplete: Bool) {
         if isComplete {
-            checkboxButton.setImage(UIImage(named: "canvas0"), forState: .Selected)
+            checkboxButton.imageView?.image = UIImage(named: "canvas0")
         } else {
-            checkboxButton.setImage(UIImage(named: "canvas1"), forState: .Normal)
+            checkboxButton.imageView?.image = UIImage(named: "canvas1")
         }
     }
     
     
 }
 protocol ReminderTableViewCellDelegate {
-    func reminderCellTapped(sender: ReminderTableViewCell)
+    func reminderCellTapped(checkboxButton: UIButton, sender: ReminderTableViewCell)
 }
 
 

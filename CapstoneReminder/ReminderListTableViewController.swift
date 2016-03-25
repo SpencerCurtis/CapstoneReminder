@@ -40,16 +40,18 @@ class ReminderListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
         
         let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
-        
+        cell.delegate = self
         cell.updateWithReminder(reminder)
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
         let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
         reminder.alertLabelText = alertLabelText
         cell.alertLabel.text = "At \(alertLabelText)"
+        if let bool = reminder.isComplete?.boolValue {
+        cell.updateButton(bool)
         
-        
-//                cell.delegate = ReminderTableViewCellDelegate
+        }
+        //                cell.delegate = ReminderTableViewCellDelegate
         
         return cell
     }
@@ -120,14 +122,19 @@ class ReminderListTableViewController: UITableViewController {
 }
 
 extension ReminderListTableViewController: ReminderTableViewCellDelegate {
-    func reminderCellTapped(sender: ReminderTableViewCell) {
+    
+    func reminderCellTapped(checkboxButton: UIButton, sender: ReminderTableViewCell) {
         let indexPath = tableView.indexPathForCell(sender)!
-        
         
         //use incomplete reminders below insteads of mockreminders
         let reminder = ReminderController.sharedController.mockReminders[indexPath.row]
-        reminder.isComplete = reminder.isComplete?.boolValue
         
+        if checkboxButton.selected.boolValue == false {
+            reminder.isComplete = true
+        } else {
+            reminder.isComplete = false
+        }
+    
         ReminderController.sharedController.saveToPersistentStorage()
         
         tableView.reloadData()
