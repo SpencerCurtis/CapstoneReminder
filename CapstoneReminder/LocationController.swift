@@ -18,7 +18,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     
-
+    
     var remindersUsingLocationCount: Int = 0 {
         didSet {
             if remindersUsingLocationCount == 0 {
@@ -45,15 +45,19 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         let authState = CLLocationManager.authorizationStatus()
         if authState == CLAuthorizationStatus.NotDetermined {
             locationManager.requestAlwaysAuthorization()
-        } else {
-//            locationManager.requestAlwaysAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.delegate = self
         }
+        //            locationManager.requestAlwaysAuthorization()
+        //            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //            locationManager.delegate = self
+        //            locationManager.startUpdatingLocation()
+        //            remindersUsingLocationCount += 1
+        
+        
+        
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-//        locationManager.
+        requestAuthorization()
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -67,7 +71,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
         alertController.addAction(action)
         
-//        presentViewController(alertController, animated: true, completion: nil)
+        //        presentViewController(alertController, animated: true, completion: nil)
     }
+    
     
 }

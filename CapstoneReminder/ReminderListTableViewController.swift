@@ -11,16 +11,19 @@ import CoreLocation
 
 class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate {
     
+    var remindersUsingLocationCount: Int = 0 {
+        didSet {
+            if remindersUsingLocationCount == 0 {
+                LocationController.sharedController.locationManager.stopUpdatingLocation()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
-//        
-//        self.locationManager.delegate = self
-//        self.locationManager.requestAlwaysAuthorization()
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        self.locationManager.delegate = self
-
-    }
+        
+           }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -30,9 +33,9 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
-//    override func viewDidAppear(animated: Bool) {
-//        tableView.reloadData()
-//    }
+    //    override func viewDidAppear(animated: Bool) {
+    //        tableView.reloadData()
+    //    }
     
     // MARK: - Table view data source
     
@@ -49,7 +52,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
-//        ReminderController.sharedController.reminders.sortInPlace({})
+        //        ReminderController.sharedController.reminders.sortInPlace({})
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
@@ -59,10 +62,10 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         reminder.alertLabelText = alertLabelText
         cell.alertLabel.text = "At \(alertLabelText)"
         if let bool = reminder.isComplete?.boolValue {
-        cell.updateButton(bool)
-        
+            cell.updateButton(bool)
+            
         }
-//                        cell.delegate = ReminderTableViewCellDelegate
+        //                        cell.delegate = ReminderTableViewCellDelegate
         
         return cell
     }
@@ -85,7 +88,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         if editingStyle == .Delete {
             // Delete the row from the data source
             let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
-//            ReminderController.sharedController.in
+            //            ReminderController.sharedController.in
             ReminderController.sharedController.removeReminder(reminder)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
@@ -132,7 +135,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     // MARK: - Location
     
-   
+    
 }
 
 extension ReminderListTableViewController: ReminderTableViewCellDelegate {
@@ -147,19 +150,19 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         if checkboxButton.selected.boolValue == false {
             reminder.isComplete = true
             checkboxButton.selected = true
+            remindersUsingLocationCount -= 1
             tableView.reloadData()
-//            checkboxButton.imageView?.image = UIImage(named: "canvas0")
+            //            checkboxButton.imageView?.image = UIImage(named: "canvas0")
         } else {
             reminder.isComplete = false
             checkboxButton.selected = false
             
-//            checkboxButton.imageView?.image = UIImage(named: "canvas1")
-
+            //            checkboxButton.imageView?.image = UIImage(named: "canvas1")
+            
         }
-    
         ReminderController.sharedController.saveToPersistentStorage()
         
         tableView.reloadData()
     }
-  }
+}
 

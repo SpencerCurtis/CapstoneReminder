@@ -27,13 +27,13 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var alertSegmentedControl: UISegmentedControl!
     @IBOutlet weak var alertDatePicker: UIDatePicker!
     
+
     
-    func UponMovingSegmentedControlSelected() {
+    @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
         if alertTypeSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestAuthorization()
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,10 +76,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-//            if LocationController.sharedController.locationManager.
-//            locationManager.startUpdatingLocation()
-//            remindersUsingLocationCount += 1
-            UponMovingSegmentedControlSelected()
+            LocationController.sharedController.locationManager.startUpdatingLocation()
         }
         updateReminder()
         navigationController?.popViewControllerAnimated(true)
@@ -109,9 +106,12 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             reminder.alertLabelText = "\(reminderTime)"
             ReminderController.sharedController.saveToPersistentStorage()
         } else {
+            
+            // New Reminders
             if let title = titleTextField.text {
                 let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
 //              let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
+                
                 ReminderController.sharedController.addReminder(newReminder)
             }
             
@@ -134,10 +134,6 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             reminder.alertLabelText = "Upon Moving"
         }
-        
-    }
-    
-    func requestPermission() {
         
     }
     

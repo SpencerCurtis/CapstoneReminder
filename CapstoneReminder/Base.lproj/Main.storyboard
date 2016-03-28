@@ -162,6 +162,9 @@
                                     <segment title="Upon Moving"/>
                                 </segments>
                                 <color key="tintColor" red="0.31145571360000002" green="0.79838580140000004" blue="0.96705251960000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="UponMovingSegmentedControlTapped:" destination="zg7-vV-5n2" eventType="valueChanged" id="tAD-yN-czA"/>
+                                </connections>
                             </segmentedControl>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gba-24-nEO">
                                 <rect key="frame" x="20" y="364" width="560" height="216"/>
