@@ -41,19 +41,17 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func requestLocation() {
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+    
     func requestAuthorization() {
         let authState = CLLocationManager.authorizationStatus()
         if authState == CLAuthorizationStatus.NotDetermined {
             locationManager.requestAlwaysAuthorization()
+            locationManager.delegate = self
         }
-        //            locationManager.requestAlwaysAuthorization()
-        //            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //            locationManager.delegate = self
-        //            locationManager.startUpdatingLocation()
-        //            remindersUsingLocationCount += 1
-        
-        
-        
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

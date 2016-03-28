@@ -37,26 +37,12 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        
-        
-//        self.locationManager.delegate = self
-//        self.locationManager.requestAlwaysAuthorization()
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        self.locationManager.delegate = self
         editTextView()
         // Do any additional setup after loading the view.
  
 //        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
 //            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
 //        }
-        
-        
-        
-        
-        
         
         //        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
         //        let toolbar = UIToolbar().setItems([doneButton], animated: true)
@@ -76,7 +62,8 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
+            LocationController.sharedController.requestLocation()
+            
         }
         updateReminder()
         navigationController?.popViewControllerAnimated(true)
@@ -131,7 +118,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         }
         if alertSegmentedControl.selectedSegmentIndex == 0 {
             reminder.alertLabelText = "\(alertDatePicker.date)"
-        } else if alertSegmentedControl.selectedSegmentIndex == 1 {
+        } else {
             reminder.alertLabelText = "Upon Moving"
         }
         
