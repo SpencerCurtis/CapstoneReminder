@@ -17,6 +17,13 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
+    var locations: [CLLocation] = []
+    // Make a region
+    
+//    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+//        
+//    }
+    
     
     
     var remindersUsingLocationCount: Int = 0 {
@@ -28,31 +35,53 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        self.locations = locations
         if currentLocation == nil {
             currentLocation = locations.last
         }
         if let currentLocation = currentLocation {
-            if locations.last?.distanceFromLocation(currentLocation) > 10 {
-                let notification = UILocalNotification()
-                notification.alertBody = "Check your reminders!"
-                UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-                remindersUsingLocationCount -= 1
+            if locations.first?.distanceFromLocation(currentLocation) > 10 {
+                sendNotification()
+            } else {
+                print("You haven't left the radius yet!")
             }
+            //        }
+            //        if currentLocation != nil {
+            //            var region = CLCircularRegion(center: <#T##CLLocationCoordinate2D#>, radius: <#T##CLLocationDistance#>, identifier: <#T##String#>)
+            //        }
         }
+    }
+    
+    
+    func sendNotification() {
+        let notification = UILocalNotification()
+        notification.alertBody = "Check your reminders!"
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        locationManager.stopUpdatingLocation()
+        remindersUsingLocationCount -= 1
+        
     }
     
     func requestLocation() {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        
+        print("")
     }
     
     func requestAuthorization() {
         let authState = CLLocationManager.authorizationStatus()
         if authState == CLAuthorizationStatus.NotDetermined {
             locationManager.requestAlwaysAuthorization()
+            locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
+            
         }
     }
+    
+    
+    
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         requestAuthorization()

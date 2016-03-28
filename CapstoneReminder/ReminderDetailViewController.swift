@@ -64,6 +64,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         if alertSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestLocation()
             
+            
         }
         updateReminder()
         navigationController?.popViewControllerAnimated(true)
