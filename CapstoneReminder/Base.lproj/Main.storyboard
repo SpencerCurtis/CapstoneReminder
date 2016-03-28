@@ -212,6 +212,7 @@
                     <connections>
                         <outlet property="alertDatePicker" destination="Gba-24-nEO" id="Rya-dq-3ri"/>
                         <outlet property="alertSegmentedControl" destination="uhq-4v-VP3" id="AsV-bk-r2p"/>
+                        <outlet property="alertTimeDatePicker" destination="Gba-24-nEO" id="6rK-N8-WSb"/>
                         <outlet property="alertTypeSegmentedControl" destination="uhq-4v-VP3" id="Ra0-dp-DH9"/>
                         <outlet property="notesTextView" destination="D4U-Pm-COg" id="gMn-nF-tZ0"/>
                         <outlet property="titleTextField" destination="Aos-Ew-rEp" id="rQF-za-zia"/>

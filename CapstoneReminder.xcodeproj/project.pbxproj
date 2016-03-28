@@ -11,8 +11,6 @@
 		463E3F811CA2E79C00E55E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F7F1CA2E79C00E55E92 /* Main.storyboard */; };
 		463E3F831CA2E79C00E55E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F821CA2E79C00E55E92 /* Assets.xcassets */; };
 		463E3F861CA2E79C00E55E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */; };
-		4656F9AD1CA5B4EE009F0E18 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F9AB1CA5B4EE009F0E18 /* Reminder+CoreDataProperties.swift */; };
-		4656F9AE1CA5B4EE009F0E18 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656F9AC1CA5B4EE009F0E18 /* Reminder.swift */; };
 		466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304221CA3282D00EB5986 /* AppearanceController.swift */; };
 		466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304241CA3298000EB5986 /* AppColorPalette.swift */; };
 		466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */; };
@@ -22,6 +20,8 @@
 		466304361CA33DB300EB5986 /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304351CA33DB300EB5986 /* ReminderController.swift */; };
 		4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */; };
 		467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467EC8611CA5F20600BB8A0E /* LocationController.swift */; };
+		46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */; };
+		46A52D9E1CA9E4660069C9B4 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A52D9C1CA9E4660069C9B4 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,6 @@
 		463E3F821CA2E79C00E55E92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		463E3F851CA2E79C00E55E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		463E3F871CA2E79C00E55E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4656F9AB1CA5B4EE009F0E18 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Reminder+CoreDataProperties.swift"; path = "../Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4656F9AC1CA5B4EE009F0E18 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reminder.swift; path = ../Reminder.swift; sourceTree = "<group>"; };
 		466304221CA3282D00EB5986 /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		466304241CA3298000EB5986 /* AppColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColorPalette.swift; sourceTree = "<group>"; };
 		466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +40,8 @@
 		466304351CA33DB300EB5986 /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		467EC8611CA5F20600BB8A0E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		46A52D9C1CA9E4660069C9B4 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +89,9 @@
 		466304331CA33D8900EB5986 /* Model + CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */,
+				46A52D9C1CA9E4660069C9B4 /* Reminder.swift */,
 				4663042A1CA336DC00EB5986 /* Reminder.xcdatamodeld */,
-				4656F9AB1CA5B4EE009F0E18 /* Reminder+CoreDataProperties.swift */,
-				4656F9AC1CA5B4EE009F0E18 /* Reminder.swift */,
 				466304311CA3390F00EB5986 /* Stack.swift */,
 			);
 			name = "Model + CoreData";
@@ -151,6 +151,11 @@
 					463E3F771CA2E79C00E55E92 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 28B8X634EX;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -192,16 +197,16 @@
 			files = (
 				463E3F7C1CA2E79C00E55E92 /* AppDelegate.swift in Sources */,
 				466304321CA3390F00EB5986 /* Stack.swift in Sources */,
-				4656F9AE1CA5B4EE009F0E18 /* Reminder.swift in Sources */,
 				466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */,
+				46A52D9E1CA9E4660069C9B4 /* Reminder.swift in Sources */,
 				467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */,
 				466304361CA33DB300EB5986 /* ReminderController.swift in Sources */,
 				466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */,
+				46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */,
 				466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */,
 				4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */,
 				466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */,
 				4663042C1CA336DC00EB5986 /* Reminder.xcdatamodeld in Sources */,
-				4656F9AD1CA5B4EE009F0E18 /* Reminder+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

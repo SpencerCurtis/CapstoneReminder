@@ -12,6 +12,7 @@ import CoreLocation
 class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var alertTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var alertTimeDatePicker: UIDatePicker!
     
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
@@ -27,11 +28,14 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var alertSegmentedControl: UISegmentedControl!
     @IBOutlet weak var alertDatePicker: UIDatePicker!
     
-
+    
     
     @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
         if alertTypeSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestAuthorization()
+            alertDatePicker.hidden = true
+        } else if alertTypeSegmentedControl.selectedSegmentIndex == 0 {
+            alertDatePicker.hidden = false
         }
     }
     override func viewDidLoad() {
@@ -39,10 +43,10 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         
         editTextView()
         // Do any additional setup after loading the view.
- 
-//        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
-//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
-//        }
+        
+        //        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
+        //            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
+        //        }
         
         //        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
         //        let toolbar = UIToolbar().setItems([doneButton], animated: true)
@@ -84,6 +88,8 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     
     func updateReminder() {
+        let latitude = LocationController.sharedController.currentLocation?.coordinate.latitude
+        let longitude = LocationController.sharedController.currentLocation?.coordinate.longitude
         let title = titleTextField.text
         let notes = notesTextView.text
         let reminderTime = alertDatePicker.date
@@ -96,10 +102,9 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         } else {
             
             // New Reminders
-            if let title = titleTextField.text {
-                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
-//              let newReminder = Reminder(title: title, notes: notesTextView.text, isComplete: false)
-                
+            if let title = titleTextField.text, latitude = latitude, longitude = longitude {
+//                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
+                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, latitude: latitude, longitude: longitude)
                 ReminderController.sharedController.addReminder(newReminder)
             }
             
@@ -137,7 +142,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
      */
     
     
-
+    
     
 }
 
