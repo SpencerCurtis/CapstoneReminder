@@ -11,10 +11,14 @@ import CoreLocation
 import UIKit
 
 class LocationController: NSObject, CLLocationManagerDelegate {
+    static let sharedController = LocationController()
+    
     var currentLocation: CLLocation?
     
     let locationManager = CLLocationManager()
     
+    
+
     var remindersUsingLocationCount: Int = 0 {
         didSet {
             if remindersUsingLocationCount == 0 {
@@ -37,8 +41,19 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func requestAuthorization() {
+        let authState = CLLocationManager.authorizationStatus()
+        if authState == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+//            locationManager.requestAlwaysAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.delegate = self
+        }
+    }
+    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        
+//        locationManager.
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -55,8 +70,4 @@ class LocationController: NSObject, CLLocationManagerDelegate {
 //        presentViewController(alertController, animated: true, completion: nil)
     }
     
-    
-    
-    
-
 }

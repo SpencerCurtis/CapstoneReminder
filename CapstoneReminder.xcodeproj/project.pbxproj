@@ -76,12 +76,12 @@
 			children = (
 				463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */,
 				463E3F7F1CA2E79C00E55E92 /* Main.storyboard */,
+				463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */,
+				463E3F871CA2E79C00E55E92 /* Info.plist */,
+				463E3F821CA2E79C00E55E92 /* Assets.xcassets */,
 				466304331CA33D8900EB5986 /* Model + CoreData */,
 				466304341CA33DA600EB5986 /* View Controllers */,
 				466304371CA33DB900EB5986 /* Controllers */,
-				463E3F821CA2E79C00E55E92 /* Assets.xcassets */,
-				463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */,
-				463E3F871CA2E79C00E55E92 /* Info.plist */,
 			);
 			path = CapstoneReminder;
 			sourceTree = "<group>";

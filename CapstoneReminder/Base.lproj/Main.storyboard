@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hX-TF-62S" id="ZBh-XT-WDC">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKE-ux-m9g">
@@ -209,6 +209,7 @@
                     <connections>
                         <outlet property="alertDatePicker" destination="Gba-24-nEO" id="Rya-dq-3ri"/>
                         <outlet property="alertSegmentedControl" destination="uhq-4v-VP3" id="AsV-bk-r2p"/>
+                        <outlet property="alertTypeSegmentedControl" destination="uhq-4v-VP3" id="Ra0-dp-DH9"/>
                         <outlet property="notesTextView" destination="D4U-Pm-COg" id="gMn-nF-tZ0"/>
                         <outlet property="titleTextField" destination="Aos-Ew-rEp" id="rQF-za-zia"/>
                     </connections>

@@ -14,11 +14,11 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
-        
-        self.locationManager.delegate = self
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.delegate = self
+//        
+//        self.locationManager.delegate = self
+//        self.locationManager.requestAlwaysAuthorization()
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.delegate = self
 
     }
     

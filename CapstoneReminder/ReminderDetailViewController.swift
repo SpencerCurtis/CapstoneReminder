@@ -11,6 +11,8 @@ import CoreLocation
 
 class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var alertTypeSegmentedControl: UISegmentedControl!
+    
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
     
@@ -26,21 +28,27 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var alertDatePicker: UIDatePicker!
     
     
+    func UponMovingSegmentedControlSelected() {
+        if alertTypeSegmentedControl.selectedSegmentIndex == 1 {
+            LocationController.sharedController.requestAuthorization()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        
+        
 //        self.locationManager.delegate = self
 //        self.locationManager.requestAlwaysAuthorization()
 //        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
 //        self.locationManager.delegate = self
         editTextView()
         // Do any additional setup after loading the view.
-//        let control = UISegmentedControl()
-//        if control.selectedSegmentIndex == 0 {
-//
-//            
-//        }
-        
+ 
 //        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
 //            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
 //        }
@@ -68,8 +76,10 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-            locationManager.startUpdatingLocation()
-            remindersUsingLocationCount += 1
+//            if LocationController.sharedController.locationManager.
+//            locationManager.startUpdatingLocation()
+//            remindersUsingLocationCount += 1
+            UponMovingSegmentedControlSelected()
         }
         updateReminder()
         navigationController?.popViewControllerAnimated(true)
