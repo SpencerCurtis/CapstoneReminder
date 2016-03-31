@@ -28,11 +28,11 @@ class Reminder: NSManagedObject {
         self.locationLongitude = longitude
     }
     
-    var location: CLLocation = CLLocation() {
-        didSet {
-            CLLocation(latitude: (locationLatitude as? Double)!, longitude: (locationLongitude as? Double)!)
+    var location: CLLocation? {
+        if let latitude = locationLatitude?.doubleValue, longitude = locationLongitude?.doubleValue {
+            return CLLocation(latitude: latitude, longitude: longitude)
+        } else {
+            return nil
         }
     }
-    
-    
 }

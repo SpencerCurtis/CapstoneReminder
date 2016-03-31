@@ -18,11 +18,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var locations: [CLLocation] = []
-    // Make a region
-    
-//    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-//        
-//    }
+    // Make a region?
     
     
     
@@ -46,10 +42,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             } else {
                 print("You haven't left the radius yet!")
             }
-            //        }
-            //        if currentLocation != nil {
-            //            var region = CLCircularRegion(center: <#T##CLLocationCoordinate2D#>, radius: <#T##CLLocationDistance#>, identifier: <#T##String#>)
-            //        }
         }
     }
     
@@ -76,7 +68,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             locationManager.requestAlwaysAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
-            
+            locationManager.startUpdatingLocation()
         }
     }
     
