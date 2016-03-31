@@ -86,6 +86,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Remindr - SpencerCurtis"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
