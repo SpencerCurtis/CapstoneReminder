@@ -23,7 +23,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
         
-           }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,11 +56,13 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
-        reminder.alertLabelText = alertLabelText
-        cell.alertLabel.text = "At \(alertLabelText)"
+        if reminder.alertLabelText != "Upon Moving" {
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
+            reminder.alertLabelText = alertLabelText
+            cell.alertLabel.text = "At \(alertLabelText)"
+        }
         if let bool = reminder.isComplete?.boolValue {
             cell.updateButton(bool)
             

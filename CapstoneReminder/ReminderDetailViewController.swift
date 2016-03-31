@@ -97,7 +97,11 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         if let reminder = self.reminder {
             reminder.title = title
             reminder.notes = notes
+            if alertSegmentedControl.selectedSegmentIndex == 0 {
             reminder.alertLabelText = "\(reminderTime)"
+            } else if alertSegmentedControl.selectedSegmentIndex == 1 {
+                reminder.alertLabelText = "Upon Moving"
+            }
             ReminderController.sharedController.saveToPersistentStorage()
         } else {
             
@@ -127,8 +131,13 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             notesTextView.text = notes
         }
         if alertSegmentedControl.selectedSegmentIndex == 0 {
-            reminder.alertLabelText = "\(alertDatePicker.date)"
-        } else {
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
+            reminder.alertLabelText = "At \(alertLabelText)"
+
+//            reminder.alertLabelText = "\(alertDatePicker.date)"
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             reminder.alertLabelText = "Upon Moving"
         }
         

@@ -41,7 +41,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
         for reminder in ReminderController.sharedController.reminders {
             if let currentLocation = currentLocation {
-                if currentLocation.distanceFromLocation(reminder.location!) > 10 {
+                if currentLocation.distanceFromLocation(reminder.location!) > 15 {
                     sendNotification()
                 } else {
                     break
