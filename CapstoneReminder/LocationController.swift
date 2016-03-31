@@ -32,15 +32,20 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        
+        
         self.locations = locations
         if currentLocation == nil {
             currentLocation = locations.last
         }
-        if let currentLocation = currentLocation {
-            if locations.first?.distanceFromLocation(currentLocation) > 10 {
-                sendNotification()
-            } else {
-                print("You haven't left the radius yet!")
+        
+        for reminder in ReminderController.sharedController.reminders {
+            if let currentLocation = currentLocation {
+                if currentLocation.distanceFromLocation(reminder.location!) > 10 {
+                    sendNotification()
+                } else {
+                    break
+                }
             }
         }
     }

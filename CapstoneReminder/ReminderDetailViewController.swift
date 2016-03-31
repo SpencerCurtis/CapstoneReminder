@@ -86,7 +86,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         return true
     }
     
-    // Make an alert to stop the user from creating the reminder until there is a currentLocation to save.
+    
     func updateReminder() {
         var latitude = LocationController.sharedController.currentLocation?.coordinate.latitude
         var longitude = LocationController.sharedController.currentLocation?.coordinate.longitude
@@ -102,17 +102,15 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         } else {
             
             // New Reminders
-//            while LocationController.sharedController.locationManager.location == nil {
-//                LocationController.sharedController.locationManager.startUpdatingLocation()
-                let location = LocationController.sharedController.locationManager.location
+            let location = LocationController.sharedController.locationManager.location
             latitude = location?.coordinate.latitude
             longitude = location?.coordinate.longitude
-//                LocationController.sharedController.currentLocation = location
-//            }
+            
             if let title = titleTextField.text, latitude = latitude, longitude = longitude {
-                //                    let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime)
+                
                 let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, latitude: latitude, longitude: longitude)
                 ReminderController.sharedController.addReminder(newReminder)
+                
             }
         }
     }
