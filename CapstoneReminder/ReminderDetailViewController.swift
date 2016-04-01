@@ -16,6 +16,8 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
+    let fetchingLocationIndicator = UIActivityIndicatorView()
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
@@ -65,11 +67,10 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        if alertSegmentedControl.selectedSegmentIndex == 1 {
-            LocationController.sharedController.requestLocation()
-            
-            
+        if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
+            fetchingLocationIndicator.startAnimating()
         }
+        fetchingLocationIndicator.stopAnimating()
         updateReminder()
         navigationController?.popViewControllerAnimated(true)
     }
@@ -88,6 +89,10 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     
     
     func updateReminder() {
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        let alertLabelText = ""
+        
         var latitude = LocationController.sharedController.currentLocation?.coordinate.latitude
         var longitude = LocationController.sharedController.currentLocation?.coordinate.longitude
         let title = titleTextField.text
@@ -98,7 +103,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             reminder.title = title
             reminder.notes = notes
             if alertSegmentedControl.selectedSegmentIndex == 0 {
-            reminder.alertLabelText = "\(reminderTime)"
+                reminder.alertLabelText = "At \(reminderTime)"
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 reminder.alertLabelText = "Upon Moving"
             }
@@ -110,12 +115,16 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             latitude = location?.coordinate.latitude
             longitude = location?.coordinate.longitude
             
-            if let title = titleTextField.text, latitude = latitude, longitude = longitude {
-                
-                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, latitude: latitude, longitude: longitude)
+            if alertSegmentedControl.selectedSegmentIndex == 0 {
+                if let title = titleTextField.text, latitude = latitude, longitude = longitude {
+                    let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: alertLabelText, latitude: latitude, longitude: longitude)
+                    ReminderController.sharedController.addReminder(newReminder)
+                }
+            } else if alertSegmentedControl.selectedSegmentIndex == 1, let title = titleTextField.text {
+                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: "Upon Moving", latitude: 0.0, longitude: 0.0)
                 ReminderController.sharedController.addReminder(newReminder)
-                
             }
+
         }
     }
     
@@ -135,8 +144,8 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             formatter.timeStyle = .ShortStyle
             let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
             reminder.alertLabelText = "At \(alertLabelText)"
-
-//            reminder.alertLabelText = "\(alertDatePicker.date)"
+            
+            //            reminder.alertLabelText = "\(alertDatePicker.date)"
         } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             reminder.alertLabelText = "Upon Moving"
         }

@@ -18,9 +18,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var locations: [CLLocation] = []
-    // Make a region?
-    
-    
     
     var remindersUsingLocationCount: Int = 0 {
         didSet {

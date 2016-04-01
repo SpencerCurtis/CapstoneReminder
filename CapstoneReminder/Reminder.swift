@@ -13,7 +13,7 @@ import CoreLocation
 
 class Reminder: NSManagedObject {
     
-    convenience init(title: String, notes: String, reminderTime: NSDate, isComplete: Bool = false, creationDate: NSDate = NSDate(), latitude: CLLocationDegrees, longitude: CLLocationDegrees, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    convenience init(title: String, notes: String, reminderTime: NSDate, alertLabelText: String, isComplete: Bool = false, creationDate: NSDate = NSDate(), latitude: CLLocationDegrees, longitude: CLLocationDegrees, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext: context)
         
@@ -23,6 +23,7 @@ class Reminder: NSManagedObject {
         self.notes = notes
         self.isComplete = isComplete
         self.reminderTime = reminderTime
+        self.alertLabelText = alertLabelText
         self.creationDate = creationDate
         self.locationLatitude = latitude
         self.locationLongitude = longitude
