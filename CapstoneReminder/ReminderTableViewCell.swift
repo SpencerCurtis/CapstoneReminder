@@ -21,8 +21,9 @@ class ReminderTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         checkboxButton.imageView?.image = UIImage(named: "canvas1")
-        
     }
+    
+    
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -33,9 +33,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
-    //    override func viewDidAppear(animated: Bool) {
-    //        tableView.reloadData()
-    //    }
     
     // MARK: - Table view data source
     
@@ -56,13 +53,13 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
-        if reminder.alertLabelText != "Upon Moving" {
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
-            reminder.alertLabelText = alertLabelText
-            cell.alertLabel.text = "At \(alertLabelText)"
-        }
+//        if reminder.alertLabelText != "Upon Moving" {
+//            let formatter = NSDateFormatter()
+//            formatter.timeStyle = .ShortStyle
+//            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
+//            reminder.alertLabelText = alertLabelText
+//            cell.alertLabel.text = "At \(alertLabelText)"
+//        }
         if let bool = reminder.isComplete?.boolValue {
             cell.updateButton(bool)
             
@@ -124,7 +121,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
                 _ = ReminderDetailViewController.view
                 
                 if let selectedRow = tableView.indexPathForSelectedRow?.row {
-                    //Use incomplete Reminders below instead of mockreminders
                     ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.incompleteReminders[selectedRow])
                 }
             }
@@ -144,25 +140,19 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
     
     func reminderCellTapped(checkboxButton: UIButton, sender: ReminderTableViewCell) {
         let indexPath = tableView.indexPathForCell(sender)!
-        
-        //use incomplete reminders below insteads of mockreminders
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
-        
         
         if checkboxButton.selected.boolValue == false {
             reminder.isComplete = true
             checkboxButton.selected = true
             remindersUsingLocationCount -= 1
             tableView.reloadData()
-            //            checkboxButton.imageView?.image = UIImage(named: "canvas0")
         } else {
             reminder.isComplete = false
             checkboxButton.selected = false
             tableView.reloadData()
-            
-            //            checkboxButton.imageView?.image = UIImage(named: "canvas1")
-            
         }
+        
         ReminderController.sharedController.saveToPersistentStorage()
         
         tableView.reloadData()

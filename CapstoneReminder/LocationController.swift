@@ -71,6 +71,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
+        } else {
+            locationManager.startUpdatingLocation()
         }
     }
     

@@ -19,6 +19,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     let fetchingLocationIndicator = UIActivityIndicatorView()
     
     
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
@@ -35,6 +36,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
         if alertTypeSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestAuthorization()
+            
             alertDatePicker.hidden = true
         } else if alertTypeSegmentedControl.selectedSegmentIndex == 0 {
             alertDatePicker.hidden = false
@@ -45,10 +47,6 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         
         editTextView()
         // Do any additional setup after loading the view.
-        
-        //        if UIApplication.sharedApplication().backgroundRefreshStatus == UIBackgroundRefreshStatus.Available {
-        //            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(, name: <#T##String?#>, object: <#T##AnyObject?#>)
-        //        }
         
         //        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: nil)
         //        let toolbar = UIToolbar().setItems([doneButton], animated: true)
@@ -67,18 +65,29 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
-            fetchingLocationIndicator.startAnimating()
+        if alertSegmentedControl.selectedSegmentIndex == 1 {
+            while LocationController.sharedController.locationManager.location == nil {
+                fetchingLocationIndicator.center = self.view.center
+                fetchingLocationIndicator.activityIndicatorViewStyle = .Gray
+                view.addSubview(fetchingLocationIndicator)
+                fetchingLocationIndicator.startAnimating()
+                LocationController.sharedController.locationManager.startUpdatingLocation()
+                
+            }
+            if LocationController.sharedController.locationManager.location != nil {
+                fetchingLocationIndicator.hidesWhenStopped = true
+                fetchingLocationIndicator.stopAnimating()
+                updateReminder()
+                navigationController?.popViewControllerAnimated(true)
+            }
         }
-        fetchingLocationIndicator.stopAnimating()
-        updateReminder()
-        navigationController?.popViewControllerAnimated(true)
+        
     }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -86,7 +95,6 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
         }
         return true
     }
-    
     
     func updateReminder() {
         let formatter = NSDateFormatter()
@@ -125,7 +133,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
                 let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
                 ReminderController.sharedController.addReminder(newReminder)
             }
-
+            
         }
     }
     

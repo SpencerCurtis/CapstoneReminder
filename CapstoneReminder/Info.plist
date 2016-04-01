@@ -30,6 +30,7 @@
 	<string>So we can remind you when you leave an area.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
