@@ -18,7 +18,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var locations: [CLLocation] = []
-    
+    let authState = CLLocationManager.authorizationStatus()
     var remindersUsingLocationCount: Int = 0 {
         didSet {
             if remindersUsingLocationCount == 0 {
@@ -28,23 +28,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
-        
         self.locations = locations
-        if currentLocation == nil {
-            currentLocation = locations.last
-        }
-        
-        for reminder in ReminderController.sharedController.reminders {
-            if let currentLocation = currentLocation {
-                if currentLocation.distanceFromLocation(reminder.location!) > 15 {
-                    sendNotificationForReminder(reminder)
-                } else {
-                    break
-                }
-            }
-        }
+        currentLocation = locations.last
+        checkForRemindersOutsideOfRadius()
     }
     
     
@@ -57,6 +43,18 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
     }
     
+    func checkForRemindersOutsideOfRadius() {
+        for reminder in ReminderController.sharedController.reminders {
+            if let currentLocation = currentLocation {
+                if currentLocation.distanceFromLocation(reminder.location!) > 15 {
+                    sendNotificationForReminder(reminder)
+                }
+                
+            }
+        }
+        
+    }
+    
     func requestLocation() {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -65,7 +63,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func requestAuthorization() {
-        let authState = CLLocationManager.authorizationStatus()
+        
         if authState == CLAuthorizationStatus.NotDetermined {
             locationManager.requestAlwaysAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
