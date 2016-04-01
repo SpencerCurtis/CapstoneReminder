@@ -39,7 +39,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         for reminder in ReminderController.sharedController.reminders {
             if let currentLocation = currentLocation {
                 if currentLocation.distanceFromLocation(reminder.location!) > 15 {
-                    sendNotification()
+                    sendNotificationForReminder(reminder)
                 } else {
                     break
                 }
@@ -48,9 +48,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func sendNotification() {
+    func sendNotificationForReminder(reminder: Reminder) {
         let notification = UILocalNotification()
-        notification.alertBody = "Check your reminders!"
+        notification.alertBody = reminder.title
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
         locationManager.stopUpdatingLocation()
         remindersUsingLocationCount -= 1

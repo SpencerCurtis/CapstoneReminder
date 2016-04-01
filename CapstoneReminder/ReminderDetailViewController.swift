@@ -116,12 +116,13 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             longitude = location?.coordinate.longitude
             
             if alertSegmentedControl.selectedSegmentIndex == 0 {
-                if let title = titleTextField.text, latitude = latitude, longitude = longitude {
-                    let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: alertLabelText, latitude: latitude, longitude: longitude)
+                if let title = titleTextField.text {
+                    let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: alertLabelText, latitude: 0.0, longitude: 0.0)
                     ReminderController.sharedController.addReminder(newReminder)
+                    AlarmController.sharedController.sendNotificationForReminderWithTime(newReminder, fireDate: alertTimeDatePicker.date)
                 }
-            } else if alertSegmentedControl.selectedSegmentIndex == 1, let title = titleTextField.text {
-                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: "Upon Moving", latitude: 0.0, longitude: 0.0)
+            } else if alertSegmentedControl.selectedSegmentIndex == 1, let title = titleTextField.text, let longitude = longitude, let latitude = latitude {
+                let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
                 ReminderController.sharedController.addReminder(newReminder)
             }
 

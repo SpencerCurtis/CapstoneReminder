@@ -11,6 +11,7 @@
 		463E3F811CA2E79C00E55E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F7F1CA2E79C00E55E92 /* Main.storyboard */; };
 		463E3F831CA2E79C00E55E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F821CA2E79C00E55E92 /* Assets.xcassets */; };
 		463E3F861CA2E79C00E55E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */; };
+		46469F331CAEFFBC0001E50E /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46469F321CAEFFBC0001E50E /* AlarmController.swift */; };
 		466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304221CA3282D00EB5986 /* AppearanceController.swift */; };
 		466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304241CA3298000EB5986 /* AppColorPalette.swift */; };
 		466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */; };
@@ -31,6 +32,7 @@
 		463E3F821CA2E79C00E55E92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		463E3F851CA2E79C00E55E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		463E3F871CA2E79C00E55E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46469F321CAEFFBC0001E50E /* AlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
 		466304221CA3282D00EB5986 /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		466304241CA3298000EB5986 /* AppColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColorPalette.swift; sourceTree = "<group>"; };
 		466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
 				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
+				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -109,7 +112,7 @@
 		466304371CA33DB900EB5986 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
+				46469F321CAEFFBC0001E50E /* AlarmController.swift */,
 				466304221CA3282D00EB5986 /* AppearanceController.swift */,
 				466304351CA33DB300EB5986 /* ReminderController.swift */,
 				466304241CA3298000EB5986 /* AppColorPalette.swift */,
@@ -200,6 +203,7 @@
 				466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */,
 				46A52D9E1CA9E4660069C9B4 /* Reminder.swift in Sources */,
 				467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */,
+				46469F331CAEFFBC0001E50E /* AlarmController.swift in Sources */,
 				466304361CA33DB300EB5986 /* ReminderController.swift in Sources */,
 				466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */,
 				46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */,

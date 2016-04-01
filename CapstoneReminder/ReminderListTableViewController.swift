@@ -158,6 +158,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         } else {
             reminder.isComplete = false
             checkboxButton.selected = false
+            tableView.reloadData()
             
             //            checkboxButton.imageView?.image = UIImage(named: "canvas1")
             
