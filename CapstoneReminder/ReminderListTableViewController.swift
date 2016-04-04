@@ -25,7 +25,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
- 
+        
     }
     
     // MARK: - Table view data source
@@ -41,7 +41,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
-//                ReminderController.sharedController.reminders.sortInPlace({})
+        //                ReminderController.sharedController.reminders.sortInPlace({})
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
@@ -68,8 +68,8 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-
-
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -99,20 +99,26 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         
         if checkboxButton.selected.boolValue == false {
-            reminder.isComplete = true
-            checkboxButton.selected = true
-            LocationController.sharedController.remindersUsingLocationCount -= 1
-            tableView.reloadData()
-            sender.prepareForReuse()
-        } else {
-            reminder.isComplete = false
-            checkboxButton.selected = false
-            tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                reminder.isComplete = true
+//                checkboxButton.selected = true
+                LocationController.sharedController.remindersUsingLocationCount -= 1
+                self.tableView.reloadData()
+            })
+        } else if checkboxButton.selected.boolValue == true {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                reminder.isComplete = false
+                checkboxButton.selected = false
+                self.tableView.reloadData()
+            })
+            
         }
         
         ReminderController.sharedController.saveToPersistentStorage()
         
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
     }
 }
 
