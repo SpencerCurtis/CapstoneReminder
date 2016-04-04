@@ -53,7 +53,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 // Check if hasBeenNotified == false
                 if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false{
                     sendNotificationForReminder(reminder)
-                    remindersUsingLocationCount -= 1
                     reminder.hasBeenNotified = true
                 }
                 

@@ -10,14 +10,6 @@ import UIKit
 import CoreLocation
 
 class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate  {
-
-    var remindersUsingLocationCount: Int = 0 {
-        didSet {
-            if remindersUsingLocationCount == 0 {
-                LocationController.sharedController.locationManager.stopUpdatingLocation()
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +33,10 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return ReminderController.sharedController.incompleteReminders.count
     }
     
@@ -57,19 +47,10 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
-//        if reminder.alertLabelText != "Upon Moving" {
-//            let formatter = NSDateFormatter()
-//            formatter.timeStyle = .ShortStyle
-//            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
-//            reminder.alertLabelText = alertLabelText
-//            cell.alertLabel.text = "At \(alertLabelText)"
-//        }
         if let bool = reminder.isComplete?.boolValue {
             cell.updateButton(bool)
             
         }
-        //                        cell.delegate = ReminderTableViewCellDelegate
-        
         return cell
     }
     
@@ -77,13 +58,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         return UITableViewAutomaticDimension
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
     
     
     // Override to support editing the table view.
@@ -96,24 +70,8 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-    
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    
+
+
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -149,7 +107,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         if checkboxButton.selected.boolValue == false {
             reminder.isComplete = true
             checkboxButton.selected = true
-            remindersUsingLocationCount -= 1
+            LocationController.sharedController.remindersUsingLocationCount -= 1
             tableView.reloadData()
         } else {
             reminder.isComplete = false
