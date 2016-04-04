@@ -26,7 +26,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     override func viewWillDisappear(animated: Bool) {
-        LocationController.sharedController.locationManager.requestLocation()
+//        LocationController.sharedController.locationManager.requestLocation()
     }
     
     @IBOutlet weak var titleTextField: UITextField!
@@ -132,17 +132,20 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             // New Reminders
             if alertSegmentedControl.selectedSegmentIndex == 0 {
                 if let title = titleTextField.text {
+                    
                     let reminderTimeString = formatter.stringFromDate(reminderTime)
                     alertLabelText =  "At \(reminderTimeString)"
                     let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: alertLabelText)
                     ReminderController.sharedController.addReminder(newReminder)
                     AlarmController.sharedController.sendNotificationForReminderWithTime(newReminder, fireDate: alertTimeDatePicker.date)
+                    LocationController.sharedController.remindersUsingLocationCount += 1
                 }
             } else if alertSegmentedControl.selectedSegmentIndex == 1, let title = titleTextField.text, let longitude = longitude, let latitude = latitude {
                 
-                
                 let newReminder = Reminder(title: title, notes: notes, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
                 ReminderController.sharedController.addReminder(newReminder)
+                LocationController.sharedController.remindersUsingLocationCount += 1
+
             }
             
         }

@@ -19,6 +19,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
+    
+    
+    // TODO: - Make sure reminders increment this count.
     var remindersUsingLocationCount: Int = 0 {
         didSet {
             if remindersUsingLocationCount == 0 {
@@ -38,16 +41,20 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         let notification = UILocalNotification()
         notification.alertBody = reminder.title
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        locationManager.stopUpdatingLocation()
-        remindersUsingLocationCount -= 1
+        // Check for remaining reminders before stopUpdatingLocation
+//        locationManager.stopUpdatingLocation()
+
         
     }
     
     func checkForRemindersOutsideOfRadius() {
         for reminder in ReminderController.sharedController.reminders {
             if let currentLocation = currentLocation {
-                if currentLocation.distanceFromLocation(reminder.location!) > 15 {
+                // Check if hasBeenNotified == false
+                if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false{
                     sendNotificationForReminder(reminder)
+                    remindersUsingLocationCount -= 1
+                    reminder.hasBeenNotified = true
                 }
                 
             }
@@ -97,3 +104,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     
 }
+
+
+
