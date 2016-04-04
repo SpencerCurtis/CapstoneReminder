@@ -17,6 +17,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
     var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
     
@@ -32,7 +36,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         self.locations = locations
         currentLocation = locations.last
         checkForRemindersOutsideOfRadius()
-        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
+//        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
     }
     
     

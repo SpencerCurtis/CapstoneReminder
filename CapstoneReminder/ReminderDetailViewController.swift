@@ -11,6 +11,8 @@ import CoreLocation
 
 class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate {
     
+    static let sharedController = ReminderDetailViewController()
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var updatingLocationView: UIView!
     @IBOutlet weak var alertTimeDatePicker: UIDatePicker!
@@ -68,23 +70,24 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways && LocationController.sharedController.locationManager.location == nil {
-                LocationController.sharedController.locationManager.startUpdatingLocation()
+            while LocationController.sharedController.locationManager.location == nil {
+//            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways && LocationController.sharedController.locationManager.location == nil {
                 activityIndicator.startAnimating()
                 saveButton.enabled = false
                 view.addSubview(activityIndicator)
                 updatingLocationView.hidden = false
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-            } else {
+        }
+//                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
+//            } else {
                 updateReminder()
                 navigationController?.popViewControllerAnimated(true)
             }
-        } else {
+//        } else {
             LocationController.sharedController.locationManager.startUpdatingLocation()
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
             
-        }
+//        }
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
