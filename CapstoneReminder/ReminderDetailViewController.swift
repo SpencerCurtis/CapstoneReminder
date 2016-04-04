@@ -13,6 +13,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     static let sharedController = ReminderDetailViewController()
     
+    @IBOutlet weak var header: UINavigationItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var updatingLocationView: UIView!
     @IBOutlet weak var alertTimeDatePicker: UIDatePicker!
@@ -24,21 +25,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
-    }
-    
-    @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
-        if alertSegmentedControl.selectedSegmentIndex == 1 {
-            LocationController.sharedController.requestAuthorization()
-            
-            alertDatePicker.hidden = true
-        } else if alertSegmentedControl.selectedSegmentIndex == 0 {
-            alertDatePicker.hidden = false
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +42,21 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
+        if alertSegmentedControl.selectedSegmentIndex == 1 {
+            LocationController.sharedController.requestAuthorization()
+            
+            alertDatePicker.hidden = true
+        } else if alertSegmentedControl.selectedSegmentIndex == 0 {
+            alertDatePicker.hidden = false
+        }
+    }
+    
     func editTextField() {
         self.titleTextField.layer.cornerRadius = 8
         self.titleTextField.layer.borderWidth = 0.6
@@ -71,24 +72,20 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
             while LocationController.sharedController.locationManager.location == nil {
-//            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways && LocationController.sharedController.locationManager.location == nil {
                 activityIndicator.startAnimating()
                 saveButton.enabled = false
+                header.backBarButtonItem?.enabled = false
                 view.addSubview(activityIndicator)
                 updatingLocationView.hidden = false
-        }
-//                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-//            } else {
-                updateReminder()
-                navigationController?.popViewControllerAnimated(true)
             }
-//        } else {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
+        } else {
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
-            
-//        }
+        }
+        updateReminder()
+        navigationController?.popViewControllerAnimated(true)
     }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
@@ -172,8 +169,8 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
             let formatter = NSDateFormatter()
             formatter.timeStyle = .ShortStyle
             if let reminderTime = reminder.reminderTime {
-            let alertLabelText = formatter.stringFromDate(reminderTime)
-            reminder.alertLabelText = "At \(alertLabelText)"
+                let alertLabelText = formatter.stringFromDate(reminderTime)
+                reminder.alertLabelText = "At \(alertLabelText)"
             }
             //            reminder.alertLabelText = "\(alertDatePicker.date)"
         } else if alertSegmentedControl.selectedSegmentIndex == 1 {
@@ -189,6 +186,7 @@ extension UIViewController: UITextFieldDelegate {
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressed))
+        doneButton.tintColor = UIColor.customCyanColor()
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
@@ -208,6 +206,7 @@ extension UIViewController: UITextViewDelegate {
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressedForTextView))
+        doneButton.tintColor = UIColor.customCyanColor()
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.setItems([spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
