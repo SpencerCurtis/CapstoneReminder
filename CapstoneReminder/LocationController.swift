@@ -20,8 +20,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
     
-    
-    // TODO: - Make sure reminders increment this count.
     var remindersUsingLocationCount: Int = 0 {
         didSet {
             if remindersUsingLocationCount == 0 {
@@ -41,24 +39,19 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         let notification = UILocalNotification()
         notification.alertBody = reminder.title
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        // Check for remaining reminders before stopUpdatingLocation
-//        locationManager.stopUpdatingLocation()
-
-        
     }
     
     func checkForRemindersOutsideOfRadius() {
         for reminder in ReminderController.sharedController.reminders {
             if let currentLocation = currentLocation {
                 // Check if hasBeenNotified == false
-                if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false{
+                if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false {
                     sendNotificationForReminder(reminder)
                     reminder.hasBeenNotified = true
+                    locationManager.stopUpdatingHeading()
                 }
-                
             }
         }
-        
     }
     
     func requestLocation() {
@@ -90,18 +83,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Failed when getting users location")
     }
-    
-    func localNotificationFired() {
-        let alertController = UIAlertController(title: "Reminder!", message: "Check your reminders.", preferredStyle: .Alert)
-        
-        let action = UIAlertAction(title: "Okay", style: .Default, handler: nil)
-        
-        alertController.addAction(action)
-        
-        //        presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    
 }
 
 

@@ -173,6 +173,9 @@
                                     <!--2016-03-23 19:35:41 +0000-->
                                 </date>
                             </datePicker>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e1y-Wc-PRN">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -195,6 +198,8 @@
                             <constraint firstItem="7o3-Q3-bIG" firstAttribute="top" secondItem="Aos-Ew-rEp" secondAttribute="bottom" constant="8" symbolic="YES" id="fJ2-w3-81Z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D4U-Pm-COg" secondAttribute="trailing" id="jq1-qY-CZt"/>
                             <constraint firstItem="Gba-24-nEO" firstAttribute="leading" secondItem="uhq-4v-VP3" secondAttribute="leading" id="kuW-Of-1fc"/>
+                            <constraint firstItem="e1y-Wc-PRN" firstAttribute="centerX" secondItem="uhq-4v-VP3" secondAttribute="centerX" id="lt3-C8-VqT"/>
+                            <constraint firstItem="e1y-Wc-PRN" firstAttribute="centerY" secondItem="RqR-Rh-kLF" secondAttribute="centerY" id="wcT-MH-3lL"/>
                             <constraint firstItem="Gba-24-nEO" firstAttribute="trailing" secondItem="uhq-4v-VP3" secondAttribute="trailing" id="x6z-we-fnH"/>
                         </constraints>
                     </view>
@@ -207,10 +212,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="e1y-Wc-PRN" id="uZu-2k-hWg"/>
                         <outlet property="alertDatePicker" destination="Gba-24-nEO" id="Rya-dq-3ri"/>
                         <outlet property="alertSegmentedControl" destination="uhq-4v-VP3" id="AsV-bk-r2p"/>
                         <outlet property="alertTimeDatePicker" destination="Gba-24-nEO" id="6rK-N8-WSb"/>
-                        <outlet property="alertTypeSegmentedControl" destination="uhq-4v-VP3" id="Ra0-dp-DH9"/>
                         <outlet property="notesTextView" destination="D4U-Pm-COg" id="jeP-bU-4kn"/>
                         <outlet property="titleTextField" destination="Aos-Ew-rEp" id="yZD-uG-rQU"/>
                     </connections>

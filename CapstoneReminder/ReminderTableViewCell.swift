@@ -19,7 +19,11 @@ class ReminderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        checkboxButton.imageView?.image = UIImage(named: "canvas1")
+    }
+    
+    override func prepareForReuse() {
         checkboxButton.imageView?.image = UIImage(named: "canvas1")
     }
     
