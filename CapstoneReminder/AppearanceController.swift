@@ -14,9 +14,6 @@ class AppearanceController {
     static func initializeAppearanceDefaults() {
         UISegmentedControl.appearance().tintColor = UIColor.customCyanColor()
         UINavigationBar.appearance().tintColor = UIColor.customCyanColor()
-    
     }
-    
-    
 }
 

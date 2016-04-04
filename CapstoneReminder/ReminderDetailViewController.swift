@@ -68,16 +68,19 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways {
-//                LocationController.sharedController.locationManager.startUpdatingLocation()
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways && LocationController.sharedController.locationManager.location == nil {
+                LocationController.sharedController.locationManager.startUpdatingLocation()
                 activityIndicator.startAnimating()
                 saveButton.enabled = false
                 view.addSubview(activityIndicator)
                 updatingLocationView.hidden = false
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
+            } else {
+                updateReminder()
+                navigationController?.popViewControllerAnimated(true)
             }
         } else {
-//            LocationController.sharedController.locationManager.startUpdatingLocation()
+            LocationController.sharedController.locationManager.startUpdatingLocation()
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
             
@@ -175,21 +178,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         }
         
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    
-    
-    
 }
 
 extension UIViewController: UITextFieldDelegate {

@@ -41,7 +41,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
-        //        ReminderController.sharedController.reminders.sortInPlace({})
+//                ReminderController.sharedController.reminders.sortInPlace({})
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
@@ -85,10 +85,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
                 }
             }
         }
-        
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     
     // MARK: - Location

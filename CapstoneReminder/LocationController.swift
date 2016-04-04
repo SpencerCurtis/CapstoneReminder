@@ -66,8 +66,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func requestLocation() {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-        
-        print("")
     }
     
     func requestAuthorization() {
@@ -81,9 +79,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
     }
-    
-    
-    
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         requestAuthorization()

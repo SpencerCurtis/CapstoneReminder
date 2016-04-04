@@ -13,5 +13,4 @@ extension UIColor {
     static func customCyanColor()  -> UIColor {
         return UIColor(red: 79/255, green: 204/255, blue: 247/255, alpha: 1.0)
     }
-    
 }
