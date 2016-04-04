@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ReminderListTableViewController: UITableViewController  {
+class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate  {
 
     var remindersUsingLocationCount: Int = 0 {
         didSet {
@@ -22,8 +22,9 @@ class ReminderListTableViewController: UITableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
-//        LocationController.sharedController.locationManager.startUpdatingLocation()
-//        LocationController.sharedController.checkForRemindersOutsideOfRadius()
+        LocationController.sharedController.locationManager.delegate = self
+        LocationController.sharedController.locationManager.startUpdatingLocation() 
+        LocationController.sharedController.checkForRemindersOutsideOfRadius()
         
     }
     

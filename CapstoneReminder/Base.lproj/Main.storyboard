@@ -172,9 +172,6 @@
                                 <date key="date" timeIntervalSinceReferenceDate="480454541.98724699">
                                     <!--2016-03-23 19:35:41 +0000-->
                                 </date>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="-31582800">
-                                    <!--2000-01-01 11:00:00 +0000-->
-                                </date>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>

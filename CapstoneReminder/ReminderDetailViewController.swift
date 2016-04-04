@@ -47,7 +47,7 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        alertDatePicker.minimumDate = NSDate()
         editTextView()
         // Do any additional setup after loading the view.
         
@@ -73,8 +73,9 @@ class ReminderDetailViewController: UIViewController, UITextFieldDelegate, UITex
             //                fetchingLocationIndicator.center = self.view.center
             //                fetchingLocationIndicator.activityIndicatorViewStyle = .Gray
             //                view.addSubview(fetchingLocationIndicator)
-            LocationController.sharedController.locationManager.startUpdatingLocation()
+//            LocationController.sharedController.locationManager.startUpdatingLocation()
             //                fetchingLocationIndicator.startAnimating()
+            updateReminder()
             //
             //
         }
