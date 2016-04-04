@@ -11,6 +11,8 @@ import CoreLocation
 
 class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var updatingLocationView: UIView!
     @IBOutlet weak var alertTimeDatePicker: UIDatePicker!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
@@ -67,17 +69,15 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
             if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways {
-                LocationController.sharedController.locationManager.startUpdatingLocation()
+//                LocationController.sharedController.locationManager.startUpdatingLocation()
                 activityIndicator.startAnimating()
+                saveButton.enabled = false
                 view.addSubview(activityIndicator)
+                updatingLocationView.hidden = false
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
             }
-            if LocationController.sharedController.currentLocation != nil {
-                activityIndicator.stopAnimating()
-                updateReminder()
-                navigationController?.popViewControllerAnimated(true)
-            }
         } else {
+//            LocationController.sharedController.locationManager.startUpdatingLocation()
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
             
@@ -90,6 +90,9 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
+        updateReminder()
+        updatingLocationView.hidden = true
+        navigationController?.popViewControllerAnimated(true)
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -162,9 +165,10 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         if alertSegmentedControl.selectedSegmentIndex == 0 {
             let formatter = NSDateFormatter()
             formatter.timeStyle = .ShortStyle
-            let alertLabelText = formatter.stringFromDate(reminder.reminderTime!)
+            if let reminderTime = reminder.reminderTime {
+            let alertLabelText = formatter.stringFromDate(reminderTime)
             reminder.alertLabelText = "At \(alertLabelText)"
-            
+            }
             //            reminder.alertLabelText = "\(alertDatePicker.date)"
         } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             reminder.alertLabelText = "Upon Moving"

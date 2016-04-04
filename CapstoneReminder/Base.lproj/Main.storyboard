@@ -175,11 +175,20 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e1y-Wc-PRN">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wow-hw-2of">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="elD-Ah-8vf"/>
+                                    <constraint firstAttribute="height" constant="600" id="x3t-Qj-yhq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="7o3-Q3-bIG" firstAttribute="top" secondItem="0Wc-uS-RAX" secondAttribute="bottom" constant="37" id="05I-C2-Ju9"/>
                             <constraint firstItem="0Wc-uS-RAX" firstAttribute="leading" secondItem="7o3-Q3-bIG" secondAttribute="leading" id="1LG-9h-XxQ"/>
+                            <constraint firstItem="wow-hw-2of" firstAttribute="top" secondItem="RqR-Rh-kLF" secondAttribute="top" id="2da-TD-32K"/>
                             <constraint firstItem="D4U-Pm-COg" firstAttribute="top" secondItem="Aos-Ew-rEp" secondAttribute="bottom" constant="28" id="3gN-j9-LyM"/>
                             <constraint firstItem="D4U-Pm-COg" firstAttribute="trailing" secondItem="uhq-4v-VP3" secondAttribute="trailing" id="8aS-NA-iE6"/>
                             <constraint firstItem="0Wc-uS-RAX" firstAttribute="leading" secondItem="RqR-Rh-kLF" secondAttribute="leadingMargin" constant="3" id="EtI-ut-rWM"/>
@@ -193,8 +202,11 @@
                             <constraint firstAttribute="bottom" secondItem="Gba-24-nEO" secondAttribute="bottom" constant="20" symbolic="YES" id="UBz-9e-GTH"/>
                             <constraint firstItem="Aos-Ew-rEp" firstAttribute="top" secondItem="gwa-vv-350" secondAttribute="bottom" constant="28" id="W9W-jk-IUQ"/>
                             <constraint firstItem="Aos-Ew-rEp" firstAttribute="leading" secondItem="D4U-Pm-COg" secondAttribute="leading" id="XAr-ox-tKw"/>
+                            <constraint firstItem="wow-hw-2of" firstAttribute="leading" secondItem="RqR-Rh-kLF" secondAttribute="leading" id="Zto-U9-teh"/>
                             <constraint firstItem="D4U-Pm-COg" firstAttribute="leading" secondItem="uhq-4v-VP3" secondAttribute="leading" id="b8F-ia-F7a"/>
+                            <constraint firstItem="Z59-xH-iw2" firstAttribute="top" secondItem="wow-hw-2of" secondAttribute="bottom" id="eby-0t-QHv"/>
                             <constraint firstItem="7o3-Q3-bIG" firstAttribute="top" secondItem="Aos-Ew-rEp" secondAttribute="bottom" constant="8" symbolic="YES" id="fJ2-w3-81Z"/>
+                            <constraint firstAttribute="trailing" secondItem="wow-hw-2of" secondAttribute="trailing" id="fyA-7A-OmG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D4U-Pm-COg" secondAttribute="trailing" id="jq1-qY-CZt"/>
                             <constraint firstItem="Gba-24-nEO" firstAttribute="leading" secondItem="uhq-4v-VP3" secondAttribute="leading" id="kuW-Of-1fc"/>
                             <constraint firstItem="e1y-Wc-PRN" firstAttribute="centerX" secondItem="uhq-4v-VP3" secondAttribute="centerX" id="lt3-C8-VqT"/>
@@ -216,7 +228,9 @@
                         <outlet property="alertSegmentedControl" destination="uhq-4v-VP3" id="AsV-bk-r2p"/>
                         <outlet property="alertTimeDatePicker" destination="Gba-24-nEO" id="6rK-N8-WSb"/>
                         <outlet property="notesTextView" destination="D4U-Pm-COg" id="jeP-bU-4kn"/>
+                        <outlet property="saveButton" destination="Nxo-Hj-njk" id="Hz4-mw-y3I"/>
                         <outlet property="titleTextField" destination="Aos-Ew-rEp" id="yZD-uG-rQU"/>
+                        <outlet property="updatingLocationView" destination="wow-hw-2of" id="B3U-Sc-TdU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uct-MB-x6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>

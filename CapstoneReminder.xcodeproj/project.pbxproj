@@ -91,9 +91,9 @@
 		466304331CA33D8900EB5986 /* Model + CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				4663042A1CA336DC00EB5986 /* Reminder.xcdatamodeld */,
 				46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */,
 				46A52D9C1CA9E4660069C9B4 /* Reminder.swift */,
-				4663042A1CA336DC00EB5986 /* Reminder.xcdatamodeld */,
 				466304311CA3390F00EB5986 /* Stack.swift */,
 			);
 			name = "Model + CoreData";
@@ -333,7 +333,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SpencerCurtis.Remindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -349,7 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SpencerCurtis.Remindr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
