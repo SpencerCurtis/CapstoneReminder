@@ -19,7 +19,7 @@ class ReminderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         checkboxButton.imageView?.image = UIImage(named: "canvas1")
     }
     
@@ -40,13 +40,13 @@ class ReminderTableViewCell: UITableViewCell {
     }
     
     func updateButton(isComplete: Bool) {
-        if isComplete == true {
-//            checkboxButton.imageView?.image = UIImage(named: "canvas0")
+        
+        if isComplete {
+            checkboxButton.setImage(UIImage(named: "canvas0"), forState: .Normal)
         } else {
-//            checkboxButton.imageView?.image = UIImage(named: "canvas1")
+            checkboxButton.setImage(UIImage(named: "canvas1"), forState: .Normal)
         }
     }
-    
     
 }
 protocol ReminderTableViewCellDelegate {
@@ -59,8 +59,8 @@ extension ReminderTableViewCell {
         titleLabel.text = reminder.title
         noteLabel.text = reminder.notes
         alertLabel.text = reminder.alertLabelText
-        if let boolValue = reminder.isComplete?.boolValue {
-        updateButton(boolValue)
+        if let isComplete = reminder.isComplete {
+            updateButton(isComplete.boolValue)
         }
     }
 }

@@ -32,6 +32,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         self.locations = locations
         currentLocation = locations.last
         checkForRemindersOutsideOfRadius()
+        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
     }
     
     
@@ -51,6 +52,14 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                     locationManager.stopUpdatingHeading()
                 }
             }
+        }
+    }
+    
+    func checkForLocation() {
+        if currentLocation == nil {
+            
+        } else if currentLocation != nil {
+            
         }
     }
     

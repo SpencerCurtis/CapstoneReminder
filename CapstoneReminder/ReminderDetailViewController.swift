@@ -20,7 +20,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     var alertTimeValue = NSDate?()
     var reminder = Reminder?()
-
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
@@ -56,7 +56,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         self.titleTextField.layer.cornerRadius = 8
         self.titleTextField.layer.borderWidth = 0.6
         self.titleTextField.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).CGColor
-
+        
     }
     func editTextView() {
         self.notesTextView.layer.cornerRadius = 8
@@ -66,16 +66,13 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-            if LocationController.sharedController.authState == CLAuthorizationStatus.AuthorizedAlways {
-                while LocationController.sharedController.locationManager.location == nil {
-                    LocationController.sharedController.locationManager.startUpdatingLocation()
-                    activityIndicator.center = self.view.center
-                    activityIndicator.activityIndicatorViewStyle = .Gray
-                    view.addSubview(activityIndicator)
-                    activityIndicator.startAnimating()
-                }
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways {
+                LocationController.sharedController.locationManager.startUpdatingLocation()
+                activityIndicator.startAnimating()
+                view.addSubview(activityIndicator)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
             }
-            if LocationController.sharedController.locationManager.location != nil {
+            if LocationController.sharedController.currentLocation != nil {
                 activityIndicator.stopAnimating()
                 updateReminder()
                 navigationController?.popViewControllerAnimated(true)
@@ -89,6 +86,10 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {

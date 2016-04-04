@@ -49,10 +49,9 @@
                                                 <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
                                                 <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
                                             </constraints>
-                                            <state key="normal" image="canvas1">
+                                            <state key="normal">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" image="canvas0"/>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="1hX-TF-62S" eventType="touchUpInside" id="Y6s-B3-mIR"/>
                                             </connections>
@@ -243,10 +242,6 @@
             <point key="canvasLocation" x="345" y="480"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="canvas0" width="66" height="63"/>
-        <image name="canvas1" width="64" height="64"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z3S-Ek-mTp"/>
     </inferredMetricsTieBreakers>
