@@ -28,14 +28,14 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        alertDatePicker.minimumDate = NSDate()
         editTextView()
         editTextField()
+        alertDatePicker.minimumDate = NSDate()
         addToolBar(titleTextField)
         addToolBarForTextView(notesTextView)
         activityIndicator.stopAnimating()
-        
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,14 +72,14 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
             if LocationController.sharedController.locations == [] {
-                LocationController.sharedController.locationManager.requestLocation()
+                LocationController.sharedController.requestLocations()
                 activityIndicator.startAnimating()
                 saveButton.enabled = false
                 header.backBarButtonItem?.enabled = false
                 view.addSubview(activityIndicator)
                 updatingLocationView.hidden = false
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-            } else {
+            } else if LocationController.sharedController.locations != [] {
                 updateReminder()
                 navigationController?.popViewControllerAnimated(true)
             }

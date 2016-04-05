@@ -31,6 +31,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         didSet {
             if remindersUsingLocationCount == 0 {
                 locationManager.stopUpdatingLocation()
+                locationManager.stopMonitoringSignificantLocationChanges()
             }
         }
     }
@@ -64,8 +65,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func requestLocation() {
+    func requestLocations() {
         locationManager.delegate = self
+        locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
     }
     
@@ -75,8 +78,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             locationManager.requestAlwaysAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
+            locationManager.startUpdatingLocation()
             locationManager.startMonitoringSignificantLocationChanges()
         } else {
+            locationManager.startUpdatingLocation()
             locationManager.startMonitoringSignificantLocationChanges()
         }
     }
