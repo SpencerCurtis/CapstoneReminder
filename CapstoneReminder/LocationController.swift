@@ -72,30 +72,48 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
     }
     
-    
     func checkForRemindersOutsideOfRadius() {
-        for reminder in ReminderController.sharedController.reminders {
+        for reminder in ReminderController.sharedController.incompleteReminders {
             let status = CLLocationManager.authorizationStatus()
             if status == .AuthorizedAlways {
                 LocationController.sharedController.locationManager.startUpdatingLocation()
                 LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
             }
             if reminder.locationLatitude != nil && reminder.locationLongitude != nil, let currentLocation = self.currentLocation {
-                if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false {
+                if currentLocation.distanceFromLocation(reminder.location!) > 150 && reminder.hasBeenNotified == false {
                     let notification = UILocalNotification()
                     notification.alertTitle = reminder.title
                     notification.alertBody = reminder.title
+                    notification.soundName = UILocalNotificationDefaultSoundName
                     notification.fireDate = NSDate()
-                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                    //                    sendNotificationForReminder(reminder)
-                    NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
+                    dispatch_async(dispatch_get_main_queue()) {
+                    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+                    }
                     reminder.hasBeenNotified = true
                     locationManager.requestLocation()
                 }
             }
         }
     }
+    
+//    func checkForRemindersAfterLaunching(reminders: [Reminder]) {
+//        for reminder in reminders {
+//            if reminder.hasBeenNotified == false && currentLocation?.distanceFromLocation(reminder.location!) > 15 {
+//                let notification = UILocalNotification()
+//                notification.alertTitle = reminder.title
+//                notification.alertBody = reminder.title
+//                notification.fireDate = NSDate()
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+//                }
+//                reminder.hasBeenNotified = true
+//                locationManager.requestLocation()
+//            }
+//        }
+//    }
+    
+    
+    
     func requestLocations() {
         locationManager.delegate = self
         locationManager.startUpdatingHeading()
