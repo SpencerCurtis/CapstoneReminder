@@ -24,7 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        NSNotificationCenter.defaultCenter().postNotificationName("Notification", object: nil, userInfo: nil)
+//        NSNotificationCenter.defaultCenter().postNotificationName("Notification", object: nil, userInfo: nil)
+//        let alert = UIAlertController(title: , message: <#T##String?#>, preferredStyle: <#T##UIAlertControllerStyle#>)
+        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alert.addAction(okayAction)
+        if let vc = vc {
+        vc.presentViewController(alert, animated: true, completion: nil)
+        }
+        
     }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -34,6 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        if LocationController.sharedController.remindersUsingLocationCount > 0 {
+            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
+            LocationController.sharedController.locationManager.startUpdatingLocation()
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

@@ -49,14 +49,24 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     
     func sendNotificationForReminder(reminder: Reminder) {
-        dispatch_async(dispatch_get_main_queue()) { 
+        dispatch_async(dispatch_get_main_queue()) {
             let notification = UILocalNotification()
             notification.alertBody = reminder.title
             notification.soundName = UILocalNotificationDefaultSoundName
             UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-  
+            
         }
         
+    }
+    
+    func displayAlert(viewController: UIViewController, reminder: Reminder) {
+        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alert.addAction(okayAction)
+        viewController.presentViewController(alert, animated: true, completion: nil)
+
     }
     
     
@@ -65,8 +75,14 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             if let currentLocation = currentLocation {
                 if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false {
                     sendNotificationForReminder(reminder)
-//                    TODO: - Get the alertController to work!
-//                    ReminderDetailViewController.sharedController.displayAlertForReminder(reminder)
+                    NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
+//                    let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+//                    let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+//                        alert.dismissViewControllerAnimated(true, completion: nil)
+//                    })
+//                    alert.addAction(okayAction)
+//                    ReminderListTableViewController.sharedController.presentViewController(alert, animated: true, completion: nil)
+                    //                    TODO: - Get the alertController to work!
                     reminder.hasBeenNotified = true
                     locationManager.stopMonitoringSignificantLocationChanges()
                 }

@@ -1,4 +1,4 @@
-//
+    //
 //  ReminderDetailViewController.swift
 //  CapstoneReminder
 //
@@ -28,7 +28,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            }
+    }
     override func viewWillAppear(animated: Bool) {
         editTextView()
         editTextField()
@@ -36,9 +36,9 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         addToolBar(titleTextField)
         addToolBarForTextView(notesTextView)
         activityIndicator.stopAnimating()
-
+        
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,17 +74,17 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locations == [] {
-                LocationController.sharedController.requestLocations()
-                activityIndicator.startAnimating()
-                saveButton.enabled = false
-                header.backBarButtonItem?.enabled = false
-                view.addSubview(activityIndicator)
-                updatingLocationView.hidden = false
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-            } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locations != [] {
-                updateReminder()
-                navigationController?.popViewControllerAnimated(true)
-            } else if alertSegmentedControl.selectedSegmentIndex == 0 {
+            LocationController.sharedController.requestLocations()
+            activityIndicator.startAnimating()
+            saveButton.enabled = false
+            header.backBarButtonItem?.enabled = false
+            view.addSubview(activityIndicator)
+            updatingLocationView.hidden = false
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locations != [] {
+            updateReminder()
+            navigationController?.popViewControllerAnimated(true)
+        } else if alertSegmentedControl.selectedSegmentIndex == 0 {
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
         }
@@ -110,7 +110,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         alert.addAction(doneAction)
         self.presentViewController(alert, animated: true, completion: nil)
     }
-
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -122,13 +122,14 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     func updateReminder() {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
-        var alertLabelText = ""
         var latitude = LocationController.sharedController.currentLocation?.coordinate.latitude
         var longitude = LocationController.sharedController.currentLocation?.coordinate.longitude
         
         let title = titleTextField.text
         let notes = notesTextView.text
+        var alertLabelText = ""
         let reminderTime = alertDatePicker.date
+//        let reminderTimeString = formatter.stringFromDate(reminderTime)
         
         if let reminder = self.reminder {
             reminder.title = title
@@ -141,6 +142,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
             }
             ReminderController.sharedController.saveToPersistentStorage()
         } else {
+            // New Reminders
             
             let location = LocationController.sharedController.locationManager.location
             latitude = location?.coordinate.latitude

@@ -37,6 +37,7 @@ class Reminder: NSManagedObject {
         self.title = title
         self.notes = notes
         self.reminderTime = reminderTime
+        self.alertLabelText = alertLabelText
         self.isComplete = isComplete
         self.creationDate = creationDate
     }
