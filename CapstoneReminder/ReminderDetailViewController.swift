@@ -28,12 +28,15 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            }
+    override func viewWillAppear(animated: Bool) {
         editTextView()
         editTextField()
         alertDatePicker.minimumDate = NSDate()
         addToolBar(titleTextField)
         addToolBarForTextView(notesTextView)
         activityIndicator.stopAnimating()
+
     }
 
     

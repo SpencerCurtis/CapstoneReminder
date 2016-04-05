@@ -54,10 +54,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func checkForRemindersOutsideOfRadius() {
         for reminder in ReminderController.sharedController.reminders {
             if let currentLocation = currentLocation {
-                // Check if hasBeenNotified == false
                 if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false {
                     sendNotificationForReminder(reminder)
-                    ReminderDetailViewController.sharedController.displayAlertForReminder(reminder)
+//                    TODO: - Get the alertController to work!
+//                    ReminderDetailViewController.sharedController.displayAlertForReminder(reminder)
                     reminder.hasBeenNotified = true
                     locationManager.stopMonitoringSignificantLocationChanges()
                 }
