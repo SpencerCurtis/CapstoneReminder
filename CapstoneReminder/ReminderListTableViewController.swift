@@ -15,9 +15,18 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
         self.tableView.estimatedRowHeight = 58
         LocationController.sharedController.locationManager.delegate = self
-        LocationController.sharedController.checkForRemindersOutsideOfRadius()
+        //        LocationController.sharedController.checkForRemindersOutsideOfRadius()
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedAlways {
             LocationController.sharedController.locationManager.startUpdatingLocation()
@@ -27,15 +36,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             LocationController.sharedController.locationManager.startUpdatingLocation()
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
         
     }
     
@@ -56,10 +56,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
-        if let bool = reminder.isComplete?.boolValue {
-            cell.updateButton(bool)
-            
-        }
         return cell
     }
     
@@ -108,23 +104,16 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         
         if checkboxButton.selected.boolValue == false {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 reminder.isComplete = true
-                //                checkboxButton.selected = true
                 LocationController.sharedController.remindersUsingLocationCount -= 1
                 self.tableView.reloadData()
-            })
         } else if checkboxButton.selected.boolValue == true {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 reminder.isComplete = false
                 checkboxButton.selected = false
                 self.tableView.reloadData()
-            })
-            
         }
         
         ReminderController.sharedController.saveToPersistentStorage()
-        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.tableView.reloadData()
         })
