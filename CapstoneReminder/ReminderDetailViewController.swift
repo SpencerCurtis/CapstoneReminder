@@ -72,19 +72,31 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
+<<<<<<< 4b6985deb006e249cdf63522c857e2545b654078
 //            while LocationController.sharedController.locationManager.location == nil {
+=======
+            if LocationController.sharedController.locations == [] {
+                LocationController.sharedController.locationManager.requestLocation()
+>>>>>>> Implemented Alerts to be notified if the user is still in the app upon leaving radius. I'm not sure if I need to use startUpdatingLocation() or startMonitoringSignificantLocationChanges.
                 activityIndicator.startAnimating()
                 saveButton.enabled = false
                 header.backBarButtonItem?.enabled = false
                 view.addSubview(activityIndicator)
                 updatingLocationView.hidden = false
+<<<<<<< 4b6985deb006e249cdf63522c857e2545b654078
 //            }
         } else {
+=======
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
+            } else {
+                updateReminder()
+                navigationController?.popViewControllerAnimated(true)
+            }
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 {
+>>>>>>> Implemented Alerts to be notified if the user is still in the app upon leaving radius. I'm not sure if I need to use startUpdatingLocation() or startMonitoringSignificantLocationChanges.
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
         }
-        updateReminder()
-        navigationController?.popViewControllerAnimated(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -99,6 +111,15 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         navigationController?.popViewControllerAnimated(true)
     }
     
+    func displayAlertForReminder(reminder: Reminder) {
+        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+        let doneAction = UIAlertAction(title: "Okay", style: .Default) { (alert) in
+            
+        }
+        alert.addAction(doneAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
