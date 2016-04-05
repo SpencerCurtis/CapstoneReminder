@@ -20,7 +20,12 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.pausesLocationUpdatesAutomatically = false
+
     }
+    
     var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
     
@@ -32,11 +37,12 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locations = locations
         currentLocation = locations.last
         checkForRemindersOutsideOfRadius()
-//        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
     }
     
     
@@ -53,7 +59,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false {
                     sendNotificationForReminder(reminder)
                     reminder.hasBeenNotified = true
-                    locationManager.stopUpdatingHeading()
+                    locationManager.stopUpdatingLocation()
                 }
             }
         }
@@ -67,20 +73,14 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func requestLocation() {
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-    }
-    
     func requestAuthorization() {
         
         if authState == CLAuthorizationStatus.NotDetermined {
-            locationManager.requestAlwaysAuthorization()
-            locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
+            locationManager.requestAlwaysAuthorization()
+            locationManager.pausesLocationUpdatesAutomatically = false
             locationManager.startUpdatingLocation()
-        } else {
-            locationManager.startUpdatingLocation()
+            locationManager.allowsBackgroundLocationUpdates = true
         }
     }
     

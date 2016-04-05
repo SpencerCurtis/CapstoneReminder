@@ -16,6 +16,9 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         self.tableView.estimatedRowHeight = 58
         LocationController.sharedController.locationManager.delegate = self
         LocationController.sharedController.checkForRemindersOutsideOfRadius()
+        if LocationController.sharedController.remindersUsingLocationCount >= 1 {
+            LocationController.sharedController.locationManager.startUpdatingLocation()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,7 +104,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         if checkboxButton.selected.boolValue == false {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 reminder.isComplete = true
-//                checkboxButton.selected = true
+                //                checkboxButton.selected = true
                 LocationController.sharedController.remindersUsingLocationCount -= 1
                 self.tableView.reloadData()
             })

@@ -37,6 +37,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,13 +72,13 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
-            while LocationController.sharedController.locationManager.location == nil {
+//            while LocationController.sharedController.locationManager.location == nil {
                 activityIndicator.startAnimating()
                 saveButton.enabled = false
                 header.backBarButtonItem?.enabled = false
                 view.addSubview(activityIndicator)
                 updatingLocationView.hidden = false
-            }
+//            }
         } else {
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
