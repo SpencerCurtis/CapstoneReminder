@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import UIKit
+import AudioToolbox
 
 class LocationController: NSObject, CLLocationManagerDelegate {
     static let sharedController = LocationController()
@@ -33,6 +34,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 locationManager.stopUpdatingLocation()
                 locationManager.stopMonitoringSignificantLocationChanges()
             }
+            if ReminderController.sharedController.incompleteReminders.count == 0 {
+                remindersUsingLocationCount = 0
+            }
         }
     }
     
@@ -45,9 +49,14 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     
     func sendNotificationForReminder(reminder: Reminder) {
-        let notification = UILocalNotification()
-        notification.alertBody = reminder.title
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        dispatch_async(dispatch_get_main_queue()) { 
+            let notification = UILocalNotification()
+            notification.alertBody = reminder.title
+            notification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+  
+        }
+        
     }
     
     

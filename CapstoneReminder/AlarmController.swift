@@ -8,16 +8,21 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class AlarmController  {
     
     static let sharedController = AlarmController()
     
-    let notification = UILocalNotification()
+    
     
     func sendNotificationForReminderWithTime(reminder: Reminder, fireDate: NSDate) {
-        notification.fireDate = fireDate
-        notification.alertBody = reminder.title
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        dispatch_async(dispatch_get_main_queue()) {
+            let notification = UILocalNotification()
+            notification.fireDate = fireDate
+            notification.alertBody = reminder.title
+            notification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
     }
+}
