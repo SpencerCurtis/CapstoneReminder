@@ -78,15 +78,15 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location == nil {
-            LocationController.sharedController.locationManager.requestLocation()
+        if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locations == [] {
+            LocationController.sharedController.requestLocations()
             activityIndicator.startAnimating()
             saveButton.enabled = false
             header.backBarButtonItem?.enabled = false
             view.addSubview(activityIndicator)
             updatingLocationView.hidden = false
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-        } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locations != [] {
             updateReminder()
             navigationController?.popViewControllerAnimated(true)
         } else if alertSegmentedControl.selectedSegmentIndex == 0 {

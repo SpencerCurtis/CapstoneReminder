@@ -17,7 +17,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
         LocationController.sharedController.locationManager.delegate = self
-//        LocationController.sharedController.checkForRemindersOutsideOfRadius()
+        LocationController.sharedController.checkForRemindersOutsideOfRadius()
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedAlways {
             LocationController.sharedController.locationManager.startUpdatingLocation()

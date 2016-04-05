@@ -79,6 +79,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 LocationController.sharedController.locationManager.startUpdatingLocation()
                 LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
             }
+
             if reminder.locationLatitude != nil && reminder.locationLongitude != nil, let currentLocation = self.currentLocation {
                 if currentLocation.distanceFromLocation(reminder.location!) > 150 && reminder.hasBeenNotified == false {
                     let notification = UILocalNotification()
