@@ -23,7 +23,12 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.pausesLocationUpdatesAutomatically = false
+<<<<<<< 4b6985deb006e249cdf63522c857e2545b654078
+
+=======
+>>>>>>> Implemented Alerts to be notified if the user is still in the app upon leaving radius. I'm not sure if I need to use startUpdatingLocation() or startMonitoringSignificantLocationChanges.
     }
+    
     var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
     
@@ -31,10 +36,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         didSet {
             if remindersUsingLocationCount == 0 {
                 locationManager.stopUpdatingLocation()
-                locationManager.stopMonitoringSignificantLocationChanges()
             }
         }
     }
+    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locations = locations
@@ -59,30 +64,44 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                     sendNotificationForReminder(reminder)
                     ReminderDetailViewController.sharedController.displayAlertForReminder(reminder)
                     reminder.hasBeenNotified = true
+<<<<<<< 4b6985deb006e249cdf63522c857e2545b654078
+                    locationManager.stopUpdatingLocation()
+=======
                     locationManager.stopMonitoringSignificantLocationChanges()
+>>>>>>> Implemented Alerts to be notified if the user is still in the app upon leaving radius. I'm not sure if I need to use startUpdatingLocation() or startMonitoringSignificantLocationChanges.
                 }
             }
         }
     }
     
-    func requestLocations() {
+<<<<<<< 4b6985deb006e249cdf63522c857e2545b654078
+    func checkForLocation() {
+        if currentLocation == nil {
+            
+        } else if currentLocation != nil {
+            
+        }
+=======
+    func requestLocation() {
         locationManager.delegate = self
-        locationManager.startUpdatingHeading()
-        locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
+>>>>>>> Implemented Alerts to be notified if the user is still in the app upon leaving radius. I'm not sure if I need to use startUpdatingLocation() or startMonitoringSignificantLocationChanges.
     }
     
     func requestAuthorization() {
         
         if authState == CLAuthorizationStatus.NotDetermined {
-            locationManager.requestAlwaysAuthorization()
-            locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
+<<<<<<< 4b6985deb006e249cdf63522c857e2545b654078
+            locationManager.requestAlwaysAuthorization()
+            locationManager.pausesLocationUpdatesAutomatically = false
             locationManager.startUpdatingLocation()
+            locationManager.allowsBackgroundLocationUpdates = true
+=======
             locationManager.startMonitoringSignificantLocationChanges()
         } else {
-            locationManager.startUpdatingLocation()
             locationManager.startMonitoringSignificantLocationChanges()
+>>>>>>> Implemented Alerts to be notified if the user is still in the app upon leaving radius. I'm not sure if I need to use startUpdatingLocation() or startMonitoringSignificantLocationChanges.
         }
     }
     
