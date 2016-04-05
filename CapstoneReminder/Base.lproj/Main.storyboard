@@ -21,10 +21,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="57.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKE-ux-m9g">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKE-ux-m9g">
                                             <rect key="frame" x="44" y="4" width="358" height="23"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-aF-8TI">
+                                            <rect key="frame" x="410" y="6" width="161" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="161" id="nvF-fo-es9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugh-DO-M1G">
@@ -40,23 +49,14 @@
                                                 <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
                                                 <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
                                             </constraints>
-                                            <state key="normal" image="E07F69A7-4991-4BE3-A178-2582E1F13C71">
+                                            <state key="normal" image="8A34F8E9-8214-4762-BE34-8A3A0B386C05">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" image="235B995E-37AF-423F-899A-1CCE442D6B21"/>
+                                            <state key="selected" image="2F7225DD-A05C-4858-9589-8453F52F4863"/>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="1hX-TF-62S" eventType="touchUpInside" id="Y6s-B3-mIR"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-aF-8TI">
-                                            <rect key="frame" x="410" y="6" width="161" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="161" id="nvF-fo-es9"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -65,7 +65,6 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="xaw-aF-8TI" secondAttribute="trailing" constant="21" id="O0I-fc-pd0"/>
                                         <constraint firstItem="ZKE-ux-m9g" firstAttribute="leading" secondItem="ZBh-XT-WDC" secondAttribute="leadingMargin" constant="36" id="QSV-19-E9b"/>
                                         <constraint firstItem="AYm-lC-uhw" firstAttribute="centerY" secondItem="ZBh-XT-WDC" secondAttribute="centerY" id="X6g-Wb-ilO"/>
-                                        <constraint firstItem="Ugh-DO-M1G" firstAttribute="top" secondItem="ZKE-ux-m9g" secondAttribute="bottom" constant="-1" id="XUt-f7-4em"/>
                                         <constraint firstItem="Ugh-DO-M1G" firstAttribute="leading" secondItem="AYm-lC-uhw" secondAttribute="trailing" constant="4" id="cFy-2c-j4j"/>
                                         <constraint firstItem="Ugh-DO-M1G" firstAttribute="leading" secondItem="ZKE-ux-m9g" secondAttribute="leading" id="cZn-Gh-Yga"/>
                                         <constraint firstItem="xaw-aF-8TI" firstAttribute="bottom" secondItem="ZKE-ux-m9g" secondAttribute="bottom" id="j9O-5x-WPH"/>
@@ -74,11 +73,6 @@
                                         <constraint firstItem="ZKE-ux-m9g" firstAttribute="top" secondItem="ZBh-XT-WDC" secondAttribute="topMargin" constant="-4" id="uSw-70-Noa"/>
                                         <constraint firstItem="xaw-aF-8TI" firstAttribute="top" secondItem="ZBh-XT-WDC" secondAttribute="topMargin" constant="-2" id="v9P-Vv-hsV"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="lyC-ca-lFb"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <color key="tintColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -285,7 +279,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="235B995E-37AF-423F-899A-1CCE442D6B21" width="66" height="63">
+        <image name="2F7225DD-A05C-4858-9589-8453F52F4863" width="66" height="63">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -613,7 +607,7 @@ ALIAtQC3ALkAuwC9AMIA2QDbAN1Kd0p8SodKkEqjSqdKskq7SsBKyErLStBK30rjSupK8kr/SwRLBksI
 Sw1LFUsYSx1LJUsoSzpLPUtCAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAS0Q
 </mutableData>
         </image>
-        <image name="E07F69A7-4991-4BE3-A178-2582E1F13C71" width="64" height="64">
+        <image name="8A34F8E9-8214-4762-BE34-8A3A0B386C05" width="64" height="64">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
