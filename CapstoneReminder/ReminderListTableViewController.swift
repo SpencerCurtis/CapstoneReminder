@@ -56,7 +56,15 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         return UITableViewAutomaticDimension
     }
     
-    
+    func displayAlertForReminder(reminder: Reminder) {
+        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+        let doneAction = UIAlertAction(title: "Okay", style: .Default) { (alert) in
+            
+        }
+        alert.addAction(doneAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

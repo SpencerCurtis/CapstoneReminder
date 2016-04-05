@@ -20,6 +20,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.pausesLocationUpdatesAutomatically = false
     }
     var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
@@ -36,7 +39,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         self.locations = locations
         currentLocation = locations.last
         checkForRemindersOutsideOfRadius()
-//        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
     }
     
     
@@ -46,30 +49,24 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
     
+    
     func checkForRemindersOutsideOfRadius() {
         for reminder in ReminderController.sharedController.reminders {
             if let currentLocation = currentLocation {
                 // Check if hasBeenNotified == false
                 if currentLocation.distanceFromLocation(reminder.location!) > 15 && reminder.hasBeenNotified == false {
                     sendNotificationForReminder(reminder)
+                    ReminderDetailViewController.sharedController.displayAlertForReminder(reminder)
                     reminder.hasBeenNotified = true
-                    locationManager.stopUpdatingHeading()
+                    locationManager.stopMonitoringSignificantLocationChanges()
                 }
             }
         }
     }
     
-    func checkForLocation() {
-        if currentLocation == nil {
-            
-        } else if currentLocation != nil {
-            
-        }
-    }
-    
     func requestLocation() {
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     func requestAuthorization() {
@@ -78,9 +75,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             locationManager.requestAlwaysAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
-            locationManager.startUpdatingLocation()
+            locationManager.startMonitoringSignificantLocationChanges()
         } else {
-            locationManager.startUpdatingLocation()
+            locationManager.startMonitoringSignificantLocationChanges()
         }
     }
     
