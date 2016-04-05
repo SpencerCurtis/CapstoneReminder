@@ -22,15 +22,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CapstoneReminder/LocationController.swift"
+            timestampString = "481572838.326269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CapstoneReminder/LocationController.swift"
-            timestampString = "481567158.766326"
+            timestampString = "481574803.514422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "checkForRemindersOutsideOfRadius()"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CapstoneReminder/ReminderDetailViewController.swift"
-            timestampString = "481568858.290251"
+            filePath = "CapstoneReminder/LocationController.swift"
+            timestampString = "481574803.514422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "updateReminder()"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "checkForRemindersOutsideOfRadius()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

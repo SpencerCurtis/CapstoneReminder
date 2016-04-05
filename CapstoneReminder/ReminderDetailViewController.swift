@@ -28,6 +28,11 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let status = CLLocationManager.authorizationStatus()
+        if status == .AuthorizedAlways {
+            LocationController.sharedController.locationManager.startUpdatingLocation()
+            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
+        }
     }
     override func viewWillAppear(animated: Bool) {
         editTextView()
