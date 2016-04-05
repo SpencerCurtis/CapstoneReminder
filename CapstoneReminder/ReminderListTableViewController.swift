@@ -16,17 +16,20 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
-        LocationController.sharedController.locationManager.delegate = self
-//        LocationController.sharedController.checkForRemindersOutsideOfRadius()
-        let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedAlways {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
-            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
-        }
-        if LocationController.sharedController.remindersUsingLocationCount >= 1 {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
-            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
-        }
+        let locationManager = CLLocationManager()
+        locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+//        let status = CLLocationManager.authorizationStatus()
+//        if status == .AuthorizedAlways {
+//            LocationController.sharedController.locationManager.startUpdatingLocation()
+//            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
+//        }
+//        if LocationController.sharedController.remindersUsingLocationCount >= 1 {
+//            LocationController.sharedController.locationManager.startUpdatingLocation()
+//            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
+//        }
     }
     
     override func didReceiveMemoryWarning() {

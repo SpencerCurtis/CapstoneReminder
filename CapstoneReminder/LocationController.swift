@@ -25,7 +25,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.pausesLocationUpdatesAutomatically = false
     }
-    var locations: [CLLocation] = []
+//    var locations: [CLLocation] = []
     let authState = CLLocationManager.authorizationStatus()
     
     var remindersUsingLocationCount: Int = 0 {
@@ -39,12 +39,13 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             } else if ReminderController.sharedController.incompleteReminders.count > 0 {
                 locationManager.startUpdatingLocation()
                 locationManager.startMonitoringSignificantLocationChanges()
+                checkForRemindersOutsideOfRadius()
             }
         }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.locations = locations
+
         currentLocation = locations.last
         checkForRemindersOutsideOfRadius()
         NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
@@ -98,7 +99,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     }
     func requestLocations() {
         locationManager.delegate = self
-        locationManager.startUpdatingHeading()
+//        locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
     }

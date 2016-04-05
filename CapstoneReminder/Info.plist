@@ -52,6 +52,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>allowsBackgroundLocationUpdates</key>
-	<string>YES</string>
+	<string>NO</string>
 </dict>
 </plist>

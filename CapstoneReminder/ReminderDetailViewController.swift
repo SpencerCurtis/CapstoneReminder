@@ -88,6 +88,11 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
         } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
             updateReminder()
+            let status = CLLocationManager.authorizationStatus()
+            if status == .AuthorizedAlways {
+                CLLocationManager().startUpdatingLocation()
+                CLLocationManager().startMonitoringSignificantLocationChanges()
+            }
             navigationController?.popViewControllerAnimated(true)
         } else if alertSegmentedControl.selectedSegmentIndex == 0 {
             updateReminder()
@@ -102,7 +107,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
-        updateReminder()
         updatingLocationView.hidden = true
         navigationController?.popViewControllerAnimated(true)
     }
