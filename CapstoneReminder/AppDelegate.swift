@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-//        NSNotificationCenter.defaultCenter().postNotificationName("Notification", object: nil, userInfo: nil)
-//        let alert = UIAlertController(title: , message: <#T##String?#>, preferredStyle: <#T##UIAlertControllerStyle#>)
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
         let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
         let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in

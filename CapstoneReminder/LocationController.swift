@@ -87,7 +87,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                     notification.alertTitle = reminder.title
                     notification.alertBody = reminder.title
                     notification.fireDate = NSDate()
-                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                     UIApplication.sharedApplication().scheduleLocalNotification(notification)
                     //                    sendNotificationForReminder(reminder)
                     NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
