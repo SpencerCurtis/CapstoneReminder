@@ -39,7 +39,10 @@ class ReminderController {
     
     func removeReminder(reminder: Reminder) {
         reminder.managedObjectContext?.deleteObject(reminder)
+        // TODO: - only decrease count for reminders using location
+        if reminder.location != nil {
         LocationController.sharedController.remindersUsingLocationCount -= 1
+        }
         saveToPersistentStorage()
     }
     
@@ -54,13 +57,13 @@ class ReminderController {
         }
     }
     
-    func filePath(key: String) -> String {
-        let directorySearchResults = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true)
-        let documentsPath: AnyObject = directorySearchResults[0]
-        let entriesPath = documentsPath.stringByAppendingString("/\(key).plist")
-        
-        return entriesPath
-    }
+//    func filePath(key: String) -> String {
+//        let directorySearchResults = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true)
+//        let documentsPath: AnyObject = directorySearchResults[0]
+//        let entriesPath = documentsPath.stringByAppendingString("/\(key).plist")
+//        
+//        return entriesPath
+//    }
     
     
 }
