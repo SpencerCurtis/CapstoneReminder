@@ -58,7 +58,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestAuthorization()
-            
             alertDatePicker.hidden = true
         } else if alertSegmentedControl.selectedSegmentIndex == 0 {
             alertDatePicker.hidden = false
@@ -78,16 +77,23 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location == nil {
+        var location = LocationController.sharedController.locationManager.location
+        if alertSegmentedControl.selectedSegmentIndex == 1 && location == nil {
             LocationController.sharedController.locationManager.requestLocation()
             activityIndicator.startAnimating()
             saveButton.enabled = false
             header.backBarButtonItem?.enabled = false
             view.addSubview(activityIndicator)
             updatingLocationView.hidden = false
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-        } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
+            while location == nil {
+                LocationController.sharedController.locationManager.requestLocation()
+            location = LocationController.sharedController.locationManager.location
+           
+            }
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 && location != nil {
             updateReminder()
+            stopActivityIndicator()
             let status = CLLocationManager.authorizationStatus()
             if status == .AuthorizedAlways {
                 CLLocationManager().startUpdatingLocation()
@@ -174,7 +180,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
                 LocationController.sharedController.remindersUsingLocationCount += 1
                 
             }
-            
         }
     }
     

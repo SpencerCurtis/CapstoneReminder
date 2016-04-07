@@ -26,16 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
 //        NSNotificationCenter.defaultCenter().postNotificationName("Notification", object: nil, userInfo: nil)
 //        let alert = UIAlertController(title: , message: <#T##String?#>, preferredStyle: <#T##UIAlertControllerStyle#>)
-        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-        let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
-        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        })
-        alert.addAction(okayAction)
-        if let vc = vc {
-        vc.presentViewController(alert, animated: true, completion: nil)
-        }
-        
+                
     }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -61,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        LocationController.sharedController.locationManager.stopUpdatingLocation()
+        LocationController.sharedController.locationManager.stopMonitoringSignificantLocationChanges()
     }
 
 
