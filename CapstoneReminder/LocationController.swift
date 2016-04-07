@@ -77,7 +77,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func checkForRemindersOutsideOfRadius() {
         for reminder in ReminderController.sharedController.reminders {
             let status = CLLocationManager.authorizationStatus()
-            if status == .AuthorizedAlways {
+            if status == .AuthorizedWhenInUse {
                 LocationController.sharedController.locationManager.startUpdatingLocation()
                 LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
             }
@@ -119,8 +119,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     func requestAuthorization() {
         
-        if authState == CLAuthorizationStatus.NotDetermined {
-            locationManager.requestAlwaysAuthorization()
+        if authState == CLAuthorizationStatus.NotDetermined || authState == CLAuthorizationStatus.Restricted {
+            locationManager.requestWhenInUseAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
             locationManager.startUpdatingLocation()

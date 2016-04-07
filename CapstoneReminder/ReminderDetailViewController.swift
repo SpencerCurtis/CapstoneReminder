@@ -29,7 +29,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedAlways {
+        if status == .AuthorizedWhenInUse {
             LocationController.sharedController.locationManager.startUpdatingLocation()
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
         }
@@ -95,7 +95,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
             updateReminder()
             stopActivityIndicator()
             let status = CLLocationManager.authorizationStatus()
-            if status == .AuthorizedAlways {
+            if status == .AuthorizedWhenInUse {
                 CLLocationManager().startUpdatingLocation()
                 CLLocationManager().startMonitoringSignificantLocationChanges()
             }

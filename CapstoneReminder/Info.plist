@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>Remindr</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -9,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Remindr</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -17,14 +19,14 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>8</string>
 	<key>LSApplicationCategoryType</key>
 	<array>
 		<string></string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>So we can remind you when you leave an area.</string>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -41,8 +43,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -52,6 +52,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>allowsBackgroundLocationUpdates</key>
-	<string>NO</string>
+	<string>YES</string>
 </dict>
 </plist>

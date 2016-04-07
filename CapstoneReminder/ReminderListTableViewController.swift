@@ -22,7 +22,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
 //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
 //        locationManager.startUpdatingLocation()
         let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedAlways {
+        if status == .AuthorizedWhenInUse {
             LocationController.sharedController.locationManager.startUpdatingLocation()
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
         }
