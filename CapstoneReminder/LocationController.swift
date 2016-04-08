@@ -92,20 +92,22 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                         alert.addAction(okayAction)
                         if let vc = vc {
                             vc.presentViewController(alert, animated: true, completion: nil)
+                            reminder.hasBeenNotified = true
                         }
-                    } else {
-                            let notification = UILocalNotification()
-                            notification.alertTitle = reminder.title
-                            notification.alertBody = reminder.title
-                            notification.fireDate = NSDate()
-                            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-                            //                    sendNotificationForReminder(reminder)
-                            NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
-                        }
+                    }
+                } else if UIApplication.sharedApplication().applicationState == .Background && reminder.hasBeenNotified == false {
+                    let notification = UILocalNotification()
+                    notification.alertTitle = reminder.title
+                    notification.alertBody = reminder.title
+                    notification.fireDate = NSDate()
+                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+                    NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
                     reminder.hasBeenNotified = true
-                    locationManager.requestLocation()
+                    
                 }
+                
+                locationManager.requestLocation()
             }
         }
     }

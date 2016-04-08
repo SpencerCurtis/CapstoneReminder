@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-//        NSNotificationCenter.defaultCenter().postNotificationName("Notification", object: nil, userInfo: nil)
-//        let alert = UIAlertController(title: , message: <#T##String?#>, preferredStyle: <#T##UIAlertControllerStyle#>)
                 
     }
     func applicationWillResignActive(application: UIApplication) {
