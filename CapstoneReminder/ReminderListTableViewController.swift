@@ -55,7 +55,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
-        //                ReminderController.sharedController.reminders.sortInPlace({})
         let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         cell.delegate = self
         cell.updateWithReminder(reminder)
@@ -114,19 +113,24 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 reminder.isComplete = true
                 //                checkboxButton.selected = true
-                LocationController.sharedController.remindersUsingLocationCount -= 1
+//                LocationController.sharedController.remindersUsingLocationCount -= 1
+                ReminderController.sharedController.saveToPersistentStorage()
+
                 self.tableView.reloadData()
+                
             })
         } else if checkboxButton.selected.boolValue == true {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 reminder.isComplete = false
                 checkboxButton.selected = false
+                ReminderController.sharedController.saveToPersistentStorage()
+
                 self.tableView.reloadData()
+
             })
             
         }
         
-        ReminderController.sharedController.saveToPersistentStorage()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.tableView.reloadData()
