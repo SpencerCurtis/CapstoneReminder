@@ -73,8 +73,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 LocationController.sharedController.locationManager.startUpdatingLocation()
                 LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
             }
-            if reminder.alertLabelText == "Upon Moving", let currentLocation = self.currentLocation {
-                if reminder.location!.distanceFromLocation(currentLocation) > 15 && reminder.hasBeenNotified == false {
+            if reminder.alertLabelText == "Upon Moving", let currentLocation = self.currentLocation, location = reminder.location {
+                if location.distanceFromLocation(currentLocation) > 15 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
                     if UIApplication.sharedApplication().applicationState == .Active {
                         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
                         let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
@@ -84,9 +84,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                         alert.addAction(okayAction)
                         if let vc = vc {
                             vc.presentViewController(alert, animated: true, completion: nil)
-                            ReminderController.sharedController.reminders[index!].hasBeenNotified = true
-                            //                            reminder.hasBeenNotified = true
+                            
                         }
+                        ReminderController.sharedController.reminders[index!].hasBeenNotified = true
+                        ReminderController.sharedController.saveToPersistentStorage()
                     } else if UIApplication.sharedApplication().applicationState == .Background && reminder.hasBeenNotified == false {
                         let notification = UILocalNotification()
                         notification.alertTitle = reminder.title
@@ -96,9 +97,11 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
                         NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
                         ReminderController.sharedController.reminders[index!].hasBeenNotified = true
+                        ReminderController.sharedController.saveToPersistentStorage()
                     }
+                } else {
+                    locationManager.requestLocation()
                 }
-                locationManager.requestLocation()
             }
         }
     }
