@@ -16,17 +16,11 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
-//        let locationManager = CLLocationManager()
-//        locationManager.pausesLocationUpdatesAutomatically = true
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.startUpdatingLocation()
+        self.navigationController?.navigationBar.barTintColor = UIColor.customGrayColor()
+        self.navigationController?.navigationBar.translucent = true
+//        self.tableView.backgroundColor = UIColor.lightGrayColor()
         let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedWhenInUse {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
-            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
-        }
-        if LocationController.sharedController.remindersUsingLocationCount >= 1 {
+        if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.startUpdatingLocation()
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
         }
@@ -41,6 +35,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         tableView.reloadData()
         
     }
+    
     
     // MARK: - Table view data source
     
@@ -92,6 +87,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
                 _ = ReminderDetailViewController.view
                 
                 if let selectedRow = tableView.indexPathForSelectedRow?.row {
+                    dvc?.reminder = ReminderController.sharedController.incompleteReminders[selectedRow]
                     ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.incompleteReminders[selectedRow])
                 }
             }
@@ -113,7 +109,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 reminder.isComplete = true
                 //                checkboxButton.selected = true
-//                LocationController.sharedController.remindersUsingLocationCount -= 1
+                LocationController.sharedController.remindersUsingLocationCount -= 1
                 ReminderController.sharedController.saveToPersistentStorage()
 
                 self.tableView.reloadData()

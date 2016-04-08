@@ -28,11 +28,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedWhenInUse {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
-            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
-        }
     }
     override func viewWillAppear(animated: Bool) {
         editTextView()
@@ -60,6 +55,8 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
             LocationController.sharedController.requestAuthorization()
             alertDatePicker.hidden = true
         } else if alertSegmentedControl.selectedSegmentIndex == 0 {
+            LocationController.sharedController.locationManager.stopUpdatingLocation()
+            LocationController.sharedController.locationManager.stopMonitoringSignificantLocationChanges()
             alertDatePicker.hidden = false
         }
     }
@@ -123,7 +120,9 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
             
         }
         alert.addAction(doneAction)
+        if reminder.reminderTime?.timeIntervalSince1970 > NSDate().timeIntervalSince1970 {
         self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -213,6 +212,7 @@ extension UIViewController: UITextFieldDelegate {
     func addToolBar(textField: UITextField){
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
+        toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 1.00)
         toolBar.translucent = true
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressed))
         doneButton.tintColor = UIColor.customCyanColor()
@@ -234,6 +234,7 @@ extension UIViewController: UITextViewDelegate {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
+        toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 1.00)
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressedForTextView))
         doneButton.tintColor = UIColor.customCyanColor()
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
