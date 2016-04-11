@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -27,7 +28,9 @@
                         <color key="backgroundColor" red="0.38431372549019605" green="0.83529411764705885" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="7cJ-Cq-dQu" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-97" id="2oB-xw-SSz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7cJ-Cq-dQu" secondAttribute="trailing" constant="105" id="9gW-lk-oCg"/>
                             <constraint firstItem="7cJ-Cq-dQu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TmN-VM-QTf"/>
+                            <constraint firstItem="7cJ-Cq-dQu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="105" id="oEb-hM-IY6"/>
                         </constraints>
                     </view>
                 </viewController>

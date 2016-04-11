@@ -25,6 +25,11 @@ class AlarmController  {
                     alert.dismissViewControllerAnimated(true, completion: nil)
                 })
                 alert.addAction(okayAction)
+                let notification = UILocalNotification()
+                notification.fireDate = fireDate
+                notification.alertBody = reminder.title
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 if let vc = vc {
                     if NSDate().timeIntervalSince1970 > fireDate.timeIntervalSince1970 {
                     vc.presentViewController(alert, animated: true, completion: nil)
@@ -33,8 +38,7 @@ class AlarmController  {
 
                     }
                 }
-            } else
-        if reminder.hasBeenNotified == false {
+            } else if UIApplication.sharedApplication().applicationState != .Active && reminder.hasBeenNotified == false {
                 let notification = UILocalNotification()
                 notification.fireDate = fireDate
                 notification.alertBody = reminder.title
