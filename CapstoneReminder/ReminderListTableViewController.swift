@@ -9,39 +9,37 @@
 import UIKit
 import CoreLocation
 
-class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate  {
+class ReminderListTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     static let sharedController = ReminderListTableViewController()
-    
+
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var reminderFilterSegmentedControl: UISegmentedControl!
-    
-    @IBAction func panningDownToDismissSegmentedControl(sender: AnyObject) {
-        tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBarView.frame))
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableHeaderView = searchBarView
+        
         self.tableView.estimatedRowHeight = 58
         self.navigationController?.navigationBar.barTintColor = UIColor.customGrayColor()
         self.navigationController?.navigationBar.translucent = true
-        //        self.tableView.backgroundColor = UIColor.lightGrayColor()
+
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.startUpdatingLocation()
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
         }
+//        self.tableView.backgroundColor = UIColor.lightGrayColor()
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
-        self.tableView.tableHeaderView = searchBarView
-        tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBarView.frame))
+        self.tableView.contentOffset = CGPointMake(0, 45)
+        
     }
     
     @IBAction func remindrFilterSegmentedControlValueChanged(sender: AnyObject) {
