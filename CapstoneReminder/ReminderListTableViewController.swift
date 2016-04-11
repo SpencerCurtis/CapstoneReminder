@@ -13,12 +13,19 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     static let sharedController = ReminderListTableViewController()
     
+    @IBOutlet weak var searchBarView: UIView!
+    @IBOutlet weak var reminderFilterSegmentedControl: UISegmentedControl!
+    
+    @IBAction func panningDownToDismissSegmentedControl(sender: AnyObject) {
+        tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBarView.frame))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 58
         self.navigationController?.navigationBar.barTintColor = UIColor.customGrayColor()
         self.navigationController?.navigationBar.translucent = true
-//        self.tableView.backgroundColor = UIColor.lightGrayColor()
+        //        self.tableView.backgroundColor = UIColor.lightGrayColor()
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.startUpdatingLocation()
@@ -33,9 +40,13 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
-        
+        self.tableView.tableHeaderView = searchBarView
+        tableView.contentOffset = CGPointMake(0, CGRectGetHeight(searchBarView.frame))
     }
     
+    @IBAction func remindrFilterSegmentedControlValueChanged(sender: AnyObject) {
+        tableView.reloadData()
+    }
     
     // MARK: - Table view data source
     
@@ -44,18 +55,35 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ReminderController.sharedController.incompleteReminders.count
+        var returnInt = 0
+        if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
+        returnInt = ReminderController.sharedController.incompleteReminders.count
+        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
+            returnInt = ReminderController.sharedController.completeReminders.count
+        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
+            returnInt = ReminderController.sharedController.reminders.count
+        }
+        return returnInt
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
-        let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
-        cell.delegate = self
-        cell.updateWithReminder(reminder)
-        if let bool = reminder.isComplete?.boolValue {
-            cell.updateButton(bool)
-            
+        if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
+            let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
+            cell.delegate = self
+            cell.updateWithReminder(reminder)
+            if let bool = reminder.isComplete?.boolValue {
+                cell.updateButton(bool)
+            }
+        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
+            let reminder = ReminderController.sharedController.completeReminders[indexPath.row]
+            cell.delegate = self
+            cell.updateWithReminder(reminder)
+        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
+            let reminder = ReminderController.sharedController.reminders[indexPath.row]
+            cell.delegate = self
+            cell.updateWithReminder(reminder)
         }
         return cell
     }
@@ -94,10 +122,14 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         }
     }
     
+    
+    
     // MARK: - Location
     
     
 }
+
+
 
 extension ReminderListTableViewController: ReminderTableViewCellDelegate {
     
@@ -111,7 +143,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                 //                checkboxButton.selected = true
                 LocationController.sharedController.remindersUsingLocationCount -= 1
                 ReminderController.sharedController.saveToPersistentStorage()
-
+                
                 self.tableView.reloadData()
                 
             })
@@ -120,9 +152,9 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                 reminder.isComplete = false
                 checkboxButton.selected = false
                 ReminderController.sharedController.saveToPersistentStorage()
-
+                
                 self.tableView.reloadData()
-
+                
             })
             
         }
