@@ -84,7 +84,6 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                         alert.addAction(okayAction)
                         if let vc = vc {
                             vc.presentViewController(alert, animated: true, completion: nil)
-                            
                         }
                         ReminderController.sharedController.reminders[index!].hasBeenNotified = true
                         ReminderController.sharedController.saveToPersistentStorage()
