@@ -16,7 +16,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var reminderFilterSegmentedControl: UISegmentedControl!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableHeaderView = searchBarView
@@ -48,13 +47,8 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     @IBAction func remindrFilterSegmentedControlValueChanged(sender: AnyObject) {
         tableView.reloadData()
-        if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
-            tableView.allowsSelection = false
-        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
-            tableView.allowsSelection = false
-        }
     }
-    
+
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -92,7 +86,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             cell.delegate = self
             cell.updateWithReminder(reminder)
         }
-        self.tableView.contentOffset = CGPointMake(0, 45)
         return cell
         
     }
@@ -112,7 +105,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         }
     }
     
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -124,8 +116,8 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
                 _ = ReminderDetailViewController.view
                 
                 if let selectedRow = tableView.indexPathForSelectedRow?.row {
-                    dvc?.reminder = ReminderController.sharedController.incompleteReminders[selectedRow]
-                    ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.incompleteReminders[selectedRow])
+                    dvc?.reminder = ReminderController.sharedController.reminders[selectedRow]
+                    ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.reminders[selectedRow])
                 }
             }
         }
@@ -149,6 +141,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
             reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
             if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
                 reminder = ReminderController.sharedController.completeReminders[indexPath.row]
+                
             } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
                 ReminderController.sharedController.reminders[indexPath.row]
             }
