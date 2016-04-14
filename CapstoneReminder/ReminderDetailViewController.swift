@@ -54,7 +54,9 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
-        if alertSegmentedControl.selectedSegmentIndex == 1 {
+        if alertSegmentedControl.selectedSegmentIndex == 2 {
+            performSegueWithIdentifier("toMapView", sender: self)
+        } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestAuthorization()
             alertDatePicker.hidden = true
         } else if alertSegmentedControl.selectedSegmentIndex == 0 {
