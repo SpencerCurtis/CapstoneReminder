@@ -17,36 +17,33 @@ class AlarmController  {
     
     
     func sendNotificationForReminderWithTime(reminder: Reminder, fireDate: NSDate) {
-        dispatch_async(dispatch_get_main_queue()) {
-            if UIApplication.sharedApplication().applicationState == .Active && reminder.hasBeenNotified == false {
-                let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-                let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
-                    alert.dismissViewControllerAnimated(true, completion: nil)
-                })
-                alert.addAction(okayAction)
-                let notification = UILocalNotification()
-                notification.fireDate = fireDate
-                notification.alertBody = reminder.title
-                notification.soundName = UILocalNotificationDefaultSoundName
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                if let vc = vc {
-                    if NSDate().timeIntervalSince1970 > fireDate.timeIntervalSince1970 {
+        if reminder.hasBeenNotified == false {
+            let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
+            let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
+            let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            })
+            alert.addAction(okayAction)
+            let notification = UILocalNotification()
+            notification.fireDate = fireDate
+            notification.alertBody = reminder.title
+            notification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            if let vc = vc {
+                if NSDate().timeIntervalSince1970 > fireDate.timeIntervalSince1970 {
                     vc.presentViewController(alert, animated: true, completion: nil)
                     reminder.hasBeenNotified = true
                     ReminderController.sharedController.saveToPersistentStorage()
-
-                    }
+                    let notification = UILocalNotification()
+                    notification.fireDate = fireDate
+                    notification.alertBody = reminder.title
+                    notification.soundName = UILocalNotificationDefaultSoundName
+                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                    reminder.hasBeenNotified = true
+                    ReminderController.sharedController.saveToPersistentStorage()
+                    
+                    
                 }
-            } else if UIApplication.sharedApplication().applicationState != .Active && reminder.hasBeenNotified == false {
-                let notification = UILocalNotification()
-                notification.fireDate = fireDate
-                notification.alertBody = reminder.title
-                notification.soundName = UILocalNotificationDefaultSoundName
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                reminder.hasBeenNotified = true
-            ReminderController.sharedController.saveToPersistentStorage()
-
             }
         }
     }

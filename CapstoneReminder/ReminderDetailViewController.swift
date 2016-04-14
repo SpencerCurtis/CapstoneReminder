@@ -23,8 +23,8 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     @IBOutlet weak var alertDatePicker: UIDatePicker!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var alertTimeValue = NSDate?()
-    var reminder = Reminder?()
+    var alertTimeValue = NSDate()
+    var reminder: Reminder?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,16 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     override func viewWillAppear(animated: Bool) {
         editTextView()
         editTextField()
+        activityIndicator.stopAnimating()
+        editOtherViews()
+    }
+    
+    func editOtherViews() {
         alertDatePicker.minimumDate = NSDate()
         addToolBar(titleTextField)
         addToolBarForTextView(notesTextView)
-        activityIndicator.stopAnimating()
         
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,7 +107,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
         return true
     }
     
@@ -126,10 +128,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
         return true
     }
     
@@ -143,7 +141,6 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
         let notes = notesTextView.text
         var alertLabelText = ""
         let reminderTime = alertDatePicker.date
-//        let reminderTimeString = formatter.stringFromDate(reminderTime)
         
         if let reminder = self.reminder {
             reminder.title = title
@@ -212,8 +209,8 @@ extension UIViewController: UITextFieldDelegate {
     func addToolBar(textField: UITextField){
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
-        toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 1.00)
-        toolBar.translucent = true
+        toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 0.50)
+//        toolBar.translucent = true
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressed))
         doneButton.tintColor = UIColor.customCyanColor()
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -233,8 +230,8 @@ extension UIViewController: UITextViewDelegate {
     func addToolBarForTextView(textView: UITextView){
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 1.00)
+//        toolBar.translucent = true
+        toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 0.50)
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressedForTextView))
         doneButton.tintColor = UIColor.customCyanColor()
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)

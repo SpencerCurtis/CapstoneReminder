@@ -43,7 +43,6 @@ class ReminderController {
     
     func removeReminder(reminder: Reminder) {
         reminder.managedObjectContext?.deleteObject(reminder)
-        // TODO: - only decrease count for reminders using location
         if reminder.location != nil {
         LocationController.sharedController.remindersUsingLocationCount -= 1
         }
