@@ -16,6 +16,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     var currentLocation: CLLocation?
     
+    var selectedLocation: CLLocation?
+    
     let locationManager = CLLocationManager()
     
     var reminder: Reminder?
