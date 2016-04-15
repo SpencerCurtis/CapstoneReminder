@@ -23,6 +23,7 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     @IBOutlet weak var alertDatePicker: UIDatePicker!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
     var alertTimeValue = NSDate()
     var reminder: Reminder?
     
@@ -55,6 +56,10 @@ class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
         if alertSegmentedControl.selectedSegmentIndex == 2 {
+            // MAKE SURE THEY HAVE PERMISSION
+            LocationController.sharedController.requestAuthorization()
+            LocationController.sharedController.locationManager.startUpdatingLocation()
+            LocationController.sharedController.currentLocation = LocationController.sharedController.locationManager.location
             performSegueWithIdentifier("toMapView", sender: self)
         } else if alertSegmentedControl.selectedSegmentIndex == 1 {
             LocationController.sharedController.requestAuthorization()
