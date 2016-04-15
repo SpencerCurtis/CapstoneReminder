@@ -33,9 +33,14 @@ class ReminderController {
         return reminders.filter({!$0.isComplete!.boolValue})
     }
     
-    var incompleteRemindersWithLocation: [Reminder] {
+    var incompleteRemindersWithLocationUponLeaving: [Reminder] {
         return incompleteReminders.filter({$0.alertLabelText == "Upon Moving"})
     }
+    
+    var incompleteRemindersWithLocationUponArriving: [Reminder] {
+        return incompleteReminders.filter({$0.alertLabelText == "Upon Arriving"})
+    }
+    
     
     func addReminder(reminder: Reminder) {
         saveToPersistentStorage()

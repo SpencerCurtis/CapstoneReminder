@@ -68,7 +68,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     
     func checkForRemindersOutsideOfRadius() {
-        for reminder in ReminderController.sharedController.incompleteRemindersWithLocation {
+        for reminder in ReminderController.sharedController.incompleteRemindersWithLocationUponLeaving {
             let index = ReminderController.sharedController.reminders.indexOf(reminder)
             let status = CLLocationManager.authorizationStatus()
             if status == .AuthorizedWhenInUse {
@@ -102,6 +102,47 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                     }
                 } else {
                     locationManager.requestLocation()
+                }
+            }
+        }
+    }
+    
+    func checkIfUserHasArrivedAtLocation() {
+        for reminder in ReminderController.sharedController.incompleteRemindersWithLocationUponArriving {
+            let index = ReminderController.sharedController.reminders.indexOf(reminder)
+            let status = CLLocationManager.authorizationStatus()
+            if status == .AuthorizedWhenInUse {
+                LocationController.sharedController.locationManager.startUpdatingLocation()
+                LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
+            }
+            if let currentLocation = self.currentLocation, location = reminder.location {
+                if location.distanceFromLocation(currentLocation) < 15 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
+                    if UIApplication.sharedApplication().applicationState == .Active {
+                        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
+                        let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
+                        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+                            alert.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                        alert.addAction(okayAction)
+                        if let vc = vc {
+                            vc.presentViewController(alert, animated: true, completion: nil)
+                        }
+                        ReminderController.sharedController.reminders[index!].hasBeenNotified = true
+                        ReminderController.sharedController.saveToPersistentStorage()
+                    } else if UIApplication.sharedApplication().applicationState == .Background && reminder.hasBeenNotified == false {
+                        let notification = UILocalNotification()
+                        notification.alertTitle = reminder.title
+                        notification.alertBody = reminder.title
+                        notification.fireDate = NSDate()
+                        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+                        NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
+                        ReminderController.sharedController.reminders[index!].hasBeenNotified = true
+                        ReminderController.sharedController.saveToPersistentStorage()
+                    }
+                } else {
+                    locationManager.requestLocation()
+                    
                 }
             }
         }

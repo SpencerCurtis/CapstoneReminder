@@ -61,8 +61,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    
-    
     func centerMapOnLocation(location: CLLocation) {
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
