@@ -9,7 +9,13 @@
 import UIKit
 import MapKit
 
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark)
+}
+
 class MapViewController: UIViewController, UISearchBarDelegate {
+    
+    var selectedPin: MKPlacemark? = nil
     
     static let sharedController = MapViewController()
     
@@ -20,132 +26,38 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let locationSearchTableViewController = storyboard?.instantiateViewControllerWithIdentifier("LocationTableViewController") as! LocationSearchTableViewController
-        resultSearchController = UISearchController(searchResultsController: locationSearchTableViewController)
-        resultSearchController?.searchResultsUpdater = locationSearchTableViewController
+        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTableViewController") as! LocationSearchTableViewController
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController?.searchBar
+        searchBar?.sizeToFit()
+        searchBar?.placeholder = "Search for a location"
+        navigationItem.titleView = resultSearchController?.searchBar
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        locationSearchTable.mapView = mapView
+        locationSearchTable.handleMapSearchDelegate = self
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    
-//    var searchLocation: CLLocation?
-//    
-//    let initialLocation = LocationController.sharedController.currentLocation
-//    
-//    var searchText: String? = ""
-//    
-//    var searchController:UISearchController!
-//    var annotation:MKAnnotation!
-//    var localSearchRequest:MKLocalSearchRequest!
-//    var localSearch:MKLocalSearch!
-//    var localSearchResponse:MKLocalSearchResponse!
-//    var error:NSError!
-//    var pointAnnotation:MKPointAnnotation!
-//    var pinAnnotationView:MKPinAnnotationView!
-//    let button = UIButton(type: .DetailDisclosure)
-//    
-//    
-//    let regionRadius: CLLocationDistance = 1000
-//    func centerMapOnLocation(location: CLLocation) {
-//        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
-//        mapView.setRegion(region, animated: true)
-//        
-//    }
+}
 
-//        if let location = initialLocation {
-//            centerMapOnLocation(location)
-//        }
-//        
-        // Do any additional setup after loading the view.
-    
-//    @IBAction func searchButtonTapped(sender: AnyObject) {
-//        searchController = UISearchController(searchResultsController: nil)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        self.searchController.searchBar.delegate = self
-//        presentViewController(searchController, animated: true, completion: nil)
-//        searchText = searchController.searchBar.text
-//        
-//    }
-    
-//    func searchBarSearchButtonClicked(searchBar: UISearchBar){
-//        //1
-//        searchBar.resignFirstResponder()
-//        dismissViewControllerAnimated(true, completion: nil)
-//        if self.mapView.annotations.count != 0 {
-//            annotation = self.mapView.annotations[0]
-//            self.mapView.removeAnnotation(annotation)
-//            searchController.searchBar.text = searchText
-//        }
-//        //2
-//        localSearchRequest = MKLocalSearchRequest()
-//        localSearchRequest.naturalLanguageQuery = searchBar.text
-//        localSearch = MKLocalSearch(request: localSearchRequest)
-//        localSearch.startWithCompletionHandler { (localSearchResponse, error) -> Void in
-//            
-//            if localSearchResponse == nil{
-//                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.Alert)
-//                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-//                self.presentViewController(alertController, animated: true, completion: nil)
-//                self.searchController.searchBar.text = self.searchText
-//
-//                return
-//            }
-//            //3
-//            self.pointAnnotation = MKPointAnnotation()
-//            self.pointAnnotation.title = searchBar.text
-//            self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
-//            
-//            
-//            
-//            self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
-//            self.pinAnnotationView.animatesDrop = true
-////            self.pinAnnotationView.rightCalloutAccessoryView = self.button
-//            self.mapView.centerCoordinate = self.pointAnnotation.coordinate
-//            self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
-//            self.centerMapOnLocation(CLLocation(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude: localSearchResponse!.boundingRegion.center.longitude))
-//            self.searchController.searchBar.text = self.searchText
-//            if let localSearchResponse = localSearchResponse {
-//                self.searchLocation = CLLocation(latitude: localSearchResponse.boundingRegion.center.latitude, longitude: localSearchResponse.boundingRegion.center.longitude)
-//                self.searchController.searchBar.text = self.searchText
-//
-//            }
-//        }
-//    }
-//    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+extension MapViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        selectedPin = placemark
+        
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        //Change span if it's too weird looking
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+    }
 }

@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
-class LocationSearchTableViewController: UITableViewController {
+class LocationSearchTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+    var handleMapSearchDelegate: HandleMapSearch? = nil
 
+    var matchingItems: [MKMapItem] = []
+    var mapView: MKMapView? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,27 +31,61 @@ class LocationSearchTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        guard let mapView = mapView,
+            let searchBarText = searchController.searchBar.text else { return }
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = searchBarText
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+        search.startWithCompletionHandler { response, _ in
+            guard let response = response else {
+                return
+            }
+            self.matchingItems = response.mapItems
+            self.tableView.reloadData()
+        }
     }
+
+    func parseAddress(selectedItem:MKPlacemark) -> String {
+        // put a space between "4" and "Melrose Place"
+        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+        // put a comma between street and city/state
+        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        // put a space between "Washington" and "DC"
+        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
+        let addressLine = String(
+            format:"%@%@%@%@%@%@%@",
+            // street number
+            selectedItem.subThoroughfare ?? "",
+            firstSpace,
+            // street name
+            selectedItem.thoroughfare ?? "",
+            comma,
+            // city
+            selectedItem.locality ?? "",
+            secondSpace,
+            // state
+            selectedItem.administrativeArea ?? ""
+        )
+        return addressLine
+    }
+    // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return matchingItems.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
+        let selectedItem = matchingItems[indexPath.row].placemark
+        cell.textLabel?.text = selectedItem.name
+        cell.detailTextLabel?.text = parseAddress(selectedItem)
         return cell
     }
-    */
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,4 +132,12 @@ class LocationSearchTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension LocationSearchTableViewController {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedItem = matchingItems[indexPath.row].placemark
+        handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
