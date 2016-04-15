@@ -78,10 +78,10 @@
                                                 <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
                                                 <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
                                             </constraints>
-                                            <state key="normal" image="84D4428F-9368-412E-845A-DCAC8731E37D">
+                                            <state key="normal" image="ACD6D81F-3037-4316-910E-94A2F86225D9">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" image="2626056C-7F52-4EFD-8024-E391B3373AD4"/>
+                                            <state key="selected" image="3977AF2A-C6F8-494B-8C37-12E3188FA9B4"/>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="1hX-TF-62S" eventType="touchUpInside" id="Y6s-B3-mIR"/>
                                             </connections>
@@ -190,7 +190,7 @@
                                 <color key="textColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-4v-VP3">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-4v-VP3">
                                 <rect key="frame" x="20" y="337" width="560" height="29"/>
                                 <segments>
                                     <segment title="At A Time"/>
@@ -205,13 +205,25 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bE3-YJ-19W">
                                 <rect key="frame" x="20" y="364" width="560" height="216"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gba-24-nEO">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="216"/>
+                                    <datePicker hidden="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gba-24-nEO">
+                                        <rect key="frame" x="-20" y="-364" width="320" height="0.0"/>
                                         <color key="tintColor" red="0.31145571360000002" green="0.79838580140000004" blue="0.96705251960000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <date key="date" timeIntervalSinceReferenceDate="480454541.98724699">
                                             <!--2016-03-23 19:35:41 +0000-->
                                         </date>
                                     </datePicker>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1N-a5-ZpE">
+                                        <rect key="frame" x="-20" y="-364" width="320" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EG-AL-DfJ">
+                                        <rect key="frame" x="-20" y="-364" width="320" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e1y-Wc-PRN">
@@ -290,11 +302,13 @@
                         <outlet property="alertDatePicker" destination="Gba-24-nEO" id="Rya-dq-3ri"/>
                         <outlet property="alertSegmentedControl" destination="uhq-4v-VP3" id="AsV-bk-r2p"/>
                         <outlet property="alertTimeDatePicker" destination="Gba-24-nEO" id="6rK-N8-WSb"/>
+                        <outlet property="atALocationLabel" destination="N1N-a5-ZpE" id="xm6-Zc-nb0"/>
                         <outlet property="header" destination="XXr-dI-RUo" id="ygh-62-d0v"/>
                         <outlet property="notesTextView" destination="D4U-Pm-COg" id="jeP-bU-4kn"/>
                         <outlet property="saveButton" destination="Nxo-Hj-njk" id="yil-Lt-tzq"/>
                         <outlet property="titleTextField" destination="Aos-Ew-rEp" id="yZD-uG-rQU"/>
                         <outlet property="updatingLocationView" destination="gIH-NM-cZ0" id="9Jg-cF-sFr"/>
+                        <outlet property="uponMovingFromLocationLabel" destination="2EG-AL-DfJ" id="Cfs-F5-dyg"/>
                         <segue destination="PhP-Aa-e1P" kind="show" identifier="toMapView" id="mea-dM-iuY"/>
                     </connections>
                 </viewController>
@@ -402,7 +416,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2626056C-7F52-4EFD-8024-E391B3373AD4" width="66" height="63">
+        <image name="3977AF2A-C6F8-494B-8C37-12E3188FA9B4" width="66" height="63">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -730,7 +744,7 @@ ALIAtQC3ALkAuwC9AMIA2QDbAN1Kd0p8SodKkEqjSqdKskq7SsBKyErLStBK30rjSupK8kr/SwRLBksI
 Sw1LFUsYSx1LJUsoSzpLPUtCAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAS0Q
 </mutableData>
         </image>
-        <image name="84D4428F-9368-412E-845A-DCAC8731E37D" width="64" height="64">
+        <image name="ACD6D81F-3037-4316-910E-94A2F86225D9" width="64" height="64">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

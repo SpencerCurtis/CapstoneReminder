@@ -82,6 +82,9 @@ class LocationSearchTableViewController: UITableViewController, UISearchResultsU
         let selectedItem = matchingItems[indexPath.row].placemark
         cell.textLabel?.text = selectedItem.name
         cell.detailTextLabel?.text = parseAddress(selectedItem)
+        LocationController.sharedController.atALocationTextName = selectedItem.name
+        LocationController.sharedController.atALocationTextAddress = parseAddress(selectedItem)
+        
         return cell
     }
     

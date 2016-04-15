@@ -22,21 +22,46 @@
         @IBOutlet weak var alertSegmentedControl: UISegmentedControl!
         @IBOutlet weak var alertDatePicker: UIDatePicker!
         @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-        
-        var selectedLocation: CLLocation?
-        
+        @IBOutlet weak var atALocationLabel: UILabel!
+        @IBOutlet weak var uponMovingFromLocationLabel: UILabel!
         
         var alertTimeValue = NSDate()
         var reminder: Reminder?
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            uponMovingFromLocationLabel.text = "You will be reminded upon moving from this location."
+
         }
         override func viewWillAppear(animated: Bool) {
             editTextView()
             editTextField()
             activityIndicator.stopAnimating()
             editOtherViews()
+            setUpViewsBasedOnSegmentedControl()
+            if LocationController.sharedController.selectedLocation != nil {
+                alertSegmentedControl.selectedSegmentIndex = 2
+                if let name = LocationController.sharedController.atALocationTextName/*, address = LocationController.sharedController.atALocationTextAddress */{
+                atALocationLabel.text = "You will be reminded upon arriving at  \(name)."
+                }
+            }
+
+        }
+        
+        func setUpViewsBasedOnSegmentedControl() {
+            if alertSegmentedControl.selectedSegmentIndex == 0 {
+                alertDatePicker.hidden = false
+                uponMovingFromLocationLabel.hidden = true
+                atALocationLabel.hidden = true
+            } else if alertSegmentedControl.selectedSegmentIndex == 1 {
+                alertDatePicker.hidden = true
+                atALocationLabel.hidden = true
+                uponMovingFromLocationLabel.hidden = false
+            } else if alertSegmentedControl.selectedSegmentIndex == 2 {
+                alertDatePicker.hidden = true
+                uponMovingFromLocationLabel.hidden = true
+                atALocationLabel.hidden = false
+            }
         }
         
         func editOtherViews() {
@@ -59,14 +84,17 @@
         @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
             if alertSegmentedControl.selectedSegmentIndex == 2 {
                 // MAKE SURE THEY HAVE PERMISSION
+                setUpViewsBasedOnSegmentedControl()
                 LocationController.sharedController.requestAuthorization()
                 LocationController.sharedController.locationManager.startUpdatingLocation()
                 LocationController.sharedController.currentLocation = LocationController.sharedController.locationManager.location
                 performSegueWithIdentifier("toMapView", sender: self)
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 LocationController.sharedController.requestAuthorization()
+                setUpViewsBasedOnSegmentedControl()
                 alertDatePicker.hidden = true
             } else if alertSegmentedControl.selectedSegmentIndex == 0 {
+                setUpViewsBasedOnSegmentedControl()
                 LocationController.sharedController.locationManager.stopUpdatingLocation()
                 LocationController.sharedController.locationManager.stopMonitoringSignificantLocationChanges()
                 alertDatePicker.hidden = false

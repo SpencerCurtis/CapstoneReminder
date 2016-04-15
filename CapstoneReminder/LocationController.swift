@@ -22,6 +22,9 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     var reminder: Reminder?
     
+    var atALocationTextName: String?
+    var atALocationTextAddress: String?
+    
     override init() {
         super.init()
         reminder = nil
