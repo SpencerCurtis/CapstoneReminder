@@ -29,6 +29,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.startUpdatingLocation()
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
+            
         }
         tableView.reloadData()
         //        self.tableView.backgroundColor = UIColor.lightGrayColor()
@@ -36,6 +37,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
     override func viewWillAppear(animated: Bool) {

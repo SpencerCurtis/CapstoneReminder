@@ -216,7 +216,7 @@
                     LocationController.sharedController.remindersUsingLocationCount += 1
                 } else if alertSegmentedControl.selectedSegmentIndex == 2 {
                     if let location = LocationController.sharedController.selectedLocation {
-                        let reminder = Reminder(title: title!, notes: notes!, alertLabelText: "Upon arriving", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        let reminder = Reminder(title: title!, notes: notes!, alertLabelText: "Upon Arriving", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                         ReminderController.sharedController.addReminder(reminder)
                         LocationController.sharedController.remindersUsingLocationCount += 1
                         

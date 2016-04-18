@@ -48,6 +48,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 locationManager.startUpdatingLocation()
                 locationManager.startMonitoringSignificantLocationChanges()
                 checkForRemindersOutsideOfRadius()
+                checkIfUserHasArrivedAtLocation()
             }
         }
     }
@@ -56,6 +57,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
         currentLocation = locations.last
         checkForRemindersOutsideOfRadius()
+        checkIfUserHasArrivedAtLocation()
         NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
     }
     
@@ -119,7 +121,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
             }
             if let currentLocation = self.currentLocation, location = reminder.location {
-                if location.distanceFromLocation(currentLocation) < 15 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
+                if location.distanceFromLocation(currentLocation) < 200 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
                     if UIApplication.sharedApplication().applicationState == .Active {
                         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
                         let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
