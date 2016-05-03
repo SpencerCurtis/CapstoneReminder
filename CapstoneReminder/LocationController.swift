@@ -99,8 +99,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 if location.distanceFromLocation(currentLocation) > 30 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
                     if UIApplication.sharedApplication().applicationState == .Active {
                         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-                        let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
-                        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+                        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+                        let okayAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) in
                             alert.dismissViewControllerAnimated(true, completion: nil)
                         })
                         alert.addAction(okayAction)
@@ -132,8 +132,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
                 if location.distanceFromLocation(currentLocation) < 200 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
                     if UIApplication.sharedApplication().applicationState == .Active {
                         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-                        let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
-                        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+                        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+                        let okayAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) in
                             alert.dismissViewControllerAnimated(true, completion: nil)
                         })
                         alert.addAction(okayAction)

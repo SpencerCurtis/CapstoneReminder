@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		462A45981CD916F700CF9C5D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462A45971CD916F700CF9C5D /* NotificationCenter.framework */; };
 		463E3F7C1CA2E79C00E55E92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */; };
 		463E3F811CA2E79C00E55E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F7F1CA2E79C00E55E92 /* Main.storyboard */; };
 		463E3F831CA2E79C00E55E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463E3F821CA2E79C00E55E92 /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		462A45951CD916F700CF9C5D /* notificationCenterWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = notificationCenterWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		462A45971CD916F700CF9C5D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		463E3F781CA2E79C00E55E92 /* CapstoneReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		463E3F801CA2E79C00E55E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +56,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		462A45921CD916F700CF9C5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462A45981CD916F700CF9C5D /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		463E3F751CA2E79C00E55E92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,11 +75,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		462A45961CD916F700CF9C5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				462A45971CD916F700CF9C5D /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		463E3F6F1CA2E79C00E55E92 = {
 			isa = PBXGroup;
 			children = (
 				4694082B1CC1394A00191855 /* MapKit.framework */,
 				463E3F7A1CA2E79C00E55E92 /* CapstoneReminder */,
+				462A45961CD916F700CF9C5D /* Frameworks */,
 				463E3F791CA2E79C00E55E92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				463E3F781CA2E79C00E55E92 /* CapstoneReminder.app */,
+				462A45951CD916F700CF9C5D /* notificationCenterWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +155,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		462A45941CD916F700CF9C5D /* notificationCenterWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462A45A31CD916F700CF9C5D /* Build configuration list for PBXNativeTarget "notificationCenterWidget" */;
+			buildPhases = (
+				462A45911CD916F700CF9C5D /* Sources */,
+				462A45921CD916F700CF9C5D /* Frameworks */,
+				462A45931CD916F700CF9C5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = notificationCenterWidget;
+			productName = notificationCenterWidget;
+			productReference = 462A45951CD916F700CF9C5D /* notificationCenterWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		463E3F771CA2E79C00E55E92 /* CapstoneReminder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 463E3F8A1CA2E79C00E55E92 /* Build configuration list for PBXNativeTarget "CapstoneReminder" */;
@@ -161,6 +199,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Spencer Curtis";
 				TargetAttributes = {
+					462A45941CD916F700CF9C5D = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = W4BT774F98;
+					};
 					463E3F771CA2E79C00E55E92 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = W4BT774F98;
@@ -189,11 +231,19 @@
 			projectRoot = "";
 			targets = (
 				463E3F771CA2E79C00E55E92 /* CapstoneReminder */,
+				462A45941CD916F700CF9C5D /* notificationCenterWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		462A45931CD916F700CF9C5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		463E3F761CA2E79C00E55E92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +257,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		462A45911CD916F700CF9C5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		463E3F741CA2E79C00E55E92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +308,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		462A45A41CD916F700CF9C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = notificationCenterWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SpencerCurtis.Remindr.notificationCenterWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		462A45A51CD916F700CF9C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = notificationCenterWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SpencerCurtis.Remindr.notificationCenterWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		463E3F881CA2E79C00E55E92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -371,6 +454,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		462A45A31CD916F700CF9C5D /* Build configuration list for PBXNativeTarget "notificationCenterWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462A45A41CD916F700CF9C5D /* Debug */,
+				462A45A51CD916F700CF9C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		463E3F731CA2E79C00E55E92 /* Build configuration list for PBXProject "CapstoneReminder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

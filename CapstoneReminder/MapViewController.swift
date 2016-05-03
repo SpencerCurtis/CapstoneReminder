@@ -33,7 +33,10 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.navigationController!.navigationBar.topItem!.title = ""
+
+//        let back = UIBarButtonItem(title:"Test", style: .Plain, target: nil, action: nil)
+//        self.navigationItem.setLeftBarButtonItem(back, animated: true)
         if let currentLocation = currentLocation {
             centerMapOnLocation(currentLocation)
         }

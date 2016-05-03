@@ -19,8 +19,8 @@ class AlarmController  {
     func sendNotificationForReminderWithTime(reminder: Reminder, fireDate: NSDate) {
         if reminder.hasBeenNotified == false {
             let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-            let alert = UIAlertController(title: "Check your reminders", message: "", preferredStyle: .Alert)
-            let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
+            let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
+            let okayAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) in
                 alert.dismissViewControllerAnimated(true, completion: nil)
             })
             alert.addAction(okayAction)
@@ -32,8 +32,6 @@ class AlarmController  {
             if let vc = vc {
                 if NSDate().timeIntervalSince1970 > fireDate.timeIntervalSince1970 {
                     vc.presentViewController(alert, animated: true, completion: nil)
-                    reminder.hasBeenNotified = true
-                    ReminderController.sharedController.saveToPersistentStorage()
                     let notification = UILocalNotification()
                     notification.fireDate = fireDate
                     notification.alertBody = reminder.title

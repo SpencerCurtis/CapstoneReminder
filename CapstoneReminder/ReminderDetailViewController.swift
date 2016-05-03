@@ -119,12 +119,11 @@
             if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location == nil {
                 startActivityIndicator()
                 LocationController.sharedController.locationManager.requestLocation()
-                    if LocationController.sharedController.locationManager.location != nil {
+                if LocationController.sharedController.locationManager.location != nil {
                     self.stopActivityIndicator()
-                    } else {
-                        LocationController.sharedController.locationManager.requestLocation()
-                    }
-                
+                } else {
+                    LocationController.sharedController.locationManager.requestLocation()
+                }
                 
             } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
                 updateReminder()
@@ -251,6 +250,12 @@
                 //            reminder.alertLabelText = "\(alertDatePicker.date)"
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 reminder.alertLabelText = "Upon Moving"
+            }
+            
+        }
+        
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            if segue.identifier == "toMapView" {
             }
             
         }
