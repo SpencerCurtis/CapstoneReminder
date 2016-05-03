@@ -49,7 +49,7 @@ class ReminderController {
     func removeReminder(reminder: Reminder) {
         reminder.managedObjectContext?.deleteObject(reminder)
         if reminder.location != nil {
-        LocationController.sharedController.remindersUsingLocationCount -= 1
+        LocationController.sharedController.decreaseLocationCount()
         }
         saveToPersistentStorage()
     }

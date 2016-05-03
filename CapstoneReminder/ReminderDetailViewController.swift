@@ -31,8 +31,11 @@
         override func viewDidLoad() {
             super.viewDidLoad()
             uponMovingFromLocationLabel.text = "You will be reminded upon moving from this location."
-
+            LocationController.sharedController.requestAuthorization()
+            
+            
         }
+        
         override func viewWillAppear(animated: Bool) {
             editTextView()
             editTextField()
@@ -42,10 +45,10 @@
             if LocationController.sharedController.selectedLocation != nil {
                 alertSegmentedControl.selectedSegmentIndex = 2
                 if let name = LocationController.sharedController.atALocationTextName/*, address = LocationController.sharedController.atALocationTextAddress */{
-                atALocationLabel.text = "You will be reminded upon arriving at  \(name)."
+                    atALocationLabel.text = "You will be reminded upon arriving at  \(name)."
                 }
             }
-
+            
         }
         
         func setUpViewsBasedOnSegmentedControl() {
@@ -86,7 +89,7 @@
                 // MAKE SURE THEY HAVE PERMISSION
                 setUpViewsBasedOnSegmentedControl()
                 LocationController.sharedController.requestAuthorization()
-                LocationController.sharedController.locationManager.startUpdatingLocation()
+                LocationController.sharedController.locationManager.requestLocation()
                 LocationController.sharedController.currentLocation = LocationController.sharedController.locationManager.location
                 performSegueWithIdentifier("toMapView", sender: self)
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
@@ -95,8 +98,7 @@
                 alertDatePicker.hidden = true
             } else if alertSegmentedControl.selectedSegmentIndex == 0 {
                 setUpViewsBasedOnSegmentedControl()
-                LocationController.sharedController.locationManager.stopUpdatingLocation()
-                LocationController.sharedController.locationManager.stopMonitoringSignificantLocationChanges()
+                LocationController.sharedController.locationManager.requestLocation()
                 alertDatePicker.hidden = false
             }
         }
@@ -114,27 +116,22 @@
         }
         
         @IBAction func saveButtonTapped(sender: AnyObject) {
-            var location = LocationController.sharedController.locationManager.location
-            if alertSegmentedControl.selectedSegmentIndex == 1 && location == nil {
+            if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location == nil {
+                startActivityIndicator()
                 LocationController.sharedController.locationManager.requestLocation()
-                activityIndicator.startAnimating()
-                saveButton.enabled = false
-                header.backBarButtonItem?.enabled = false
-                view.addSubview(activityIndicator)
-                updatingLocationView.hidden = false
-                //            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopActivityIndicator), name: "hasLocation", object: nil)
-                while location == nil {
-                    LocationController.sharedController.locationManager.requestLocation()
-                    location = LocationController.sharedController.locationManager.location
-                    
-                }
-            } else if alertSegmentedControl.selectedSegmentIndex == 1 && location != nil {
+                    if LocationController.sharedController.locationManager.location != nil {
+                    self.stopActivityIndicator()
+                    } else {
+                        LocationController.sharedController.locationManager.requestLocation()
+                    }
+                
+                
+            } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
                 updateReminder()
                 stopActivityIndicator()
                 let status = CLLocationManager.authorizationStatus()
                 if status == .AuthorizedWhenInUse {
-                    CLLocationManager().startUpdatingLocation()
-                    CLLocationManager().startMonitoringSignificantLocationChanges()
+                    LocationController.sharedController.locationManager.requestLocation()
                 }
                 navigationController?.popViewControllerAnimated(true)
             } else if alertSegmentedControl.selectedSegmentIndex == 0 {
@@ -148,6 +145,14 @@
         
         func textFieldShouldReturn(textField: UITextField) -> Bool {
             return true
+        }
+        
+        func startActivityIndicator() {
+            activityIndicator.startAnimating()
+            saveButton.enabled = false
+            header.backBarButtonItem?.enabled = false
+            view.addSubview(activityIndicator)
+            updatingLocationView.hidden = false
         }
         
         func stopActivityIndicator() {

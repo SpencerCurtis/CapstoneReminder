@@ -105,7 +105,7 @@ extension MapViewController : MKMapViewDelegate {
         
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "Forward-50"), forState: .Normal)
+        button.setBackgroundImage(UIImage(named: "Forward-50") ?? UIImage(), forState: .Normal)
         button.addTarget(self, action: #selector(getLocation), forControlEvents: .TouchUpInside)
         pinView?.rightCalloutAccessoryView = button
         self.selectedAnnotation = annotation

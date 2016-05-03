@@ -18,6 +18,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadCount()
         self.tableView.tableHeaderView = searchBarView
         self.tableView.contentOffset = CGPointMake(0, 45)
 
@@ -26,10 +27,13 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         self.navigationController?.navigationBar.translucent = true
         
         let status = CLLocationManager.authorizationStatus()
+        if status == .AuthorizedWhenInUse {
+            LocationController.sharedController.updateLocationEveryMinute({ 
+                LocationController.sharedController.checkForRemindersUsingLocation()
+            })
+        }
         if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
-            LocationController.sharedController.locationManager.startUpdatingLocation()
-            LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
-            
+            LocationController.sharedController.locationManager.requestLocation()
         }
         tableView.reloadData()
         //        self.tableView.backgroundColor = UIColor.lightGrayColor()
@@ -45,7 +49,16 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         self.tableView.contentOffset = CGPointMake(0, 45)
 
     }
-    
+
+    func loadCount() {
+        
+        for _ in ReminderController.sharedController.incompleteRemindersWithLocationUponArriving {
+            LocationController.sharedController.increaseLocationCount()
+        }
+        for _ in ReminderController.sharedController.incompleteRemindersWithLocationUponLeaving {
+            LocationController.sharedController.increaseLocationCount()
+        }
+    }
     
     @IBAction func remindrFilterSegmentedControlValueChanged(sender: AnyObject) {
         tableView.reloadData()

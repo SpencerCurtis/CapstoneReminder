@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,9 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         if LocationController.sharedController.remindersUsingLocationCount > 0 {
             LocationController.sharedController.locationManager.startMonitoringSignificantLocationChanges()
-            LocationController.sharedController.locationManager.startUpdatingLocation()
         } else {
-            LocationController.sharedController.locationManager.stopUpdatingLocation()
             LocationController.sharedController.locationManager.stopMonitoringSignificantLocationChanges()
         }
         
