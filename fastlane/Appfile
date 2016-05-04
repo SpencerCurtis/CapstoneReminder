@@ -1,0 +1,7 @@
+app_identifier "com.SpencerCurtis.Remindr" # The bundle identifier of your app
+apple_id "spencerColeCurtis@gmail.com" # Your Apple email address
+
+team_id "W4BT774F98"  # Developer Portal Team ID
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md

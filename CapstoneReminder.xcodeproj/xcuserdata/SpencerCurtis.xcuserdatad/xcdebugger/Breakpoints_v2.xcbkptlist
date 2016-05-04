@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CapstoneReminder/LocationController.swift"
-            timestampString = "483988750.233287"
+            timestampString = "484071319.340372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "requestLocations()"
             landmarkType = "5">
          </BreakpointContent>
@@ -96,6 +96,86 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "checkForRemindersUsingLocation()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CapstoneReminder.LocationController.checkForRemindersUsingLocation () -&gt; ()"
+                  moduleName = "CapstoneReminder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/SpencerCurtis/DevMountain/CapstoneReminder/CapstoneReminder/LocationController.swift"
+                  timestampString = "484071320.409682"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "438">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CapstoneReminder.LocationController.(checkForRemindersUsingLocation () -&gt; ()).(closure #1)"
+                  moduleName = "CapstoneReminder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/SpencerCurtis/DevMountain/CapstoneReminder/CapstoneReminder/LocationController.swift"
+                  timestampString = "484071320.40978"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CapstoneReminder/LocationController.swift"
+            timestampString = "484071004.396781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "locationManager(_:didEnterRegion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CapstoneReminder/LocationController.swift"
+            timestampString = "484071006.711321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "locationManager(_:didEnterRegion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CapstoneReminder/ReminderController.swift"
+            timestampString = "484071530.006974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "removeReminder(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

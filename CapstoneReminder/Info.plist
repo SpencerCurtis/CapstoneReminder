@@ -30,8 +30,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>So we can remind you when you leave an area.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>So we can remind you when you leave or arrive at your desired location.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

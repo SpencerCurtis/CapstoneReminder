@@ -21,14 +21,14 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         loadCount()
         self.tableView.tableHeaderView = searchBarView
         self.tableView.contentOffset = CGPointMake(0, 45)
-
+        
         self.tableView.estimatedRowHeight = 58
-//        self.navigationController?.navigationBar.barTintColor = UIColor.customGrayColor()
+        //        self.navigationController?.navigationBar.barTintColor = UIColor.customGrayColor()
         self.navigationController?.navigationBar.translucent = true
         
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedWhenInUse {
-            LocationController.sharedController.updateLocationEveryMinute({ 
+            LocationController.sharedController.updateLocationEveryMinute({
                 LocationController.sharedController.checkForRemindersUsingLocation()
             })
         }
@@ -47,9 +47,9 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
         self.tableView.contentOffset = CGPointMake(0, 45)
-
+        
     }
-
+    
     func loadCount() {
         
         for _ in ReminderController.sharedController.incompleteRemindersWithLocationUponArriving {
@@ -63,7 +63,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     @IBAction func remindrFilterSegmentedControlValueChanged(sender: AnyObject) {
         tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -167,9 +167,11 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                     if let reminder = reminder {
                         reminder.isComplete = true
                     }
-                    //                checkboxButton.selected = true
                     LocationController.sharedController.remindersUsingLocationCount -= 1
                     ReminderController.sharedController.saveToPersistentStorage()
+                    if let reminder = reminder {
+                        RegionController.sharedController.stopMonitoringReminder(reminder)
+                    }
                     
                     self.tableView.reloadData()
                     
@@ -193,6 +195,6 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                 self.tableView.reloadData()
             })
         }
-}
-
+    }
+    
 }

@@ -59,7 +59,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         } else if ReminderController.sharedController.incompleteReminders.count > 0 {
             updateLocationEveryMinute({
                 self.checkForRemindersOutsideOfRadius()
-                self.checkIfUserHasArrivedAtLocation()
+//                self.checkIfUserHasArrivedAtLocation()
             })
             
         }
@@ -98,25 +98,11 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             if reminder.alertLabelText == "Upon Moving", let currentLocation = locationManager.location, location = reminder.location {
                 if location.distanceFromLocation(currentLocation) > 30 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
                     if UIApplication.sharedApplication().applicationState == .Active {
-                        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-                        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
-                        let okayAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) in
-                            alert.dismissViewControllerAnimated(true, completion: nil)
-                        })
-                        alert.addAction(okayAction)
-                        if let vc = vc {
-                            vc.presentViewController(alert, animated: true, completion: nil)
-                        }
+                        NotificationController.sharedController.alertForReminder(reminder)
                         ReminderController.sharedController.reminders[index!].hasBeenNotified = true
                         ReminderController.sharedController.saveToPersistentStorage()
                     } else if UIApplication.sharedApplication().applicationState == .Background && reminder.hasBeenNotified == false {
-                        let notification = UILocalNotification()
-                        notification.alertTitle = reminder.title
-                        notification.alertBody = reminder.title
-                        notification.fireDate = NSDate()
-                        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-                        NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
+                        NotificationController.sharedController.notificationForReminder(reminder)
                         ReminderController.sharedController.reminders[index!].hasBeenNotified = true
                         ReminderController.sharedController.saveToPersistentStorage()
                     }
@@ -131,34 +117,40 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             if let currentLocation = locationManager.location, location = reminder.location {
                 if location.distanceFromLocation(currentLocation) < 200 && ReminderController.sharedController.reminders[index!].hasBeenNotified == false {
                     if UIApplication.sharedApplication().applicationState == .Active {
-                        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-                        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
-                        let okayAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) in
-                            alert.dismissViewControllerAnimated(true, completion: nil)
-                        })
-                        alert.addAction(okayAction)
-                        if let vc = vc {
-                            vc.presentViewController(alert, animated: true, completion: nil)
-                        }
+                        NotificationController.sharedController.alertForReminder(reminder)
                         ReminderController.sharedController.reminders[index!].hasBeenNotified = true
                         ReminderController.sharedController.saveToPersistentStorage()
                     } else if UIApplication.sharedApplication().applicationState == .Background && reminder.hasBeenNotified == false {
-                        let notification = UILocalNotification()
-                        notification.alertTitle = reminder.title
-                        notification.alertBody = reminder.title
-                        notification.fireDate = NSDate()
-                        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-                        NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
+                        NotificationController.sharedController.notificationForReminder(reminder)
                         ReminderController.sharedController.reminders[index!].hasBeenNotified = true
                         ReminderController.sharedController.saveToPersistentStorage()
                     }
-                    
-                    
                 }
             }
         }
     }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        var reminderForRegion: Reminder? = nil
+        for reminder in ReminderController.sharedController.reminders {
+            if reminder.title == region.identifier {
+                reminderForRegion = reminder
+            }
+        }
+        if let reminder = reminderForRegion {
+            if UIApplication.sharedApplication().applicationState == .Active {
+                NotificationController.sharedController.alertForReminder(reminder)
+                print("geofence triggered")
+            } else {
+                NotificationController.sharedController.notificationForReminder(reminder)
+                print("geofence triggered")
+            }
+        }
+        
+        
+    }
+    
+    
     
     func requestLocations() {
         locationManager.delegate = self
@@ -168,7 +160,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func requestAuthorization() {
         
         if authState == CLAuthorizationStatus.NotDetermined || authState == CLAuthorizationStatus.Restricted {
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
             locationManager.requestLocation()

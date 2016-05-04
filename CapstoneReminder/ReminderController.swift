@@ -44,12 +44,18 @@ class ReminderController {
     
     func addReminder(reminder: Reminder) {
         saveToPersistentStorage()
+        if reminder.alertLabelText == "Upon Arriving" {
+            RegionController.sharedController.startMonitoringReminder(reminder)
+        }
     }
     
     func removeReminder(reminder: Reminder) {
         reminder.managedObjectContext?.deleteObject(reminder)
         if reminder.location != nil {
         LocationController.sharedController.decreaseLocationCount()
+        }
+        if reminder.alertLabelText == "Upon Arriving" {
+            RegionController.sharedController.stopMonitoringReminder(reminder)
         }
         saveToPersistentStorage()
     }
