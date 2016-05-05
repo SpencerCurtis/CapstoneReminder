@@ -14,7 +14,7 @@ class RegionController {
     
     static let sharedController = RegionController()
     
-    func regionWithReminder(reminder: Reminder) -> CLCircularRegion {
+    func regionWithReminderUponArriving(reminder: Reminder) -> CLCircularRegion {
         
         let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 400, identifier: reminder.title!)
         
@@ -24,13 +24,33 @@ class RegionController {
         
     }
     
+    func regionWithReminderUponMoving(reminder: Reminder) -> CLCircularRegion {
+        
+        let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 400, identifier: reminder.title!)
+        
+        region.notifyOnEntry = false
+        region.notifyOnExit = true
+        return region
+        
+    }
     
-    func startMonitoringReminder(reminder: Reminder) {
+    func startMonitoringReminderUponMoving(reminder: Reminder) {
         guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) == true else {
             simpleAlert("Error", message: "Geofencing is not supported on this device")
             return
         }
-        let region = regionWithReminder(reminder)
+        let region = regionWithReminderUponMoving(reminder)
+        LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+    }
+    
+    
+    
+    func startMonitoringReminderUponArriving(reminder: Reminder) {
+        guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) == true else {
+            simpleAlert("Error", message: "Geofencing is not supported on this device")
+            return
+        }
+        let region = regionWithReminderUponArriving(reminder)
         LocationController.sharedController.locationManager.startMonitoringForRegion(region)
     }
     

@@ -31,6 +31,7 @@ class NotificationController {
         notification.alertTitle = reminder.title
         notification.alertBody = reminder.title
         notification.fireDate = NSDate()
+//        notification.repeatInterval = NSCalendarUnit.Day
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
         NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
@@ -38,3 +39,5 @@ class NotificationController {
     
     
 }
+
+// TODO: make a "Mark as Complete" button on the alerts and notifications.

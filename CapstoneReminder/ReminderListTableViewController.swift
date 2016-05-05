@@ -27,11 +27,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         self.navigationController?.navigationBar.translucent = true
         
         let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedWhenInUse {
-            LocationController.sharedController.updateLocationEveryMinute({
-                LocationController.sharedController.checkForRemindersUsingLocation()
-            })
-        }
         if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.requestLocation()
         }

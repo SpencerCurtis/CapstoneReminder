@@ -34,9 +34,8 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.topItem!.title = ""
-
-//        let back = UIBarButtonItem(title:"Test", style: .Plain, target: nil, action: nil)
-//        self.navigationItem.setLeftBarButtonItem(back, animated: true)
+        mapView.mapType = .Hybrid
+        
         if let currentLocation = currentLocation {
             centerMapOnLocation(currentLocation)
         }
@@ -85,6 +84,7 @@ extension MapViewController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
+        mapView.selectAnnotation(annotation, animated: true)
         //Change span if it's too weird looking
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)

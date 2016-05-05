@@ -45,7 +45,9 @@ class ReminderController {
     func addReminder(reminder: Reminder) {
         saveToPersistentStorage()
         if reminder.alertLabelText == "Upon Arriving" {
-            RegionController.sharedController.startMonitoringReminder(reminder)
+            RegionController.sharedController.startMonitoringReminderUponArriving(reminder)
+        } else if reminder.alertLabelText == "Upon Moving" {
+            RegionController.sharedController.startMonitoringReminderUponMoving(reminder)
         }
     }
     

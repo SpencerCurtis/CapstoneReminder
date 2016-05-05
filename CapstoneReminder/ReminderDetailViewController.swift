@@ -30,6 +30,7 @@
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            titleTextField.delegate = self
             uponMovingFromLocationLabel.text = "You will be reminded upon moving from this location."
             LocationController.sharedController.requestAuthorization()
             
@@ -41,6 +42,7 @@
             editTextField()
             activityIndicator.stopAnimating()
             editOtherViews()
+            checkIfTextFieldIsEmpty()
             setUpViewsBasedOnSegmentedControl()
             if LocationController.sharedController.selectedLocation != nil {
                 alertSegmentedControl.selectedSegmentIndex = 2
@@ -144,6 +146,24 @@
         
         func textFieldShouldReturn(textField: UITextField) -> Bool {
             return true
+        }
+        
+        func checkIfTextFieldIsEmpty() {
+            if titleTextField.text?.isEmpty == true {
+                saveButton.enabled = false
+            } else if titleTextField.text?.isEmpty == false {
+                saveButton.enabled = true
+            }
+        }
+        
+        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+            self.titleTextField = textField
+            checkIfTextFieldIsEmpty()
+            return true
+        }
+        
+        func textFieldDidEndEditing(textField: UITextField) {
+            checkIfTextFieldIsEmpty()
         }
         
         func startActivityIndicator() {
