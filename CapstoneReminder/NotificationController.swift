@@ -29,15 +29,34 @@ class NotificationController {
     func notificationForReminder(reminder: Reminder) {
         let notification = UILocalNotification()
         notification.alertTitle = reminder.title
-        notification.alertBody = reminder.title
+        notification.alertBody = reminder.notes
         notification.fireDate = NSDate()
-//        notification.repeatInterval = NSCalendarUnit.Day
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
         NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
     }
     
-    
+//    func notificationButtonAction(reminder: Reminder) {
+//        let completedButtonAction = UIMutableUserNotificationAction()
+//        completedButtonAction.title = "Mark as completed"
+//        completedButtonAction.activationMode = UIUserNotificationActivationMode.Background
+//        completedButtonAction.authenticationRequired = true
+//        completedButtonAction.destructive = false
+//        completedButtonAction.identifier = "Completed"
+//        
+//        let completedCategory = UIMutableUserNotificationCategory()
+//        completedCategory.identifier = "COMPLETED_CATEGORY"
+//        completedCategory.setActions([completedButtonAction], forContext: UIUserNotificationActionContext.Default)
+//        
+//        
+//        
+//    }
+//    
+//    func markAsCompleted(reminder: Reminder) {
+//        reminder.isComplete = true
+//        ReminderController.sharedController.saveToPersistentStorage()
+//    }
+//    
 }
 
 // TODO: make a "Mark as Complete" button on the alerts and notifications.

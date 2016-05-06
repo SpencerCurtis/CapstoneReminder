@@ -30,6 +30,7 @@
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            notesTextView.sizeToFit()
             titleTextField.delegate = self
             uponMovingFromLocationLabel.text = "You will be reminded upon moving from this location."
             LocationController.sharedController.requestAuthorization()

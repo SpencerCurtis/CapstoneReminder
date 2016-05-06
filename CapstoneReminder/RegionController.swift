@@ -14,23 +14,31 @@ class RegionController {
     
     static let sharedController = RegionController()
     
-    func regionWithReminderUponArriving(reminder: Reminder) -> CLCircularRegion {
+    func regionWithReminderUponArriving(reminder: Reminder) -> CLCircularRegion? {
+        if LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
+            let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 300, identifier: reminder.title!)
+            
+            region.notifyOnEntry = true
+            region.notifyOnExit = false
+            return region
+        } else {
+            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check ones you don't need anymore, then try again.")
+            return nil
+        }
         
-        let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 400, identifier: reminder.title!)
-        
-        region.notifyOnEntry = true
-        region.notifyOnExit = false
-        return region
         
     }
     
-    func regionWithReminderUponMoving(reminder: Reminder) -> CLCircularRegion {
-        
-        let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 400, identifier: reminder.title!)
-        
-        region.notifyOnEntry = false
-        region.notifyOnExit = true
-        return region
+    func regionWithReminderUponMoving(reminder: Reminder) -> CLCircularRegion? {
+        if LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
+            let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 300, identifier: reminder.title!)
+            region.notifyOnEntry = false
+            region.notifyOnExit = true
+            return region
+        } else {
+            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check ones you don't need anymore, then try again.")
+            return nil
+        }
         
     }
     
@@ -39,8 +47,9 @@ class RegionController {
             simpleAlert("Error", message: "Geofencing is not supported on this device")
             return
         }
-        let region = regionWithReminderUponMoving(reminder)
-        LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+        if let region = regionWithReminderUponMoving(reminder) {
+            LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+        }
     }
     
     
@@ -50,8 +59,9 @@ class RegionController {
             simpleAlert("Error", message: "Geofencing is not supported on this device")
             return
         }
-        let region = regionWithReminderUponArriving(reminder)
-        LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+        if let region = regionWithReminderUponArriving(reminder) {
+            LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+        }
     }
     
     func stopMonitoringReminder(reminder: Reminder) {
