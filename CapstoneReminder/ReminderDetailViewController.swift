@@ -47,7 +47,7 @@
             setUpViewsBasedOnSegmentedControl()
             if LocationController.sharedController.selectedLocation != nil {
                 alertSegmentedControl.selectedSegmentIndex = 2
-                if let name = LocationController.sharedController.atALocationTextName/*, address = LocationController.sharedController.atALocationTextAddress */{
+                if let name = LocationController.sharedController.atALocationTextName /*, address = LocationController.sharedController.atALocationTextAddress */{
                     atALocationLabel.text = "You will be reminded upon arriving at  \(name)."
                 }
             }
@@ -253,6 +253,16 @@
         func updateWithReminder(reminder: Reminder) {
             self.reminder = reminder
             
+            if reminder.alertLabelText == "Upon Moving" {
+                alertSegmentedControl.selectedSegmentIndex = 1
+            } else if reminder.alertLabelText == "Upon Arriving" {
+                alertSegmentedControl.selectedSegmentIndex = 2
+                if let name = reminder.atALocationLabelText {
+                    atALocationLabel.text = "You will be reminded upon arriving at  \(name)."
+                }
+            } else {
+                alertSegmentedControl.selectedSegmentIndex = 0
+            }
             
             title = titleTextField.text
             if let title = reminder.title {

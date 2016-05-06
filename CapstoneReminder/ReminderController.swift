@@ -43,11 +43,15 @@ class ReminderController {
     
     
     func addReminder(reminder: Reminder) {
-        saveToPersistentStorage()
-        if reminder.alertLabelText == "Upon Arriving" {
+        if reminder.alertLabelText == "Upon Arriving" && LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
             RegionController.sharedController.startMonitoringReminderUponArriving(reminder)
-        } else if reminder.alertLabelText == "Upon Moving" {
+            reminder.atALocationLabelText = LocationController.sharedController.atALocationTextName
+            saveToPersistentStorage()
+        } else if reminder.alertLabelText == "Upon Moving" && LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
             RegionController.sharedController.startMonitoringReminderUponMoving(reminder)
+            saveToPersistentStorage()
+        } else if LocationController.sharedController.locationManager.monitoredRegions.count > 20 {
+            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check ones you don't need anymore, then try again.")
         }
     }
     
@@ -72,14 +76,4 @@ class ReminderController {
             print("Error saving Managed Object Context. Items not saved.")
         }
     }
-    
-//    func filePath(key: String) -> String {
-//        let directorySearchResults = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true)
-//        let documentsPath: AnyObject = directorySearchResults[0]
-//        let entriesPath = documentsPath.stringByAppendingString("/\(key).plist")
-//        
-//        return entriesPath
-//    }
-    
-    
 }

@@ -23,15 +23,16 @@ class NotificationController {
         alert.addAction(okayAction)
         if let vc = vc {
             vc.presentViewController(alert, animated: true, completion: nil)
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
         }
     }
     
     func notificationForReminder(reminder: Reminder) {
         let notification = UILocalNotification()
-        notification.alertTitle = reminder.title
-        notification.alertBody = reminder.notes
+        notification.alertBody = reminder.title
         notification.fireDate = NSDate()
-        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        notification.soundName = UILocalNotificationDefaultSoundName
+        
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
         NSNotificationCenter.defaultCenter().postNotificationName("alert", object: nil)
     }

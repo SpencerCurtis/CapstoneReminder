@@ -2,7 +2,7 @@
 //  Reminder+CoreDataProperties.swift
 //  CapstoneReminder
 //
-//  Created by Spencer Curtis on 4/5/16.
+//  Created by Spencer Curtis on 5/6/16.
 //  Copyright © 2016 Spencer Curtis. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -23,5 +23,6 @@ extension Reminder {
     @NSManaged var notes: String?
     @NSManaged var reminderTime: NSDate?
     @NSManaged var title: String?
+    @NSManaged var atALocationLabelText: String?
 
 }

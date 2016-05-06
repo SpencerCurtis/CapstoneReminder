@@ -42,6 +42,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
         self.tableView.contentOffset = CGPointMake(0, 45)
+        reminderFilterSegmentedControl.selectedSegmentIndex = 0
         
     }
     
