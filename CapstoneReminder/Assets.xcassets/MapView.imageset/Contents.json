@@ -4,6 +4,14 @@
       "idiom" : "universal",
       "filename" : "Simulator Screen Shot May 9, 2016, 10.44.51 AM_iphone6_silver_portrait.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

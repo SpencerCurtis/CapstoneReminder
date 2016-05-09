@@ -15,18 +15,19 @@ class WalkThroughPageViewController: UIPageViewController {
     let third = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThirdViewController")
     let fourth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FourthViewController")
     let fifth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FifthViewController")
-
-
+    let sixth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SixthViewController")
     
-    var orderedViewControllers: [UIViewController] {
-        return [first, second, third, fourth, fifth]
+    var firstRun: Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey("firstRun")
     }
     
-    
-    
+    var orderedViewControllers: [UIViewController] {
+        return [first, second, third, fourth, fifth, sixth]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         dataSource = self
         if let firstVC = orderedViewControllers.first {
             setViewControllers([firstVC], direction: .Forward, animated: true, completion: nil)
@@ -34,33 +35,9 @@ class WalkThroughPageViewController: UIPageViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    //    private(set) lazy var orderedViewControllers: [UIViewController] = {
-    //        let first = newViewController("First")
-    //        let second = newViewController("Second")
-    //        return [first, second]
-    //
-    //
-    //    }
-    
     private func newViewController(name: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("\(name)ViewController")
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 

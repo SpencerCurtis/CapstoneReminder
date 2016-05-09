@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hgq-yx-2Yu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7pi-tD-Qbt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -79,10 +79,10 @@
                                                 <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
                                                 <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
                                             </constraints>
-                                            <state key="normal" image="CF72BB9B-77B0-4C10-9363-EB649A55DCFA">
+                                            <state key="normal" image="B63E0AA0-F5B9-4856-BE00-72C6F9E28B8E">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" image="019BE793-CF9B-4CB0-B052-ED6BF3C9CED7"/>
+                                            <state key="selected" image="28D98654-C34D-48AF-AF01-A8BDE09AB7D6"/>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="1hX-TF-62S" eventType="touchUpInside" id="Y6s-B3-mIR"/>
                                             </connections>
@@ -318,9 +318,55 @@
             <point key="canvasLocation" x="3278" y="-270"/>
         </scene>
         <!--FifthViewController-->
+        <scene sceneID="0Fc-xf-ETs">
+            <objects>
+                <viewController storyboardIdentifier="FifthViewController" title="FifthViewController" id="tqT-6l-2Bg" customClass="FifthViewController" customModule="CapstoneReminder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UAz-zW-onX"/>
+                        <viewControllerLayoutGuide type="bottom" id="HrK-Ld-EzQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HHX-4A-7Wb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="One last thing; You need to enable notification and location monitoring for Remindr to work!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="nHI-xc-Iea">
+                                <rect key="frame" x="20" y="20" width="560" height="138"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="RBp-9a-FDK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Once you've allowed both notifications and location monitoring, swipe to continue." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="12U-Ro-I27">
+                                <rect key="frame" x="20" y="483" width="560" height="97"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="BdC-a1-ikl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38431372549999998" green="0.83529411760000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="nHI-xc-Iea" secondAttribute="trailing" id="30i-j9-Ym4"/>
+                            <constraint firstItem="HrK-Ld-EzQ" firstAttribute="top" secondItem="12U-Ro-I27" secondAttribute="bottom" constant="20" id="VtA-A3-WyR"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="12U-Ro-I27" secondAttribute="leading" id="W45-pi-Awa"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="nHI-xc-Iea" secondAttribute="leading" id="bWL-Jd-xo4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="12U-Ro-I27" secondAttribute="trailing" id="kaQ-Pa-OeR"/>
+                            <constraint firstItem="nHI-xc-Iea" firstAttribute="top" secondItem="UAz-zW-onX" secondAttribute="bottom" id="rcc-d3-Fb4"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VHs-Um-RYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3986" y="-270"/>
+        </scene>
+        <!--SixthViewController-->
         <scene sceneID="b50-GD-tc3">
             <objects>
-                <viewController storyboardIdentifier="FifthViewController" title="FifthViewController" id="oDD-dL-nns" customClass="FifthViewController" customModule="CapstoneReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SixthViewController" title="SixthViewController" id="oDD-dL-nns" customClass="SixthViewController" customModule="CapstoneReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pxO-Vw-rO4"/>
                         <viewControllerLayoutGuide type="bottom" id="Kww-l7-8Ut"/>
@@ -335,6 +381,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="canvas7" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-U6-gZR">
+                                <rect key="frame" x="150" y="72" width="301" height="290"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="290" id="BUA-aw-o57"/>
+                                    <constraint firstAttribute="width" constant="301" id="PUS-R9-vrx"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFI-Kc-cz6">
                                 <rect key="frame" x="20" y="484" width="560" height="96"/>
                                 <constraints>
@@ -346,14 +399,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="getStartedButtonTapped:" destination="oDD-dL-nns" eventType="touchUpInside" id="vXU-g4-TRQ"/>
+                                    <segue destination="7pi-tD-Qbt" kind="showDetail" id="DSf-my-hrG"/>
+                                </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="canvas7" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-U6-gZR">
-                                <rect key="frame" x="150" y="72" width="301" height="290"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="290" id="BUA-aw-o57"/>
-                                    <constraint firstAttribute="width" constant="301" id="PUS-R9-vrx"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.38431372549999998" green="0.83529411760000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -369,12 +419,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="getStartedButton" destination="wFI-Kc-cz6" id="917-wq-67I"/>
+                        <outlet property="getStartedButton" destination="wFI-Kc-cz6" id="Kgh-X9-hMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cyr-I5-bhE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3984" y="-270"/>
+            <point key="canvasLocation" x="4717" y="-270"/>
         </scene>
         <!--ThirdViewController-->
         <scene sceneID="jCJ-Z2-wVn">
@@ -722,7 +772,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aoV-uR-Vc4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7pi-tD-Qbt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="7pi-tD-Qbt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G5h-Kn-G2W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -739,7 +789,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="019BE793-CF9B-4CB0-B052-ED6BF3C9CED7" width="66" height="63">
+        <image name="28D98654-C34D-48AF-AF01-A8BDE09AB7D6" width="66" height="63">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1067,7 +1117,7 @@ ALIAtQC3ALkAuwC9AMIA2QDbAN1Kd0p8SodKkEqjSqdKskq7SsBKyErLStBK30rjSupK8kr/SwRLBksI
 Sw1LFUsYSx1LJUsoSzpLPUtCAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAS0Q
 </mutableData>
         </image>
-        <image name="CF72BB9B-77B0-4C10-9363-EB649A55DCFA" width="64" height="64">
+        <image name="B63E0AA0-F5B9-4856-BE00-72C6F9E28B8E" width="64" height="64">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

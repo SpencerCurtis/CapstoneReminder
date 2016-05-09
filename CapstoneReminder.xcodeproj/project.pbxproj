@@ -28,6 +28,7 @@
 		4681E9B21CE1216A009A3225 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B11CE1216A009A3225 /* ThirdViewController.swift */; };
 		4681E9B41CE12654009A3225 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B31CE12654009A3225 /* FourthViewController.swift */; };
 		4681E9B61CE12910009A3225 /* FifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B51CE12910009A3225 /* FifthViewController.swift */; };
+		4681E9B81CE1307C009A3225 /* SixthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B71CE1307C009A3225 /* SixthViewController.swift */; };
 		4694082C1CC1394A00191855 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4694082B1CC1394A00191855 /* MapKit.framework */; };
 		4694082E1CC13BE500191855 /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */; };
 		46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */; };
@@ -61,6 +62,7 @@
 		4681E9B11CE1216A009A3225 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		4681E9B31CE12654009A3225 /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 		4681E9B51CE12910009A3225 /* FifthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthViewController.swift; sourceTree = "<group>"; };
+		4681E9B71CE1307C009A3225 /* SixthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixthViewController.swift; sourceTree = "<group>"; };
 		4694082B1CC1394A00191855 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				4681E9B11CE1216A009A3225 /* ThirdViewController.swift */,
 				4681E9B31CE12654009A3225 /* FourthViewController.swift */,
 				4681E9B51CE12910009A3225 /* FifthViewController.swift */,
+				4681E9B71CE1307C009A3225 /* SixthViewController.swift */,
 				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
 				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
 				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
@@ -264,6 +267,7 @@
 				4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */,
 				4681E9AE1CE11D01009A3225 /* FirstViewController.swift in Sources */,
 				4681E9AC1CE0EFAD009A3225 /* WalkThroughPageViewController.swift in Sources */,
+				4681E9B81CE1307C009A3225 /* SixthViewController.swift in Sources */,
 				466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */,
 				4681E9B01CE11F20009A3225 /* SecondViewController.swift in Sources */,
 				4663042C1CA336DC00EB5986 /* Reminder.xcdatamodeld in Sources */,

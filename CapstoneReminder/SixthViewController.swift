@@ -1,5 +1,5 @@
 //
-//  FourthViewController.swift
+//  SixthViewController.swift
 //  CapstoneReminder
 //
 //  Created by Spencer Curtis on 5/9/16.
@@ -8,14 +8,23 @@
 
 import UIKit
 
-class FourthViewController: UIViewController {
+class SixthViewController: UIViewController {
 
+    @IBOutlet weak var getStartedButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UIView.animateWithDuration(1.5) {
+            self.getStartedButton.alpha = 1
+        }
+
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func getStartedButtonTapped(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstRun")
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

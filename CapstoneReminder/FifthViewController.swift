@@ -10,14 +10,16 @@ import UIKit
 
 class FifthViewController: UIViewController {
 
-    @IBOutlet weak var getStartedButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animateWithDuration(1.5) {
-            self.getStartedButton.alpha = 1
-        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(registerForNotifications), userInfo: nil, repeats: false)
+        let _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(requestLocationAuthorization), userInfo: nil, repeats: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +27,14 @@ class FifthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func requestLocationAuthorization() {
+        LocationController.sharedController.requestAuthorization()
+    }
+    
+    func registerForNotifications() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+    }
 
     /*
     // MARK: - Navigation

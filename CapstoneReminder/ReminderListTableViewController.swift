@@ -19,6 +19,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCount()
+        
         self.tableView.tableHeaderView = searchBarView
         self.tableView.contentOffset = CGPointMake(0, 45)
         

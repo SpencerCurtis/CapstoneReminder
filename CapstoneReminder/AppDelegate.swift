@@ -18,8 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         AppearanceController.initializeAppearanceDefaults()
-//        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert], categories: nil))
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("firstRun") == false {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let pageViewController = storyboard.instantiateViewControllerWithIdentifier("PageViewController")
+            self.window?.rootViewController = pageViewController
+            self.window?.makeKeyAndVisible()
+        }
+        
         
         return true
     }
