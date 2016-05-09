@@ -1,5 +1,5 @@
 //
-//  PageContentViewController.swift
+//  FourthViewController.swift
 //  CapstoneReminder
 //
 //  Created by Spencer Curtis on 5/9/16.
@@ -8,30 +8,11 @@
 
 import UIKit
 
-class PageContentViewController: UIViewController {
+class FourthViewController: UIViewController {
 
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var bodyLabel: UILabel!
-    
-    
-    var pageIndex: Int?
-    var headerText: String!
-    var bodyText: String!
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.headerLabel.text = self.headerText
-        self.bodyLabel.text = self.bodyText
-        self.headerLabel.alpha = 0.1
-        self.bodyLabel.alpha = 0.1
-        UIView.animateWithDuration(1.0) { 
-            self.headerLabel.alpha = 1.0
-            self.bodyLabel.alpha = 1.0
-        }
+
         // Do any additional setup after loading the view.
     }
 

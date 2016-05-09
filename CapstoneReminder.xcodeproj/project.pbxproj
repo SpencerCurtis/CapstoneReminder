@@ -22,8 +22,12 @@
 		466304361CA33DB300EB5986 /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304351CA33DB300EB5986 /* ReminderController.swift */; };
 		4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */; };
 		467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467EC8611CA5F20600BB8A0E /* LocationController.swift */; };
-		4681E9A81CE0EC33009A3225 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9A71CE0EC33009A3225 /* PageContentViewController.swift */; };
 		4681E9AC1CE0EFAD009A3225 /* WalkThroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */; };
+		4681E9AE1CE11D01009A3225 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9AD1CE11D01009A3225 /* FirstViewController.swift */; };
+		4681E9B01CE11F20009A3225 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9AF1CE11F20009A3225 /* SecondViewController.swift */; };
+		4681E9B21CE1216A009A3225 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B11CE1216A009A3225 /* ThirdViewController.swift */; };
+		4681E9B41CE12654009A3225 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B31CE12654009A3225 /* FourthViewController.swift */; };
+		4681E9B61CE12910009A3225 /* FifthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9B51CE12910009A3225 /* FifthViewController.swift */; };
 		4694082C1CC1394A00191855 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4694082B1CC1394A00191855 /* MapKit.framework */; };
 		4694082E1CC13BE500191855 /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */; };
 		46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */; };
@@ -51,8 +55,12 @@
 		466304351CA33DB300EB5986 /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		467EC8611CA5F20600BB8A0E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
-		4681E9A71CE0EC33009A3225 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkThroughPageViewController.swift; path = ../WalkThroughPageViewController.swift; sourceTree = "<group>"; };
+		4681E9AD1CE11D01009A3225 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		4681E9AF1CE11F20009A3225 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		4681E9B11CE1216A009A3225 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		4681E9B31CE12654009A3225 /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		4681E9B51CE12910009A3225 /* FifthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthViewController.swift; sourceTree = "<group>"; };
 		4694082B1CC1394A00191855 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -102,10 +110,8 @@
 		463E3F7A1CA2E79C00E55E92 /* CapstoneReminder */ = {
 			isa = PBXGroup;
 			children = (
-				4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */,
 				463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */,
 				463E3F7F1CA2E79C00E55E92 /* Main.storyboard */,
-				4681E9A71CE0EC33009A3225 /* PageContentViewController.swift */,
 				463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */,
 				463E3F871CA2E79C00E55E92 /* Info.plist */,
 				463E3F821CA2E79C00E55E92 /* Assets.xcassets */,
@@ -130,6 +136,12 @@
 		466304341CA33DA600EB5986 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */,
+				4681E9AD1CE11D01009A3225 /* FirstViewController.swift */,
+				4681E9AF1CE11F20009A3225 /* SecondViewController.swift */,
+				4681E9B11CE1216A009A3225 /* ThirdViewController.swift */,
+				4681E9B31CE12654009A3225 /* FourthViewController.swift */,
+				4681E9B51CE12910009A3225 /* FifthViewController.swift */,
 				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
 				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
 				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
@@ -238,18 +250,22 @@
 				466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */,
 				46A52D9E1CA9E4660069C9B4 /* Reminder.swift in Sources */,
 				467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */,
+				4681E9B61CE12910009A3225 /* FifthViewController.swift in Sources */,
 				46469F331CAEFFBC0001E50E /* AlarmController.swift in Sources */,
 				466304361CA33DB300EB5986 /* ReminderController.swift in Sources */,
 				4694082E1CC13BE500191855 /* LocationSearchTableViewController.swift in Sources */,
+				4681E9B41CE12654009A3225 /* FourthViewController.swift in Sources */,
+				4681E9B21CE1216A009A3225 /* ThirdViewController.swift in Sources */,
 				466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */,
-				4681E9A81CE0EC33009A3225 /* PageContentViewController.swift in Sources */,
 				46E23C9B1CDA4CE900A67895 /* RegionController.swift in Sources */,
 				46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */,
 				466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */,
 				46E23C9D1CDA53AB00A67895 /* NotificationController.swift in Sources */,
 				4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */,
+				4681E9AE1CE11D01009A3225 /* FirstViewController.swift in Sources */,
 				4681E9AC1CE0EFAD009A3225 /* WalkThroughPageViewController.swift in Sources */,
 				466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */,
+				4681E9B01CE11F20009A3225 /* SecondViewController.swift in Sources */,
 				4663042C1CA336DC00EB5986 /* Reminder.xcdatamodeld in Sources */,
 				465DAE171CC0453900AFA339 /* MapViewController.swift in Sources */,
 			);

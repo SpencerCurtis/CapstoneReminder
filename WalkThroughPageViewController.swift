@@ -12,9 +12,14 @@ class WalkThroughPageViewController: UIPageViewController {
     
     let first = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstViewController")
     let second = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecondViewController")
+    let third = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThirdViewController")
+    let fourth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FourthViewController")
+    let fifth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FifthViewController")
+
+
     
     var orderedViewControllers: [UIViewController] {
-        return [first, second]
+        return [first, second, third, fourth, fifth]
     }
     
     
