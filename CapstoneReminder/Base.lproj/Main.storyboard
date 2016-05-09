@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7pi-tD-Qbt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hgq-yx-2Yu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -78,10 +79,10 @@
                                                 <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
                                                 <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
                                             </constraints>
-                                            <state key="normal" image="ED34167E-ABC4-4006-91A8-6D2D7333956B">
+                                            <state key="normal" image="A39C1D7C-583F-4211-B430-9E4F7EA38BEB">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" image="89A69469-CF3A-44F3-81C7-47E26B032576"/>
+                                            <state key="selected" image="025859C7-E7CD-45B1-A67B-D7B048DF036D"/>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="1hX-TF-62S" eventType="touchUpInside" id="Y6s-B3-mIR"/>
                                             </connections>
@@ -135,6 +136,128 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUT-rl-iKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1157" y="480"/>
+        </scene>
+        <!--Walk Through Page View Controller-->
+        <scene sceneID="vSA-W6-qyw">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hgq-yx-2Yu" customClass="WalkThroughPageViewController" customModule="CapstoneReminder" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Wf-2N-g5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345" y="-270"/>
+        </scene>
+        <!--FirstViewController-->
+        <scene sceneID="XYK-UN-Pkd">
+            <objects>
+                <viewController storyboardIdentifier="FirstViewController" title="FirstViewController" id="trX-Ni-byQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LHE-SN-p7y"/>
+                        <viewControllerLayoutGuide type="bottom" id="2gV-Kc-njQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iuN-aL-7iA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VVl-Hy-Xlf">
+                                <rect key="frame" x="32" y="20" width="536" height="111"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Remindr" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="ASx-jW-HYm">
+                                        <rect key="frame" x="0.0" y="0.0" width="536" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="CQl-fu-EKf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-yS-Xes">
+                                        <rect key="frame" x="0.0" y="70" width="536" height="41"/>
+                                        <string key="text">Swipe to learn how to use Remindr,
+ and increase your productivity.</string>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="536" id="ErC-7O-UhF"/>
+                                </constraints>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenMockup" translatesAutoresizingMaskIntoConstraints="NO" id="pmb-OS-qm6">
+                                <rect key="frame" x="139" y="160" width="322" height="637"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="322" id="Gea-Ij-qdr"/>
+                                    <constraint firstAttribute="width" secondItem="pmb-OS-qm6" secondAttribute="height" multiplier="46:91" id="I5S-I6-qKg"/>
+                                    <constraint firstAttribute="height" constant="637" id="nKy-b6-em4"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="nKy-b6-em4"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="VVl-Hy-Xlf" secondAttribute="trailing" constant="12" id="Ako-Pi-nPV"/>
+                            <constraint firstItem="VVl-Hy-Xlf" firstAttribute="leading" secondItem="iuN-aL-7iA" secondAttribute="leadingMargin" constant="12" id="EQx-ty-4um"/>
+                            <constraint firstItem="pmb-OS-qm6" firstAttribute="centerX" secondItem="iuN-aL-7iA" secondAttribute="centerX" id="Scb-Cc-V1f"/>
+                            <constraint firstItem="VVl-Hy-Xlf" firstAttribute="top" secondItem="LHE-SN-p7y" secondAttribute="bottom" id="a1n-rc-DOT"/>
+                            <constraint firstItem="pmb-OS-qm6" firstAttribute="top" secondItem="e1n-yS-Xes" secondAttribute="bottom" constant="29" id="wHA-sA-80q"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EAS-La-ggT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157" y="-270"/>
+        </scene>
+        <!--SecondViewController-->
+        <scene sceneID="MQZ-oV-hcc">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" title="SecondViewController" id="NCw-lR-22g" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BFs-we-eqP"/>
+                        <viewControllerLayoutGuide type="bottom" id="aEy-M8-haT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y7q-Zo-V5r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remindr is a task app that helps you accomplish  everything you need to." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pny-oJ-LKC">
+                                <rect key="frame" x="20" y="20" width="560" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="9o9-hg-xrw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DateRemindr" translatesAutoresizingMaskIntoConstraints="NO" id="mYr-ta-BGe">
+                                <rect key="frame" x="186" y="89" width="228" height="491"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="228" id="7xi-G8-UTF"/>
+                                    <constraint firstAttribute="width" constant="228" id="hZF-8r-hWb"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hZF-8r-hWb"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pny-oJ-LKC" firstAttribute="top" secondItem="BFs-we-eqP" secondAttribute="bottom" id="Afg-Bx-bL8"/>
+                            <constraint firstItem="Pny-oJ-LKC" firstAttribute="centerX" secondItem="mYr-ta-BGe" secondAttribute="centerX" id="MTR-cG-omX"/>
+                            <constraint firstItem="Pny-oJ-LKC" firstAttribute="leading" secondItem="Y7q-Zo-V5r" secondAttribute="leadingMargin" id="e25-sR-rOM"/>
+                            <constraint firstAttribute="bottom" secondItem="mYr-ta-BGe" secondAttribute="bottom" constant="20" symbolic="YES" id="q1a-1F-GXP"/>
+                            <constraint firstItem="mYr-ta-BGe" firstAttribute="top" secondItem="Pny-oJ-LKC" secondAttribute="bottom" constant="8" symbolic="YES" id="vyu-4d-bDr"/>
+                            <constraint firstItem="Pny-oJ-LKC" firstAttribute="trailing" secondItem="Y7q-Zo-V5r" secondAttribute="trailingMargin" id="zF1-Jo-STa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gWG-sD-zyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1896" y="-270"/>
         </scene>
         <!--New Reminder-->
         <scene sceneID="cRr-wk-2SO">
@@ -376,7 +499,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCp-Vk-WmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2589" y="-205"/>
+            <point key="canvasLocation" x="3273" y="480"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="GSa-q5-tMk">
@@ -434,7 +557,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="89A69469-CF3A-44F3-81C7-47E26B032576" width="66" height="63">
+        <image name="025859C7-E7CD-45B1-A67B-D7B048DF036D" width="66" height="63">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -762,7 +885,7 @@ ALIAtQC3ALkAuwC9AMIA2QDbAN1Kd0p8SodKkEqjSqdKskq7SsBKyErLStBK30rjSupK8kr/SwRLBksI
 Sw1LFUsYSx1LJUsoSzpLPUtCAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAS0Q
 </mutableData>
         </image>
-        <image name="ED34167E-ABC4-4006-91A8-6D2D7333956B" width="64" height="64">
+        <image name="A39C1D7C-583F-4211-B430-9E4F7EA38BEB" width="64" height="64">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1086,6 +1209,8 @@ ALsAvQDCANkA2wDdSX9JhEmPSZhJq0mvSbpJw0nISdBJ00nYSedJ60nySfpKB0oMSg5KEEoVSh1KIEol
 Si1KMEpCSkVKSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAAEpMA
 </mutableData>
         </image>
+        <image name="DateRemindr" width="797" height="1623"/>
+        <image name="LaunchScreenMockup" width="797" height="1623"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z3S-Ek-mTp"/>

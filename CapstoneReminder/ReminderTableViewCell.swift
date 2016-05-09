@@ -35,9 +35,9 @@ class ReminderTableViewCell: UITableViewCell {
     func updateButton(isComplete: Bool) {
         
         if isComplete == true {
-            checkboxButton.setImage(UIImage(named: "canvas0-1") ?? UIImage(), forState: .Normal)
+            checkboxButton.setImage(UIImage(named: "checkedBox") ?? UIImage(), forState: .Normal)
         } else if isComplete == false {
-            checkboxButton.setImage(UIImage(named: "canvas1-1") ?? UIImage(), forState: .Normal)
+            checkboxButton.setImage(UIImage(named: "uncheckedBox") ?? UIImage(), forState: .Normal)
         }
     }
     

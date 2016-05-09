@@ -22,6 +22,8 @@
 		466304361CA33DB300EB5986 /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466304351CA33DB300EB5986 /* ReminderController.swift */; };
 		4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */; };
 		467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467EC8611CA5F20600BB8A0E /* LocationController.swift */; };
+		4681E9A81CE0EC33009A3225 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9A71CE0EC33009A3225 /* PageContentViewController.swift */; };
+		4681E9AC1CE0EFAD009A3225 /* WalkThroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */; };
 		4694082C1CC1394A00191855 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4694082B1CC1394A00191855 /* MapKit.framework */; };
 		4694082E1CC13BE500191855 /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */; };
 		46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */; };
@@ -49,6 +51,8 @@
 		466304351CA33DB300EB5986 /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		467EC8611CA5F20600BB8A0E /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		4681E9A71CE0EC33009A3225 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
+		4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkThroughPageViewController.swift; path = ../WalkThroughPageViewController.swift; sourceTree = "<group>"; };
 		4694082B1CC1394A00191855 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		46A52D9B1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -98,8 +102,10 @@
 		463E3F7A1CA2E79C00E55E92 /* CapstoneReminder */ = {
 			isa = PBXGroup;
 			children = (
+				4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */,
 				463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */,
 				463E3F7F1CA2E79C00E55E92 /* Main.storyboard */,
+				4681E9A71CE0EC33009A3225 /* PageContentViewController.swift */,
 				463E3F841CA2E79C00E55E92 /* LaunchScreen.storyboard */,
 				463E3F871CA2E79C00E55E92 /* Info.plist */,
 				463E3F821CA2E79C00E55E92 /* Assets.xcassets */,
@@ -236,11 +242,13 @@
 				466304361CA33DB300EB5986 /* ReminderController.swift in Sources */,
 				4694082E1CC13BE500191855 /* LocationSearchTableViewController.swift in Sources */,
 				466304291CA32EF600EB5986 /* ReminderDetailViewController.swift in Sources */,
+				4681E9A81CE0EC33009A3225 /* PageContentViewController.swift in Sources */,
 				46E23C9B1CDA4CE900A67895 /* RegionController.swift in Sources */,
 				46A52D9D1CA9E4660069C9B4 /* Reminder+CoreDataProperties.swift in Sources */,
 				466304231CA3282D00EB5986 /* AppearanceController.swift in Sources */,
 				46E23C9D1CDA53AB00A67895 /* NotificationController.swift in Sources */,
 				4663043B1CA3486200EB5986 /* ReminderTableViewCell.swift in Sources */,
+				4681E9AC1CE0EFAD009A3225 /* WalkThroughPageViewController.swift in Sources */,
 				466304251CA3298000EB5986 /* AppColorPalette.swift in Sources */,
 				4663042C1CA336DC00EB5986 /* Reminder.xcdatamodeld in Sources */,
 				465DAE171CC0453900AFA339 /* MapViewController.swift in Sources */,
