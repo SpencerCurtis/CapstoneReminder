@@ -300,8 +300,8 @@
     extension UIViewController: UITextFieldDelegate {
         func addToolBar(textField: UITextField){
             let toolBar = UIToolbar()
+            toolBar.translucent = true
             toolBar.barStyle = UIBarStyle.Default
-            toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 0.50)
             let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressed))
             doneButton.tintColor = UIColor.customCyanColor()
             let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -321,8 +321,7 @@
         func addToolBarForTextView(textView: UITextView){
             let toolBar = UIToolbar()
             toolBar.barStyle = UIBarStyle.Default
-            //        toolBar.translucent = true
-            toolBar.barTintColor = UIColor(red: 0.212, green: 0.212, blue: 0.212, alpha: 0.50)
+            toolBar.translucent = true
             let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressedForTextView))
             doneButton.tintColor = UIColor.customCyanColor()
             let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)

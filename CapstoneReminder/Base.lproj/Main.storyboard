@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7pi-tD-Qbt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hgq-yx-2Yu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -78,10 +78,10 @@
                                                 <constraint firstAttribute="width" constant="32" id="qLW-AK-Nxz"/>
                                                 <constraint firstAttribute="height" constant="32" id="qUd-S1-q79"/>
                                             </constraints>
-                                            <state key="normal" image="0350C1D8-8FDB-4BC1-A024-A1DD617EABF2">
+                                            <state key="normal" image="67F593B6-46AD-4124-9EE1-7F6348D0AC4F">
                                                 <color key="titleColor" red="0.30980392159999998" green="0.80000000000000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" image="52CE4D8E-955F-4F4F-9E7E-E41036EA419A"/>
+                                            <state key="selected" image="DEB581D1-62EB-49AA-BA4B-D906440873EC"/>
                                             <connections>
                                                 <action selector="buttonTapped:" destination="1hX-TF-62S" eventType="touchUpInside" id="Y6s-B3-mIR"/>
                                             </connections>
@@ -226,7 +226,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DateRemindr" translatesAutoresizingMaskIntoConstraints="NO" id="mYr-ta-BGe">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remindr is a task app that helps you accomplish everything you need to." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Pny-oJ-LKC">
+                                <rect key="frame" x="20" y="20" width="560" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="9o9-hg-xrw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newRemindr" translatesAutoresizingMaskIntoConstraints="NO" id="mYr-ta-BGe">
                                 <rect key="frame" x="186" y="89" width="228" height="491"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="228" id="7xi-G8-UTF"/>
@@ -238,15 +247,6 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remindr is a task app that helps you accomplish everything you need to." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Pny-oJ-LKC">
-                                <rect key="frame" x="20" y="20" width="560" height="61"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="61" id="9o9-hg-xrw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.38431372549999998" green="0.83529411760000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -329,7 +329,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="One last thing; You need to enable notification and location monitoring for Remindr to work!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="nHI-xc-Iea">
-                                <rect key="frame" x="20" y="20" width="560" height="138"/>
+                                <rect key="frame" x="20" y="51" width="560" height="138"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="560" id="RBp-9a-FDK"/>
                                 </constraints>
@@ -338,7 +338,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Once you've allowed both notifications and location monitoring, swipe to continue." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="12U-Ro-I27">
-                                <rect key="frame" x="20" y="483" width="560" height="97"/>
+                                <rect key="frame" x="20" y="442" width="560" height="97"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="560" id="BdC-a1-ikl"/>
                                 </constraints>
@@ -350,11 +350,11 @@
                         <color key="backgroundColor" red="0.38431372549999998" green="0.83529411760000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="nHI-xc-Iea" secondAttribute="trailing" id="30i-j9-Ym4"/>
-                            <constraint firstItem="HrK-Ld-EzQ" firstAttribute="top" secondItem="12U-Ro-I27" secondAttribute="bottom" constant="20" id="VtA-A3-WyR"/>
+                            <constraint firstItem="HrK-Ld-EzQ" firstAttribute="top" secondItem="12U-Ro-I27" secondAttribute="bottom" constant="61" id="VtA-A3-WyR"/>
                             <constraint firstAttribute="leadingMargin" secondItem="12U-Ro-I27" secondAttribute="leading" id="W45-pi-Awa"/>
                             <constraint firstAttribute="leadingMargin" secondItem="nHI-xc-Iea" secondAttribute="leading" id="bWL-Jd-xo4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="12U-Ro-I27" secondAttribute="trailing" id="kaQ-Pa-OeR"/>
-                            <constraint firstItem="nHI-xc-Iea" firstAttribute="top" secondItem="UAz-zW-onX" secondAttribute="bottom" id="rcc-d3-Fb4"/>
+                            <constraint firstItem="nHI-xc-Iea" firstAttribute="top" secondItem="UAz-zW-onX" secondAttribute="bottom" constant="31" id="rcc-d3-Fb4"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -437,53 +437,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SegmentedAlert" translatesAutoresizingMaskIntoConstraints="NO" id="E4b-4c-6R2">
-                                <rect key="frame" x="186" y="97" width="228" height="491"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="228" id="Cdu-JJ-Klf"/>
-                                    <constraint firstAttribute="width" constant="228" id="OFa-42-jrF"/>
-                                    <constraint firstAttribute="width" secondItem="E4b-4c-6R2" secondAttribute="height" multiplier="228:491" id="RQ7-iM-Xab"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Cdu-JJ-Klf"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SegmentedAlertHighlighted" translatesAutoresizingMaskIntoConstraints="NO" id="H6a-Up-t0C">
-                                <rect key="frame" x="186" y="97" width="228" height="491"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="228" id="ONb-im-Wxe"/>
-                                    <constraint firstAttribute="width" constant="228" id="OYI-2A-a5o"/>
-                                    <constraint firstAttribute="width" secondItem="H6a-Up-t0C" secondAttribute="height" multiplier="228:491" id="gQx-xE-afh"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ONb-im-Wxe"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="VQm-Ds-Upk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="VQm-Ds-Upk">
                                 <rect key="frame" x="20" y="28" width="560" height="61"/>
                                 <string key="text">Here, you can select how you want to be notified; At a selected time, upon moving from your current location, or by entering a location yourself.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alertTypes" translatesAutoresizingMaskIntoConstraints="NO" id="u8g-Bq-dzm">
+                                <rect key="frame" x="186" y="89" width="228" height="491"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="u8g-Bq-dzm" secondAttribute="height" multiplier="228:491" id="4Qe-dc-I4r"/>
+                                    <constraint firstAttribute="width" constant="228" id="Vsl-of-EsC"/>
+                                    <constraint firstAttribute="height" constant="491" id="lV3-Gl-CHN"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Vsl-of-EsC"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alertTypesHighlighted" translatesAutoresizingMaskIntoConstraints="NO" id="tTs-f3-LKX">
+                                <rect key="frame" x="186" y="89" width="228" height="491"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tTs-f3-LKX" secondAttribute="height" multiplier="228:491" id="8Em-IT-GZ5"/>
+                                    <constraint firstAttribute="height" constant="491" id="FY5-AE-HkL"/>
+                                    <constraint firstAttribute="width" constant="228" id="lRC-tQ-8Ma"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="lRC-tQ-8Ma"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.38431372549999998" green="0.83529411760000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="u8g-Bq-dzm" firstAttribute="centerX" secondItem="ybM-Jc-5UK" secondAttribute="centerX" id="2Fe-9C-wd7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VQm-Ds-Upk" secondAttribute="trailing" id="BW0-yD-Xyf"/>
-                            <constraint firstItem="H6a-Up-t0C" firstAttribute="top" secondItem="VQm-Ds-Upk" secondAttribute="bottom" constant="8" id="Jba-Du-Bro"/>
-                            <constraint firstItem="E4b-4c-6R2" firstAttribute="top" secondItem="VQm-Ds-Upk" secondAttribute="bottom" constant="8" id="MaM-Ec-HuJ"/>
+                            <constraint firstItem="Mhq-WP-AOi" firstAttribute="top" secondItem="u8g-Bq-dzm" secondAttribute="bottom" constant="20" id="CkQ-m0-gLH"/>
+                            <constraint firstItem="Mhq-WP-AOi" firstAttribute="top" secondItem="tTs-f3-LKX" secondAttribute="bottom" constant="20" id="Cuc-B4-dMR"/>
+                            <constraint firstItem="tTs-f3-LKX" firstAttribute="top" secondItem="VQm-Ds-Upk" secondAttribute="bottom" id="GZm-4B-Jb1"/>
+                            <constraint firstItem="tTs-f3-LKX" firstAttribute="centerX" secondItem="ybM-Jc-5UK" secondAttribute="centerX" id="I6X-Q9-Iks"/>
+                            <constraint firstItem="u8g-Bq-dzm" firstAttribute="top" secondItem="dPC-gl-c7I" secondAttribute="bottom" constant="69" id="IgP-V1-eYH"/>
                             <constraint firstAttribute="leadingMargin" secondItem="VQm-Ds-Upk" secondAttribute="leading" id="SDR-g0-ZHf"/>
-                            <constraint firstItem="H6a-Up-t0C" firstAttribute="centerX" secondItem="ybM-Jc-5UK" secondAttribute="centerX" id="abp-ZK-p8T"/>
-                            <constraint firstItem="E4b-4c-6R2" firstAttribute="centerX" secondItem="ybM-Jc-5UK" secondAttribute="centerX" id="jnD-le-fPm"/>
+                            <constraint firstItem="tTs-f3-LKX" firstAttribute="top" secondItem="dPC-gl-c7I" secondAttribute="bottom" constant="69" id="bc2-TS-m8k"/>
                             <constraint firstItem="VQm-Ds-Upk" firstAttribute="top" secondItem="dPC-gl-c7I" secondAttribute="bottom" constant="8" id="ll0-7C-RhC"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="segmentedAlertHighlightedImageView" destination="H6a-Up-t0C" id="Vtw-yv-Dnb"/>
+                        <outlet property="segmentedAlertHighlightedImageView" destination="tTs-f3-LKX" id="pjo-Ln-boD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HxP-v5-58H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,7 +513,7 @@
                                     <constraint firstAttribute="height" constant="30" id="D8C-E2-Cw7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="light" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="D4U-Pm-COg">
                                 <rect key="frame" x="20" y="150" width="560" height="159"/>
@@ -520,7 +523,7 @@
                                     <constraint firstAttribute="height" constant="159" id="00H-J0-ZTT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="light"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wc-uS-RAX">
                                 <rect key="frame" x="23" y="72" width="42" height="21"/>
@@ -794,7 +797,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0350C1D8-8FDB-4BC1-A024-A1DD617EABF2" width="64" height="64">
+        <image name="67F593B6-46AD-4124-9EE1-7F6348D0AC4F" width="64" height="64">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1118,7 +1121,7 @@ ALsAvQDCANkA2wDdSX9JhEmPSZhJq0mvSbpJw0nISdBJ00nYSedJ60nySfpKB0oMSg5KEEoVSh1KIEol
 Si1KMEpCSkVKSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAAEpMA
 </mutableData>
         </image>
-        <image name="52CE4D8E-955F-4F4F-9E7E-E41036EA419A" width="66" height="63">
+        <image name="DEB581D1-62EB-49AA-BA4B-D906440873EC" width="66" height="63">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1446,12 +1449,12 @@ ALIAtQC3ALkAuwC9AMIA2QDbAN1Kd0p8SodKkEqjSqdKskq7SsBKyErLStBK30rjSupK8kr/SwRLBksI
 Sw1LFUsYSx1LJUsoSzpLPUtCAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAS0Q
 </mutableData>
         </image>
-        <image name="DateRemindr" width="797" height="1623"/>
         <image name="LaunchScreenMockup" width="797" height="1623"/>
         <image name="MapView" width="797" height="1623"/>
-        <image name="SegmentedAlert" width="797" height="1623"/>
-        <image name="SegmentedAlertHighlighted" width="797" height="1623"/>
+        <image name="alertTypes" width="797" height="1623"/>
+        <image name="alertTypesHighlighted" width="797" height="1623"/>
         <image name="canvas7" width="3000" height="3000"/>
+        <image name="newRemindr" width="797" height="1623"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z3S-Ek-mTp"/>
