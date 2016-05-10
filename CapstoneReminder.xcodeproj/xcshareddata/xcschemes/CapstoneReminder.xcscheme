@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "463E3F771CA2E79C00E55E92"
-               BuildableName = "CapstoneReminder.app"
-               BlueprintName = "CapstoneReminder"
+               BuildableName = "Remindr.app"
+               BlueprintName = "Remindr"
                ReferencedContainer = "container:CapstoneReminder.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "463E3F771CA2E79C00E55E92"
-            BuildableName = "CapstoneReminder.app"
-            BlueprintName = "CapstoneReminder"
+            BuildableName = "Remindr.app"
+            BlueprintName = "Remindr"
             ReferencedContainer = "container:CapstoneReminder.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "463E3F771CA2E79C00E55E92"
-            BuildableName = "CapstoneReminder.app"
-            BlueprintName = "CapstoneReminder"
+            BuildableName = "Remindr.app"
+            BlueprintName = "Remindr"
             ReferencedContainer = "container:CapstoneReminder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "463E3F771CA2E79C00E55E92"
-            BuildableName = "CapstoneReminder.app"
-            BlueprintName = "CapstoneReminder"
+            BuildableName = "Remindr.app"
+            BlueprintName = "Remindr"
             ReferencedContainer = "container:CapstoneReminder.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
