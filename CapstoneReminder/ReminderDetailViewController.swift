@@ -32,6 +32,11 @@
             super.viewDidLoad()
             notesTextView.sizeToFit()
             titleTextField.delegate = self
+            if reminder != nil {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.title = "Edit Remindr"
+                })
+            }
             uponMovingFromLocationLabel.text = "You will be reminded upon moving from this location."
             LocationController.sharedController.requestAuthorization()
             

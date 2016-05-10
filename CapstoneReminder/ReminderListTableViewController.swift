@@ -19,6 +19,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCount()
+//        self.navigationController?.navigationBar.titleTextAttributes = [nsfor]
         
         self.tableView.tableHeaderView = searchBarView
         self.tableView.contentOffset = CGPointMake(0, 45)
@@ -73,8 +74,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             returnInt = ReminderController.sharedController.incompleteReminders.count
         } else if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
             returnInt = ReminderController.sharedController.completeReminders.count
-        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
-            returnInt = ReminderController.sharedController.reminders.count
         }
         return returnInt
     }
@@ -91,10 +90,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             }
         } else if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
             let reminder = ReminderController.sharedController.completeReminders[indexPath.row]
-            cell.delegate = self
-            cell.updateWithReminder(reminder)
-        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
-            let reminder = ReminderController.sharedController.reminders[indexPath.row]
             cell.delegate = self
             cell.updateWithReminder(reminder)
         }
@@ -130,6 +125,7 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
                 if let selectedRow = tableView.indexPathForSelectedRow?.row {
                     dvc?.reminder = ReminderController.sharedController.reminders[selectedRow]
                     ReminderDetailViewController.updateWithReminder(ReminderController.sharedController.reminders[selectedRow])
+                    dvc?.title = "Edit Remindr"
                 }
             }
         }
@@ -154,44 +150,42 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
             if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
                 reminder = ReminderController.sharedController.completeReminders[indexPath.row]
                 
-            } else if reminderFilterSegmentedControl.selectedSegmentIndex == 2 {
-                ReminderController.sharedController.reminders[indexPath.row]
-            }
-            
-            
-            if checkboxButton.selected.boolValue == false {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if let reminder = reminder {
-                        reminder.isComplete = true
-                    }
-                    LocationController.sharedController.remindersUsingLocationCount -= 1
-                    ReminderController.sharedController.saveToPersistentStorage()
-                    if let reminder = reminder {
-                        RegionController.sharedController.stopMonitoringReminder(reminder)
-                    }
-                    
-                    self.tableView.reloadData()
-                    
-                })
-            } else if checkboxButton.selected.boolValue == true {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if let reminder = reminder {
-                        reminder.isComplete = false
-                    }
-                    checkboxButton.selected = false
-                    ReminderController.sharedController.saveToPersistentStorage()
-                    
-                    self.tableView.reloadData()
-                    
-                })
                 
+                
+                if checkboxButton.selected.boolValue == false {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        if let reminder = reminder {
+                            reminder.isComplete = true
+                        }
+                        LocationController.sharedController.remindersUsingLocationCount -= 1
+                        ReminderController.sharedController.saveToPersistentStorage()
+                        if let reminder = reminder {
+                            RegionController.sharedController.stopMonitoringReminder(reminder)
+                        }
+                        
+                        self.tableView.reloadData()
+                        
+                    })
+                } else if checkboxButton.selected.boolValue == true {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        if let reminder = reminder {
+                            reminder.isComplete = false
+                        }
+                        checkboxButton.selected = false
+                        ReminderController.sharedController.saveToPersistentStorage()
+                        
+                        self.tableView.reloadData()
+                        
+                    })
+                    
+                }
+                
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
             }
-            
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadData()
-            })
         }
+        
     }
-    
 }

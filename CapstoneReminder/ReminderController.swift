@@ -43,7 +43,9 @@ class ReminderController {
     
     
     func addReminder(reminder: Reminder) {
-        if reminder.alertLabelText == "Upon Arriving" && LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
+        if reminder.alertLabelText != "Upon Arriving" && reminder.alertLabelText != "Upon Moving" {
+            saveToPersistentStorage()
+        } else if reminder.alertLabelText == "Upon Arriving" && LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
             RegionController.sharedController.startMonitoringReminderUponArriving(reminder)
             reminder.atALocationLabelText = LocationController.sharedController.atALocationTextName
             saveToPersistentStorage()
