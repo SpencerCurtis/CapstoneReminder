@@ -223,13 +223,12 @@
                 }
                 ReminderController.sharedController.saveToPersistentStorage()
             } else {
-                // New Reminders
+                // New Remindrs
                 
                 let location = LocationController.sharedController.locationManager.location
                 latitude = location?.coordinate.latitude
                 longitude = location?.coordinate.longitude
                 
-                // New Reminders
                 if alertSegmentedControl.selectedSegmentIndex == 0 {
                     if let title = titleTextField.text {
                         
@@ -283,7 +282,7 @@
                     let alertLabelText = formatter.stringFromDate(reminderTime)
                     reminder.alertLabelText = "At \(alertLabelText)"
                 }
-                //            reminder.alertLabelText = "\(alertDatePicker.date)"
+                
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 reminder.alertLabelText = "Upon Moving"
             }

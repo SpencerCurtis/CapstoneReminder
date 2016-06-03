@@ -19,7 +19,6 @@ class ReminderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        checkboxButton.setImage(UIImage(named: "canvas1"), forState: .Normal)
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

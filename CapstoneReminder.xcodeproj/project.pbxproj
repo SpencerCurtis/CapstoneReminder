@@ -138,18 +138,12 @@
 		466304341CA33DA600EB5986 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */,
-				4681E9AD1CE11D01009A3225 /* FirstViewController.swift */,
-				4681E9AF1CE11F20009A3225 /* SecondViewController.swift */,
-				4681E9B11CE1216A009A3225 /* ThirdViewController.swift */,
-				4681E9B31CE12654009A3225 /* FourthViewController.swift */,
-				4681E9B51CE12910009A3225 /* FifthViewController.swift */,
-				4681E9B71CE1307C009A3225 /* SixthViewController.swift */,
-				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
-				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
-				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
-				465DAE161CC0453900AFA339 /* MapViewController.swift */,
+				46EE18DF1D01F91F001C1549 /* Walkthrough */,
 				4694082D1CC13BE500191855 /* LocationSearchTableViewController.swift */,
+				465DAE161CC0453900AFA339 /* MapViewController.swift */,
+				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
+				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
+				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -157,15 +151,29 @@
 		466304371CA33DB900EB5986 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				46E23C9A1CDA4CE900A67895 /* RegionController.swift */,
 				46469F321CAEFFBC0001E50E /* AlarmController.swift */,
-				46E23C9C1CDA53AB00A67895 /* NotificationController.swift */,
-				466304221CA3282D00EB5986 /* AppearanceController.swift */,
-				466304351CA33DB300EB5986 /* ReminderController.swift */,
 				466304241CA3298000EB5986 /* AppColorPalette.swift */,
+				466304221CA3282D00EB5986 /* AppearanceController.swift */,
 				467EC8611CA5F20600BB8A0E /* LocationController.swift */,
+				46E23C9C1CDA53AB00A67895 /* NotificationController.swift */,
+				46E23C9A1CDA4CE900A67895 /* RegionController.swift */,
+				466304351CA33DB300EB5986 /* ReminderController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		46EE18DF1D01F91F001C1549 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				4681E9AB1CE0EFAD009A3225 /* WalkThroughPageViewController.swift */,
+				4681E9AD1CE11D01009A3225 /* FirstViewController.swift */,
+				4681E9AF1CE11F20009A3225 /* SecondViewController.swift */,
+				4681E9B11CE1216A009A3225 /* ThirdViewController.swift */,
+				4681E9B31CE12654009A3225 /* FourthViewController.swift */,
+				4681E9B51CE12910009A3225 /* FifthViewController.swift */,
+				4681E9B71CE1307C009A3225 /* SixthViewController.swift */,
+			);
+			name = Walkthrough;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

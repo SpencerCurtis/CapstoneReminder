@@ -22,7 +22,7 @@ class RegionController {
             region.notifyOnExit = false
             return region
         } else {
-            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check ones you don't need anymore, then try again.")
+            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check the ones you don't need anymore, then try again.")
             return nil
         }
         
@@ -36,7 +36,7 @@ class RegionController {
             region.notifyOnExit = true
             return region
         } else {
-            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check ones you don't need anymore, then try again.")
+            simpleAlert("Error", message: "You can only have 20 remindrs that use location at a time. Please delete or check the ones you don't need anymore, then try again.")
             return nil
         }
         

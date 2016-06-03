@@ -74,10 +74,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         if let reminder = reminderForRegion {
             if UIApplication.sharedApplication().applicationState == .Active {
                 NotificationController.sharedController.alertForReminder(reminder)
-                print("geofence triggered")
+                print("Geofence triggered")
             } else {
                 NotificationController.sharedController.notificationForReminder(reminder)
-                print("geofence triggered")
+                print("Geofence triggered")
             }
         }
         
@@ -94,10 +94,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         if let reminder = reminderForRegion {
             if UIApplication.sharedApplication().applicationState == .Active {
                 NotificationController.sharedController.alertForReminder(reminder)
-                print("geofence triggered")
+                print("Geofence triggered")
             } else {
                 NotificationController.sharedController.notificationForReminder(reminder)
-                print("geofence triggered")
+                print("Geofence triggered")
             }
         }
     }

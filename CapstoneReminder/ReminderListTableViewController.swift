@@ -18,34 +18,31 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadCount()
-//        self.navigationController?.navigationBar.titleTextAttributes = [nsfor]
         
         self.tableView.tableHeaderView = searchBarView
         self.tableView.contentOffset = CGPointMake(0, 45)
         
         self.tableView.estimatedRowHeight = 58
-        //        self.navigationController?.navigationBar.barTintColor = UIColor.customGrayColor()
         self.navigationController?.navigationBar.translucent = true
         
         let status = CLLocationManager.authorizationStatus()
         if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.requestLocation()
         }
+        
         tableView.reloadData()
-        //        self.tableView.backgroundColor = UIColor.lightGrayColor()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
         self.tableView.contentOffset = CGPointMake(0, 45)
         reminderFilterSegmentedControl.selectedSegmentIndex = 0
-        
     }
     
     func loadCount() {
@@ -101,12 +98,10 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         return UITableViewAutomaticDimension
     }
     
-    // Override to support editing the table view.
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
             let reminder = ReminderController.sharedController.reminders[indexPath.row]
-            //            ReminderController.sharedController.in
             ReminderController.sharedController.removeReminder(reminder)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
@@ -114,7 +109,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editReminder" {
             let dvc = segue.destinationViewController as? ReminderDetailViewController
@@ -130,12 +124,6 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
             }
         }
     }
-    
-    
-    
-    // MARK: - Location
-    
-    
 }
 
 
@@ -179,13 +167,10 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                     })
                     
                 }
-                
-                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
             }
         }
-        
     }
 }

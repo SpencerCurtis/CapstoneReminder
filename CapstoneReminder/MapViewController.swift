@@ -85,7 +85,7 @@ extension MapViewController: HandleMapSearch {
         }
         mapView.addAnnotation(annotation)
         mapView.selectAnnotation(annotation, animated: true)
-        //Change span if it's too weird looking
+        // Change span if it's too weird looking
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
@@ -95,7 +95,7 @@ extension MapViewController: HandleMapSearch {
 extension MapViewController : MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
         if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
+            // Return nil so map view draws "blue dot" for standard user location
             return nil
         }
         let reuseId = "pin"
