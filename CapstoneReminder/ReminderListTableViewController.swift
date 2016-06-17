@@ -135,42 +135,42 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         var reminder: Reminder?
         if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
             reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
-            if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
-                reminder = ReminderController.sharedController.completeReminders[indexPath.row]
-                
-                
-                
-                if checkboxButton.selected.boolValue == false {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        if let reminder = reminder {
-                            reminder.isComplete = true
-                        }
-                        LocationController.sharedController.remindersUsingLocationCount -= 1
-                        ReminderController.sharedController.saveToPersistentStorage()
-                        if let reminder = reminder {
-                            RegionController.sharedController.stopMonitoringReminder(reminder)
-                        }
-                        
-                        self.tableView.reloadData()
-                        
-                    })
-                } else if checkboxButton.selected.boolValue == true {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        if let reminder = reminder {
-                            reminder.isComplete = false
-                        }
-                        checkboxButton.selected = false
-                        ReminderController.sharedController.saveToPersistentStorage()
-                        
-                        self.tableView.reloadData()
-                        
-                    })
-                    
-                }
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
-            }
+        } else if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {
+            reminder = ReminderController.sharedController.completeReminders[indexPath.row]
         }
+        
+        
+        if checkboxButton.selected.boolValue == false {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let reminder = reminder {
+                    reminder.isComplete = true
+                }
+                LocationController.sharedController.remindersUsingLocationCount -= 1
+                ReminderController.sharedController.saveToPersistentStorage()
+                if let reminder = reminder {
+                    RegionController.sharedController.stopMonitoringReminder(reminder)
+                }
+                
+                self.tableView.reloadData()
+                
+            })
+        } else if checkboxButton.selected.boolValue == true {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let reminder = reminder {
+                    reminder.isComplete = false
+                }
+                checkboxButton.selected = false
+                ReminderController.sharedController.saveToPersistentStorage()
+                
+                self.tableView.reloadData()
+                
+            })
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
+        
+        
     }
 }

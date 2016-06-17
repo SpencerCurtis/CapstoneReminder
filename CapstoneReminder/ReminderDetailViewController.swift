@@ -61,14 +61,19 @@
         
         func setUpViewsBasedOnSegmentedControl() {
             if alertSegmentedControl.selectedSegmentIndex == 0 {
+                
                 alertDatePicker.hidden = false
                 uponMovingFromLocationLabel.hidden = true
                 atALocationLabel.hidden = true
+                
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
+                
                 alertDatePicker.hidden = true
                 atALocationLabel.hidden = true
                 uponMovingFromLocationLabel.hidden = false
+                
             } else if alertSegmentedControl.selectedSegmentIndex == 2 {
+                
                 alertDatePicker.hidden = true
                 uponMovingFromLocationLabel.hidden = true
                 atALocationLabel.hidden = false
@@ -100,10 +105,12 @@
                 LocationController.sharedController.locationManager.requestLocation()
                 LocationController.sharedController.currentLocation = LocationController.sharedController.locationManager.location
                 performSegueWithIdentifier("toMapView", sender: self)
+                
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 LocationController.sharedController.requestAuthorization()
                 setUpViewsBasedOnSegmentedControl()
                 alertDatePicker.hidden = true
+                
             } else if alertSegmentedControl.selectedSegmentIndex == 0 {
                 setUpViewsBasedOnSegmentedControl()
                 LocationController.sharedController.locationManager.requestLocation()
@@ -222,7 +229,9 @@
                     reminder.alertLabelText = "Upon Moving"
                 }
                 ReminderController.sharedController.saveToPersistentStorage()
+                
             } else {
+                
                 // New Remindrs
                 
                 let location = LocationController.sharedController.locationManager.location
@@ -289,11 +298,11 @@
             
         }
         
-        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            if segue.identifier == "toMapView" {
-            }
-            
-        }
+//        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//            if segue.identifier == "toMapView" {
+//            }
+//            
+//        }
     }
     
     extension UIViewController: UITextFieldDelegate {
