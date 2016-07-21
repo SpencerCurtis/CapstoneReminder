@@ -12,20 +12,20 @@ import MapKit
 class LocationSearchTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var handleMapSearchDelegate: HandleMapSearch? = nil
-
+    
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-
+    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text else { return }
@@ -41,7 +41,7 @@ class LocationSearchTableViewController: UITableViewController, UISearchResultsU
             self.tableView.reloadData()
         }
     }
-
+    
     func parseAddress(selectedItem:MKPlacemark) -> String {
         // Put a space between "4" and "Melrose Place"
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
@@ -67,11 +67,11 @@ class LocationSearchTableViewController: UITableViewController, UISearchResultsU
     }
     
     // MARK: - Table view data source
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchingItems.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
         let selectedItem = matchingItems[indexPath.row].placemark
@@ -82,7 +82,7 @@ class LocationSearchTableViewController: UITableViewController, UISearchResultsU
         
         return cell
     }
-
+    
 }
 
 extension LocationSearchTableViewController {

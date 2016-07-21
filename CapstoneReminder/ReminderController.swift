@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class ReminderController {
     
@@ -58,14 +59,24 @@ class ReminderController {
     }
     
     func removeReminder(reminder: Reminder) {
+        
         reminder.managedObjectContext?.deleteObject(reminder)
         if reminder.location != nil {
-        LocationController.sharedController.decreaseLocationCount()
+            LocationController.sharedController.decreaseLocationCount()
         }
         if reminder.alertLabelText == "Upon Arriving" {
             RegionController.sharedController.stopMonitoringReminder(reminder)
         }
         saveToPersistentStorage()
+        
+        
+        guard let scheduledNotifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        
+        for notification in scheduledNotifications {
+            if notification.alertBody == reminder.title {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+            }
+        }
     }
     
     // MARK: - Persistence
