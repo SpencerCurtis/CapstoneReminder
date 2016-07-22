@@ -145,10 +145,12 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                 if let reminder = reminder {
                     reminder.isComplete = true
                 }
+                
                 LocationController.sharedController.remindersUsingLocationCount -= 1
                 ReminderController.sharedController.saveToPersistentStorage()
                 if let reminder = reminder {
                     RegionController.sharedController.stopMonitoringReminder(reminder)
+                    ReminderController.sharedController.deleteNotificationForRemindr(reminder)
                 }
                 
                 self.tableView.reloadData()

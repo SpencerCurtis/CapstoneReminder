@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationCategoryType</key>
 	<array>
 		<string></string>
@@ -34,7 +34,6 @@
 	<string>So we can remind you when you leave or arrive at your desired location.</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>bluetooth-peripheral</string>
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

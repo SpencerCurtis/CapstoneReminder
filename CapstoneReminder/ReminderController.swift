@@ -70,6 +70,10 @@ class ReminderController {
         saveToPersistentStorage()
         
         
+        deleteNotificationForRemindr(reminder)
+    }
+    
+    func deleteNotificationForRemindr(reminder: Reminder) {
         guard let scheduledNotifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
         
         for notification in scheduledNotifications {
