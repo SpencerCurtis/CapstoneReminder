@@ -9,7 +9,7 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
@@ -24,17 +24,15 @@ class FirstViewController: UIViewController {
         UIView.animateWithDuration(2.0, delay: 0.2, options: [.CurveEaseOut], animations: {
             self.imageView.center.y = self.imageView.center.y + 120
             }, completion: nil)
-        
-
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-   
-
+    
+    
+    
 }

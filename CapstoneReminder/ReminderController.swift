@@ -85,6 +85,22 @@ class ReminderController {
     
     // MARK: - Persistence
     
+    func saveToiCloud() {
+        let dictionaries = reminders.map({$0.dictionaryRepresentation})
+        NSUbiquitousKeyValueStore.defaultStore().setObject(dictionaries, forKey: "reminders")
+    }
+    
+    func loadFromiCloud() {
+        let reminders = NSUbiquitousKeyValueStore.defaultStore().objectForKey("reminders")
+        guard let remindersArray = reminders as? [[String: AnyObject]] else { print("Failed to get reminders"); return }
+        _ = remindersArray.flatMap({Reminder(dictionary: $0)})
+        saveToPersistentStorage()
+    }
+    
+    func loadFromPersistentStorage() {
+        
+    }
+    
     func saveToPersistentStorage() {
         
         do {
@@ -92,5 +108,7 @@ class ReminderController {
         } catch {
             print("Error saving Managed Object Context. Items not saved.")
         }
+        
+        saveToiCloud()
     }
 }

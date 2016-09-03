@@ -25,6 +25,7 @@
         @IBOutlet weak var atALocationLabel: UILabel!
         @IBOutlet weak var uponMovingFromLocationLabel: UILabel!
         
+        
         var alertTimeValue = NSDate()
         var reminder: Reminder?
         
@@ -155,6 +156,7 @@
                 updateReminder()
                 navigationController?.popViewControllerAnimated(true)
             }
+            //            overlayView.displayView(yself.view)
         }
         
         func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -298,11 +300,11 @@
             
         }
         
-//        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//            if segue.identifier == "toMapView" {
-//            }
-//            
-//        }
+        //        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //            if segue.identifier == "toMapView" {
+        //            }
+        //            
+        //        }
     }
     
     extension UIViewController: UITextFieldDelegate {

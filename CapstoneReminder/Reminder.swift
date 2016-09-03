@@ -48,4 +48,56 @@ class Reminder: NSManagedObject {
             return nil
         }
     }
+    
+    
+    private let kAlertLabelText = "alertLabelText"
+    private let kCreationDate = "creationDate"
+    private let kHasBeenNotified = "hasBeenNotified"
+    private let kIsComplete = "isComplete"
+    private let kLocationLatitude = "locationLatitude"
+    private let kLocationLongitude = "locationLongitude"
+    private let kNotes = "notes"
+    private let kReminderTime = "reminderTime"
+    private let kTitle = "title"
+    private let kAtALocationLabelText = "atALocationLabelText"
+    
+    
+    
+}
+
+extension Reminder {
+    
+    var dictionaryRepresentation: [String: AnyObject] {
+        
+        guard let alertLabelText = alertLabelText,
+            creationDate = creationDate,
+            hasBeenNotified = hasBeenNotified,
+            isComplete = isComplete,
+            locationLatitude = locationLatitude,
+            locationLongitude = locationLongitude,
+            notes = notes,
+            title = title
+            else { return [:] }
+        
+        return [kAlertLabelText: alertLabelText, kCreationDate: creationDate, kHasBeenNotified: hasBeenNotified, kIsComplete: isComplete, kLocationLatitude: locationLatitude, kLocationLongitude: locationLongitude, kNotes: notes, kReminderTime: reminderTime ?? NSDate(), kTitle: title, kAtALocationLabelText: atALocationLabelText ?? ""]
+        
+    }
+    
+    convenience init?(dictionary: [String: AnyObject], context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+        
+        
+        guard let entity = NSEntityDescription.entityForName("Reminder", inManagedObjectContext:  context) else { return nil }
+        
+        self.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        guard let alertLabelText = dictionary[kAlertLabelText] as? String, creationDate = dictionary[kCreationDate] as? NSDate, hasBeenNotified = dictionary[kHasBeenNotified] as? NSNumber, locationLatitude = dictionary[kLocationLatitude] as? NSNumber, locationLongitude = dictionary[kLocationLongitude] as? NSNumber, notes = dictionary[kNotes] as? String else { return nil }
+        
+        self.alertLabelText = alertLabelText
+        self.creationDate = creationDate
+        self.hasBeenNotified = hasBeenNotified
+        self.isComplete = false
+        self.locationLatitude = locationLatitude
+        self.locationLongitude = locationLongitude
+        self.notes = notes
+    }
 }

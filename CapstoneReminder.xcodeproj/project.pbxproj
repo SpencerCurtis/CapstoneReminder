@@ -35,9 +35,12 @@
 		46A52D9E1CA9E4660069C9B4 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A52D9C1CA9E4660069C9B4 /* Reminder.swift */; };
 		46E23C9B1CDA4CE900A67895 /* RegionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E23C9A1CDA4CE900A67895 /* RegionController.swift */; };
 		46E23C9D1CDA53AB00A67895 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E23C9C1CDA53AB00A67895 /* NotificationController.swift */; };
+		46F97E931D4C39C6002CEB2D /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F97E921D4C39C6002CEB2D /* OverlayView.xib */; };
+		46F97E951D4C3ABB002CEB2D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F97E941D4C3ABB002CEB2D /* OverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		461167E11D7B561F00400399 /* Remindr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Remindr.entitlements; sourceTree = "<group>"; };
 		462A45971CD916F700CF9C5D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		463E3F781CA2E79C00E55E92 /* Remindr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remindr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		463E3F7B1CA2E79C00E55E92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 		46A52D9C1CA9E4660069C9B4 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		46E23C9A1CDA4CE900A67895 /* RegionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionController.swift; sourceTree = "<group>"; };
 		46E23C9C1CDA53AB00A67895 /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		46F97E921D4C39C6002CEB2D /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayView.xib; path = ../OverlayView.xib; sourceTree = "<group>"; };
+		46F97E941D4C3ABB002CEB2D /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 		463E3F6F1CA2E79C00E55E92 = {
 			isa = PBXGroup;
 			children = (
+				461167E11D7B561F00400399 /* Remindr.entitlements */,
 				4694082B1CC1394A00191855 /* MapKit.framework */,
 				463E3F7A1CA2E79C00E55E92 /* CapstoneReminder */,
 				462A45961CD916F700CF9C5D /* Frameworks */,
@@ -144,6 +150,8 @@
 				466304261CA32ED500EB5986 /* ReminderListTableViewController.swift */,
 				466304281CA32EF600EB5986 /* ReminderDetailViewController.swift */,
 				4663043A1CA3486200EB5986 /* ReminderTableViewCell.swift */,
+				46F97E921D4C39C6002CEB2D /* OverlayView.xib */,
+				46F97E941D4C3ABB002CEB2D /* OverlayView.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -216,6 +224,9 @@
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -244,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				463E3F861CA2E79C00E55E92 /* LaunchScreen.storyboard in Resources */,
+				46F97E931D4C39C6002CEB2D /* OverlayView.xib in Resources */,
 				463E3F831CA2E79C00E55E92 /* Assets.xcassets in Resources */,
 				463E3F811CA2E79C00E55E92 /* Main.storyboard in Resources */,
 			);
@@ -260,6 +272,7 @@
 				466304321CA3390F00EB5986 /* Stack.swift in Sources */,
 				466304271CA32ED500EB5986 /* ReminderListTableViewController.swift in Sources */,
 				46A52D9E1CA9E4660069C9B4 /* Reminder.swift in Sources */,
+				46F97E951D4C3ABB002CEB2D /* OverlayView.swift in Sources */,
 				467EC8621CA5F20600BB8A0E /* LocationController.swift in Sources */,
 				4681E9B61CE12910009A3225 /* FifthViewController.swift in Sources */,
 				46469F331CAEFFBC0001E50E /* AlarmController.swift in Sources */,
@@ -394,6 +407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Remindr.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CapstoneReminder/Info.plist;
@@ -410,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Remindr.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CapstoneReminder/Info.plist;
