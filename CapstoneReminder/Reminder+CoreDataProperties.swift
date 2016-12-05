@@ -15,13 +15,13 @@ import CoreData
 extension Reminder {
 
     @NSManaged var alertLabelText: String?
-    @NSManaged var creationDate: NSDate?
+    @NSManaged var creationDate: Date?
     @NSManaged var hasBeenNotified: NSNumber?
     @NSManaged var isComplete: NSNumber?
     @NSManaged var locationLatitude: NSNumber?
     @NSManaged var locationLongitude: NSNumber?
     @NSManaged var notes: String?
-    @NSManaged var reminderTime: NSDate?
+    @NSManaged var reminderTime: Date?
     @NSManaged var title: String?
     @NSManaged var atALocationLabelText: String?
 

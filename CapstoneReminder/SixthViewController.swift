@@ -14,15 +14,15 @@ class SixthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animateWithDuration(1.5) {
+        UIView.animate(withDuration: 1.5, animations: {
             self.getStartedButton.alpha = 1
-        }
+        }) 
 
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func getStartedButtonTapped(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstRun")
+    @IBAction func getStartedButtonTapped(_ sender: AnyObject) {
+        UserDefaults.standard.set(true, forKey: "firstRun")
         
     }
     override func didReceiveMemoryWarning() {

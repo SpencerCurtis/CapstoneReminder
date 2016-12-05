@@ -10,15 +10,15 @@ import UIKit
 
 class WalkThroughPageViewController: UIPageViewController {
     
-    let first = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FirstViewController")
-    let second = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SecondViewController")
-    let third = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ThirdViewController")
-    let fourth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FourthViewController")
-    let fifth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FifthViewController")
-    let sixth = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SixthViewController")
+    let first = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FirstViewController")
+    let second = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondViewController")
+    let third = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ThirdViewController")
+    let fourth = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FourthViewController")
+    let fifth = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FifthViewController")
+    let sixth = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SixthViewController")
     
     var firstRun: Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey("firstRun")
+        return UserDefaults.standard.bool(forKey: "firstRun")
     }
     
     var orderedViewControllers: [UIViewController] {
@@ -30,22 +30,22 @@ class WalkThroughPageViewController: UIPageViewController {
         
         dataSource = self
         if let firstVC = orderedViewControllers.first {
-            setViewControllers([firstVC], direction: .Forward, animated: true, completion: nil)
+            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         // Do any additional setup after loading the view.
     }
     
-    private func newViewController(name: String) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("\(name)ViewController")
+    fileprivate func newViewController(_ name: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(name)ViewController")
     }
     
 }
 
 extension WalkThroughPageViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
         
@@ -62,9 +62,9 @@ extension WalkThroughPageViewController: UIPageViewControllerDataSource {
         return orderedViewControllers[previousIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
         

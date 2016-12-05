@@ -8,6 +8,30 @@
     
     import UIKit
     import CoreLocation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
     
     class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate {
         
@@ -26,7 +50,7 @@
         @IBOutlet weak var uponMovingFromLocationLabel: UILabel!
         
         
-        var alertTimeValue = NSDate()
+        var alertTimeValue = Date()
         var reminder: Reminder?
         
         override func viewDidLoad() {
@@ -34,7 +58,7 @@
             notesTextView.sizeToFit()
             titleTextField.delegate = self
             if reminder != nil {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.title = "Edit Remindr"
                 })
             }
@@ -44,7 +68,7 @@
             
         }
         
-        override func viewWillAppear(animated: Bool) {
+        override func viewWillAppear(_ animated: Bool) {
             editTextView()
             editTextField()
             activityIndicator.stopAnimating()
@@ -63,26 +87,26 @@
         func setUpViewsBasedOnSegmentedControl() {
             if alertSegmentedControl.selectedSegmentIndex == 0 {
                 
-                alertDatePicker.hidden = false
-                uponMovingFromLocationLabel.hidden = true
-                atALocationLabel.hidden = true
+                alertDatePicker.isHidden = false
+                uponMovingFromLocationLabel.isHidden = true
+                atALocationLabel.isHidden = true
                 
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 
-                alertDatePicker.hidden = true
-                atALocationLabel.hidden = true
-                uponMovingFromLocationLabel.hidden = false
+                alertDatePicker.isHidden = true
+                atALocationLabel.isHidden = true
+                uponMovingFromLocationLabel.isHidden = false
                 
             } else if alertSegmentedControl.selectedSegmentIndex == 2 {
                 
-                alertDatePicker.hidden = true
-                uponMovingFromLocationLabel.hidden = true
-                atALocationLabel.hidden = false
+                alertDatePicker.isHidden = true
+                uponMovingFromLocationLabel.isHidden = true
+                atALocationLabel.isHidden = false
             }
         }
         
         func editOtherViews() {
-            alertDatePicker.minimumDate = NSDate()
+            alertDatePicker.minimumDate = Date()
             addToolBar(titleTextField)
             addToolBarForTextView(notesTextView)
             
@@ -93,45 +117,45 @@
             // Dispose of any resources that can be recreated.
         }
         
-        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             view.endEditing(true)
-            super.touchesBegan(touches, withEvent: event)
+            super.touchesBegan(touches, with: event)
         }
         
-        @IBAction func UponMovingSegmentedControlTapped(sender: AnyObject) {
+        @IBAction func UponMovingSegmentedControlTapped(_ sender: AnyObject) {
             if alertSegmentedControl.selectedSegmentIndex == 2 {
                 // MAKE SURE THEY HAVE PERMISSION
                 setUpViewsBasedOnSegmentedControl()
                 LocationController.sharedController.requestAuthorization()
                 LocationController.sharedController.locationManager.requestLocation()
                 LocationController.sharedController.currentLocation = LocationController.sharedController.locationManager.location
-                performSegueWithIdentifier("toMapView", sender: self)
+                performSegue(withIdentifier: "toMapView", sender: self)
                 
             } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                 LocationController.sharedController.requestAuthorization()
                 setUpViewsBasedOnSegmentedControl()
-                alertDatePicker.hidden = true
+                alertDatePicker.isHidden = true
                 
             } else if alertSegmentedControl.selectedSegmentIndex == 0 {
                 setUpViewsBasedOnSegmentedControl()
                 LocationController.sharedController.locationManager.requestLocation()
-                alertDatePicker.hidden = false
+                alertDatePicker.isHidden = false
             }
         }
         
         func editTextField() {
             self.titleTextField.layer.cornerRadius = 8
             self.titleTextField.layer.borderWidth = 0.6
-            self.titleTextField.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).CGColor
+            self.titleTextField.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).cgColor
             
         }
         func editTextView() {
             self.notesTextView.layer.cornerRadius = 8
             self.notesTextView.layer.borderWidth = 0.6
-            self.notesTextView.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).CGColor
+            self.notesTextView.layer.borderColor = UIColor(red: 0.784, green: 0.784, blue: 0.792, alpha: 1.00).cgColor
         }
         
-        @IBAction func saveButtonTapped(sender: AnyObject) {
+        @IBAction func saveButtonTapped(_ sender: AnyObject) {
             if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location == nil {
                 startActivityIndicator()
                 LocationController.sharedController.locationManager.requestLocation()
@@ -145,74 +169,74 @@
                 updateReminder()
                 stopActivityIndicator()
                 let status = CLLocationManager.authorizationStatus()
-                if status == .AuthorizedWhenInUse {
+                if status == .authorizedWhenInUse {
                     LocationController.sharedController.locationManager.requestLocation()
                 }
-                navigationController?.popViewControllerAnimated(true)
+                navigationController?.pop(animated: true)
             } else if alertSegmentedControl.selectedSegmentIndex == 0 {
                 updateReminder()
-                navigationController?.popViewControllerAnimated(true)
+                navigationController?.pop(animated: true)
             } else if alertSegmentedControl.selectedSegmentIndex == 2 {
                 updateReminder()
-                navigationController?.popViewControllerAnimated(true)
+                navigationController?.pop(animated: true)
             }
             //            overlayView.displayView(yself.view)
         }
         
-        func textFieldShouldReturn(textField: UITextField) -> Bool {
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             return true
         }
         
         func checkIfTextFieldIsEmpty() {
             if titleTextField.text?.isEmpty == true {
-                saveButton.enabled = false
+                saveButton.isEnabled = false
             } else if titleTextField.text?.isEmpty == false {
-                saveButton.enabled = true
+                saveButton.isEnabled = true
             }
         }
         
-        func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
             self.titleTextField = textField
             checkIfTextFieldIsEmpty()
             return true
         }
         
-        func textFieldDidEndEditing(textField: UITextField) {
+        func textFieldDidEndEditing(_ textField: UITextField) {
             checkIfTextFieldIsEmpty()
         }
         
         func startActivityIndicator() {
             activityIndicator.startAnimating()
-            saveButton.enabled = false
-            header.backBarButtonItem?.enabled = false
+            saveButton.isEnabled = false
+            header.backBarButtonItem?.isEnabled = false
             view.addSubview(activityIndicator)
-            updatingLocationView.hidden = false
+            updatingLocationView.isHidden = false
         }
         
         func stopActivityIndicator() {
             activityIndicator.stopAnimating()
-            updatingLocationView.hidden = true
-            navigationController?.popViewControllerAnimated(true)
+            updatingLocationView.isHidden = true
+            navigationController?.pop(animated: true)
         }
         
-        func displayAlertForReminder(reminder: Reminder) {
-            let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
-            let doneAction = UIAlertAction(title: "Okay", style: .Default) { (alert) in
+        func displayAlertForReminder(_ reminder: Reminder) {
+            let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .alert)
+            let doneAction = UIAlertAction(title: "Okay", style: .default) { (alert) in
                 
             }
             alert.addAction(doneAction)
-            if reminder.reminderTime?.timeIntervalSince1970 > NSDate().timeIntervalSince1970 {
-                self.presentViewController(alert, animated: true, completion: nil)
+            if reminder.reminderTime?.timeIntervalSince1970 > Date().timeIntervalSince1970 {
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
-        func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        func textView(_ textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
             return true
         }
         
         func updateReminder() {
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
             var latitude = LocationController.sharedController.currentLocation?.coordinate.latitude
             var longitude = LocationController.sharedController.currentLocation?.coordinate.longitude
             
@@ -225,7 +249,7 @@
                 reminder.title = title
                 reminder.notes = notes
                 if alertSegmentedControl.selectedSegmentIndex == 0 {
-                    let reminderTimeString = formatter.stringFromDate(reminderTime)
+                    let reminderTimeString = formatter.string(from: reminderTime)
                     reminder.alertLabelText = "At \(reminderTimeString)"
                 } else if alertSegmentedControl.selectedSegmentIndex == 1 {
                     reminder.alertLabelText = "Upon Moving"
@@ -243,15 +267,15 @@
                 if alertSegmentedControl.selectedSegmentIndex == 0 {
                     if let title = titleTextField.text {
                         
-                        let reminderTimeString = formatter.stringFromDate(reminderTime)
+                        let reminderTimeString = formatter.string(from: reminderTime)
                         alertLabelText =  "At \(reminderTimeString)"
-                        let newReminder = Reminder(title: title, notes: notes, reminderTime: reminderTime, alertLabelText: alertLabelText)
+                        let newReminder = Reminder(title: title, notes: notes!, reminderTime: reminderTime, alertLabelText: alertLabelText)
                         ReminderController.sharedController.addReminder(newReminder)
                         AlarmController.sharedController.sendNotificationForReminderWithTime(newReminder, fireDate: alertTimeDatePicker.date)
                     }
                 } else if alertSegmentedControl.selectedSegmentIndex == 1, let title = titleTextField.text, let longitude = longitude, let latitude = latitude {
                     
-                    let newReminder = Reminder(title: title, notes: notes, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
+                    let newReminder = Reminder(title: title, notes: notes!, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
                     ReminderController.sharedController.addReminder(newReminder)
                     LocationController.sharedController.remindersUsingLocationCount += 1
                 } else if alertSegmentedControl.selectedSegmentIndex == 2 {
@@ -265,7 +289,7 @@
             }
         }
         
-        func updateWithReminder(reminder: Reminder) {
+        func updateWithReminder(_ reminder: Reminder) {
             self.reminder = reminder
             
             if reminder.alertLabelText == "Upon Moving" {
@@ -287,10 +311,10 @@
                 notesTextView.text = notes
             }
             if alertSegmentedControl.selectedSegmentIndex == 0 {
-                let formatter = NSDateFormatter()
-                formatter.timeStyle = .ShortStyle
+                let formatter = DateFormatter()
+                formatter.timeStyle = .short
                 if let reminderTime = reminder.reminderTime {
-                    let alertLabelText = formatter.stringFromDate(reminderTime)
+                    let alertLabelText = formatter.string(from: reminderTime as Date)
                     reminder.alertLabelText = "At \(alertLabelText)"
                 }
                 
@@ -308,15 +332,15 @@
     }
     
     extension UIViewController: UITextFieldDelegate {
-        func addToolBar(textField: UITextField){
+        func addToolBar(_ textField: UITextField){
             let toolBar = UIToolbar()
-            toolBar.translucent = true
-            toolBar.barStyle = UIBarStyle.Default
-            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressed))
+            toolBar.isTranslucent = true
+            toolBar.barStyle = UIBarStyle.default
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(UIViewController.donePressed))
             doneButton.tintColor = UIColor.customCyanColor()
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
             toolBar.setItems([spaceButton, doneButton], animated: false)
-            toolBar.userInteractionEnabled = true
+            toolBar.isUserInteractionEnabled = true
             toolBar.sizeToFit()
             
             textField.delegate = self
@@ -328,15 +352,15 @@
     }
     
     extension UIViewController: UITextViewDelegate {
-        func addToolBarForTextView(textView: UITextView){
+        func addToolBarForTextView(_ textView: UITextView){
             let toolBar = UIToolbar()
-            toolBar.barStyle = UIBarStyle.Default
-            toolBar.translucent = true
-            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(UIViewController.donePressedForTextView))
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(UIViewController.donePressedForTextView))
             doneButton.tintColor = UIColor.customCyanColor()
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
             toolBar.setItems([spaceButton, doneButton], animated: false)
-            toolBar.userInteractionEnabled = true
+            toolBar.isUserInteractionEnabled = true
             toolBar.sizeToFit()
             
             textView.delegate = self
@@ -349,7 +373,15 @@
     
     
     
-    
+    extension UINavigationController {
+        func pop(animated: Bool) {
+            _ = self.popViewController(animated: animated)
+        }
+        
+        func popToRoot(animated: Bool) {
+            _ = self.popToRootViewController(animated: animated)
+        }
+    }
     
     
     

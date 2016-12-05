@@ -9,17 +9,41 @@
 import Foundation
 import CoreData
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ReminderController {
     
     static let sharedController = ReminderController()
     
     var reminders: [Reminder] {
-        let request = NSFetchRequest(entityName: "Reminder")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Reminder")
         
         do {
-            var reminders = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as! [Reminder]
-            reminders.sortInPlace({$0.creationDate?.timeIntervalSince1970 > $1.creationDate?.timeIntervalSince1970})
+            var reminders = try Stack.sharedStack.managedObjectContext.fetch(request) as! [Reminder]
+            reminders.sort(by: {$0.creationDate?.timeIntervalSince1970 > $1.creationDate?.timeIntervalSince1970})
             return reminders
         } catch {
             return []
@@ -43,7 +67,7 @@ class ReminderController {
     }
     
     
-    func addReminder(reminder: Reminder) {
+    func addReminder(_ reminder: Reminder) {
         if reminder.alertLabelText != "Upon Arriving" && reminder.alertLabelText != "Upon Moving" {
             saveToPersistentStorage()
         } else if reminder.alertLabelText == "Upon Arriving" && LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
@@ -58,9 +82,9 @@ class ReminderController {
         }
     }
     
-    func removeReminder(reminder: Reminder) {
+    func removeReminder(_ reminder: Reminder) {
         
-        reminder.managedObjectContext?.deleteObject(reminder)
+        reminder.managedObjectContext?.delete(reminder)
         if reminder.location != nil {
             LocationController.sharedController.decreaseLocationCount()
         }
@@ -73,12 +97,12 @@ class ReminderController {
         deleteNotificationForRemindr(reminder)
     }
     
-    func deleteNotificationForRemindr(reminder: Reminder) {
-        guard let scheduledNotifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+    func deleteNotificationForRemindr(_ reminder: Reminder) {
+        guard let scheduledNotifications = UIApplication.shared.scheduledLocalNotifications else { return }
         
         for notification in scheduledNotifications {
             if notification.alertBody == reminder.title {
-                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                UIApplication.shared.cancelLocalNotification(notification)
             }
         }
     }
@@ -87,11 +111,11 @@ class ReminderController {
     
     func saveToiCloud() {
         let dictionaries = reminders.map({$0.dictionaryRepresentation})
-        NSUbiquitousKeyValueStore.defaultStore().setObject(dictionaries, forKey: "reminders")
+        NSUbiquitousKeyValueStore.default().set(dictionaries, forKey: "reminders")
     }
     
     func loadFromiCloud() {
-        let reminders = NSUbiquitousKeyValueStore.defaultStore().objectForKey("reminders")
+        let reminders = NSUbiquitousKeyValueStore.default().object(forKey: "reminders")
         guard let remindersArray = reminders as? [[String: AnyObject]] else { print("Failed to get reminders"); return }
         _ = remindersArray.flatMap({Reminder(dictionary: $0)})
         saveToPersistentStorage()

@@ -21,33 +21,33 @@ class ReminderTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    @IBAction func buttonTapped(sender: AnyObject) {
+    @IBAction func buttonTapped(_ sender: AnyObject) {
         if let delegate = delegate {
             delegate.reminderCellTapped(checkboxButton, sender: self)
         }
     }
     
-    func updateButton(isComplete: Bool) {
+    func updateButton(_ isComplete: Bool) {
         
         if isComplete == true {
-            checkboxButton.setImage(UIImage(named: "checkedBox") ?? UIImage(), forState: .Normal)
+            checkboxButton.setImage(UIImage(named: "checkedBox") ?? UIImage(), for: UIControlState())
         } else if isComplete == false {
-            checkboxButton.setImage(UIImage(named: "uncheckedBox") ?? UIImage(), forState: .Normal)
+            checkboxButton.setImage(UIImage(named: "uncheckedBox") ?? UIImage(), for: UIControlState())
         }
     }
     
 }
 protocol ReminderTableViewCellDelegate {
-    func reminderCellTapped(checkboxButton: UIButton, sender: ReminderTableViewCell)
+    func reminderCellTapped(_ checkboxButton: UIButton, sender: ReminderTableViewCell)
 }
 
 
 extension ReminderTableViewCell {
-    func updateWithReminder(reminder: Reminder) {
+    func updateWithReminder(_ reminder: Reminder) {
         titleLabel.text = reminder.title
         noteLabel.text = reminder.notes
         alertLabel.text = reminder.alertLabelText

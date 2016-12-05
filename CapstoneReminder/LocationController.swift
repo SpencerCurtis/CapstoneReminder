@@ -48,23 +48,23 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         currentLocation = locations.last
-        NSNotificationCenter.defaultCenter().postNotificationName("hasLocation", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "hasLocation"), object: nil)
     }
     
-    func displayAlert(viewController: UIViewController, reminder: Reminder) {
-        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
-        let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
+    func displayAlert(_ viewController: UIViewController, reminder: Reminder) {
+        let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
         })
         alert.addAction(okayAction)
-        viewController.presentViewController(alert, animated: true, completion: nil)
+        viewController.present(alert, animated: true, completion: nil)
         
     }
     
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         var reminderForRegion: Reminder? = nil
         for reminder in ReminderController.sharedController.reminders {
             if reminder.title == region.identifier {
@@ -72,7 +72,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             }
         }
         if let reminder = reminderForRegion {
-            if UIApplication.sharedApplication().applicationState == .Active {
+            if UIApplication.shared.applicationState == .active {
                 NotificationController.sharedController.alertForReminder(reminder)
                 print("Geofence triggered")
             } else {
@@ -84,7 +84,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         
     }
     
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         var reminderForRegion: Reminder? = nil
         for reminder in ReminderController.sharedController.reminders {
             if reminder.title == region.identifier {
@@ -92,7 +92,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             }
         }
         if let reminder = reminderForRegion {
-            if UIApplication.sharedApplication().applicationState == .Active {
+            if UIApplication.shared.applicationState == .active {
                 NotificationController.sharedController.alertForReminder(reminder)
                 print("Geofence triggered")
             } else {
@@ -111,7 +111,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     func requestAuthorization() {
         
-        if authState == CLAuthorizationStatus.NotDetermined || authState == CLAuthorizationStatus.Restricted {
+        if authState == CLAuthorizationStatus.notDetermined || authState == CLAuthorizationStatus.restricted {
             locationManager.requestAlwaysAuthorization()
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.delegate = self
@@ -121,11 +121,11 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationManager.requestLocation()
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed when getting users location")
     }
 }

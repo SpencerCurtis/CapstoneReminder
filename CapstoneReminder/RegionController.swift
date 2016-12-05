@@ -14,7 +14,7 @@ class RegionController {
     
     static let sharedController = RegionController()
     
-    func regionWithReminderUponArriving(reminder: Reminder) -> CLCircularRegion? {
+    func regionWithReminderUponArriving(_ reminder: Reminder) -> CLCircularRegion? {
         if LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
             let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 300, identifier: reminder.title!)
             
@@ -29,7 +29,7 @@ class RegionController {
         
     }
     
-    func regionWithReminderUponMoving(reminder: Reminder) -> CLCircularRegion? {
+    func regionWithReminderUponMoving(_ reminder: Reminder) -> CLCircularRegion? {
         if LocationController.sharedController.locationManager.monitoredRegions.count <= 20 {
             let region = CLCircularRegion(center: reminder.location!.coordinate, radius: 300, identifier: reminder.title!)
             region.notifyOnEntry = false
@@ -42,33 +42,34 @@ class RegionController {
         
     }
     
-    func startMonitoringReminderUponMoving(reminder: Reminder) {
-        guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) == true else {
+    func startMonitoringReminderUponMoving(_ reminder: Reminder) {
+        
+        guard CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) == true else {
             simpleAlert("Error", message: "Geofencing is not supported on this device")
             return
         }
         if let region = regionWithReminderUponMoving(reminder) {
-            LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+            LocationController.sharedController.locationManager.startMonitoring(for: region)
         }
     }
     
     
     
-    func startMonitoringReminderUponArriving(reminder: Reminder) {
-        guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) == true else {
+    func startMonitoringReminderUponArriving(_ reminder: Reminder) {
+        guard CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) == true else {
             simpleAlert("Error", message: "Geofencing is not supported on this device")
             return
         }
         if let region = regionWithReminderUponArriving(reminder) {
-            LocationController.sharedController.locationManager.startMonitoringForRegion(region)
+            LocationController.sharedController.locationManager.startMonitoring(for: region)
         }
     }
     
-    func stopMonitoringReminder(reminder: Reminder) {
+    func stopMonitoringReminder(_ reminder: Reminder) {
         for region in LocationController.sharedController.locationManager.monitoredRegions {
             if let circularRegion = region as? CLCircularRegion {
                 if circularRegion.identifier == reminder.title {
-                    LocationController.sharedController.locationManager.stopMonitoringForRegion(circularRegion)
+                    LocationController.sharedController.locationManager.stopMonitoring(for: circularRegion)
                 }
             }
         }
@@ -76,9 +77,9 @@ class RegionController {
 }
 
 
-func simpleAlert(title: String, message: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-    let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+func simpleAlert(_ title: String, message: String) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
     alert.addAction(dismissAction)
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
 }

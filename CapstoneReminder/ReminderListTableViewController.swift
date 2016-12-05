@@ -22,13 +22,13 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         loadCount()
         
         self.tableView.tableHeaderView = searchBarView
-        self.tableView.contentOffset = CGPointMake(0, 45)
+        self.tableView.contentOffset = CGPoint(x: 0, y: 45)
         
         self.tableView.estimatedRowHeight = 58
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
         
         let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
+        if status == .authorizedWhenInUse  && LocationController.sharedController.remindersUsingLocationCount > 1 {
             LocationController.sharedController.locationManager.requestLocation()
         }
         
@@ -39,9 +39,9 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        self.tableView.contentOffset = CGPointMake(0, 45)
+        self.tableView.contentOffset = CGPoint(x: 0, y: 45)
         reminderFilterSegmentedControl.selectedSegmentIndex = 0
     }
     
@@ -55,17 +55,13 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         }
     }
     
-    @IBAction func remindrFilterSegmentedControlValueChanged(sender: AnyObject) {
+    @IBAction func remindrFilterSegmentedControlValueChanged(_ sender: AnyObject) {
         tableView.reloadData()
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var returnInt = 0
         if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
             returnInt = ReminderController.sharedController.incompleteReminders.count
@@ -76,8 +72,8 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reminderCell", forIndexPath: indexPath) as! ReminderTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderTableViewCell
         if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
             let reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
             cell.delegate = self
@@ -94,24 +90,25 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
         
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return ReminderController.sharedController.reminders.count > 0 ? UITableViewAutomaticDimension : 58
     }
     
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             let reminder = ReminderController.sharedController.reminders[indexPath.row]
             ReminderController.sharedController.removeReminder(reminder)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editReminder" {
-            let dvc = segue.destinationViewController as? ReminderDetailViewController
+            let dvc = segue.destination as? ReminderDetailViewController
             
             if let ReminderDetailViewController = dvc {
                 _ = ReminderDetailViewController.view
@@ -130,8 +127,8 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
 
 extension ReminderListTableViewController: ReminderTableViewCellDelegate {
     
-    func reminderCellTapped(checkboxButton: UIButton, sender: ReminderTableViewCell) {
-        let indexPath = tableView.indexPathForCell(sender)!
+    func reminderCellTapped(_ checkboxButton: UIButton, sender: ReminderTableViewCell) {
+        let indexPath = tableView.indexPath(for: sender)!
         var reminder: Reminder?
         if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
             reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
@@ -140,8 +137,8 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
         }
         
         
-        if checkboxButton.selected.boolValue == false {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        if checkboxButton.isSelected == false {
+            DispatchQueue.main.async(execute: { () -> Void in
                 if let reminder = reminder {
                     reminder.isComplete = true
                 }
@@ -156,12 +153,12 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
                 self.tableView.reloadData()
                 
             })
-        } else if checkboxButton.selected.boolValue == true {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        } else if checkboxButton.isSelected == true {
+            DispatchQueue.main.async(execute: { () -> Void in
                 if let reminder = reminder {
                     reminder.isComplete = false
                 }
-                checkboxButton.selected = false
+                checkboxButton.isSelected = false
                 ReminderController.sharedController.saveToPersistentStorage()
                 
                 self.tableView.reloadData()
@@ -169,7 +166,7 @@ extension ReminderListTableViewController: ReminderTableViewCellDelegate {
             })
             
         }
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             self.tableView.reloadData()
         })
         

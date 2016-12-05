@@ -17,9 +17,9 @@ class FifthViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        let _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(registerForNotifications), userInfo: nil, repeats: false)
-        let _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(requestLocationAuthorization), userInfo: nil, repeats: false)
+    override func viewDidAppear(_ animated: Bool) {
+        let _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(registerForNotifications), userInfo: nil, repeats: false)
+        let _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(requestLocationAuthorization), userInfo: nil, repeats: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,8 +32,8 @@ class FifthViewController: UIViewController {
     }
     
     func registerForNotifications() {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
     }
 
     /*

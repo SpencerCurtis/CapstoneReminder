@@ -16,12 +16,12 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animateWithDuration(2.5) {
+        UIView.animate(withDuration: 2.5, animations: {
             self.headerLabel.alpha = 1.0
             self.bodyLabel.alpha = 1.0
-        }
+        }) 
         
-        UIView.animateWithDuration(2.0, delay: 0.2, options: [.CurveEaseOut], animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.2, options: [.curveEaseOut], animations: {
             self.imageView.center.y = self.imageView.center.y + 120
             }, completion: nil)
         // Do any additional setup after loading the view.

@@ -17,10 +17,10 @@ class ThirdViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UIView.animateWithDuration(2.0) {
+    override func viewWillAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 2.0, animations: {
             self.segmentedAlertHighlightedImageView.alpha = 1.0
-        }
+        }) 
     }
 
     override func didReceiveMemoryWarning() {

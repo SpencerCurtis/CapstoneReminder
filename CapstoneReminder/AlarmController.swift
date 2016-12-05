@@ -16,27 +16,27 @@ class AlarmController  {
     
     
     
-    func sendNotificationForReminderWithTime(reminder: Reminder, fireDate: NSDate) {
+    func sendNotificationForReminderWithTime(_ reminder: Reminder, fireDate: Date) {
         if reminder.hasBeenNotified == false {
-            let vc = UIApplication.sharedApplication().keyWindow?.rootViewController
-            let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .Alert)
-            let okayAction = UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) in
-                alert.dismissViewControllerAnimated(true, completion: nil)
+            let vc = UIApplication.shared.keyWindow?.rootViewController
+            let alert = UIAlertController(title: reminder.title, message: reminder.notes, preferredStyle: .alert)
+            let okayAction = UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
             })
             alert.addAction(okayAction)
             let notification = UILocalNotification()
             notification.fireDate = fireDate
             notification.alertBody = reminder.title
             notification.soundName = UILocalNotificationDefaultSoundName
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            UIApplication.shared.scheduleLocalNotification(notification)
             if let vc = vc {
-                if NSDate().timeIntervalSince1970 > fireDate.timeIntervalSince1970 {
-                    vc.presentViewController(alert, animated: true, completion: nil)
+                if Date().timeIntervalSince1970 > fireDate.timeIntervalSince1970 {
+                    vc.present(alert, animated: true, completion: nil)
                     let notification = UILocalNotification()
                     notification.fireDate = fireDate
                     notification.alertBody = reminder.title
                     notification.soundName = UILocalNotificationDefaultSoundName
-                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                    UIApplication.shared.scheduleLocalNotification(notification)
                     reminder.hasBeenNotified = true
                     ReminderController.sharedController.saveToPersistentStorage()
                     

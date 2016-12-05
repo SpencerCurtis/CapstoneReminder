@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol HandleMapSearch {
-    func dropPinZoomIn(placemark: MKPlacemark)
+    func dropPinZoomIn(_ placemark: MKPlacemark)
 }
 
 class MapViewController: UIViewController, UISearchBarDelegate {
@@ -34,12 +34,12 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.topItem!.title = ""
-        mapView.mapType = .Hybrid
+        mapView.mapType = .hybrid
         
         if let currentLocation = currentLocation {
             centerMapOnLocation(currentLocation)
         }
-        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTableViewController") as! LocationSearchTableViewController
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTableViewController") as! LocationSearchTableViewController
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         let searchBar = resultSearchController?.searchBar
@@ -59,12 +59,12 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         let coordinate = annotation.coordinate
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         LocationController.sharedController.selectedLocation = location
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.pop(animated: true)
         
         }
     }
     
-    func centerMapOnLocation(location: CLLocation) {
+    func centerMapOnLocation(_ location: CLLocation) {
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
@@ -72,7 +72,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
 }
 
 extension MapViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark: MKPlacemark) {
+    func dropPinZoomIn(_ placemark: MKPlacemark) {
         selectedPin = placemark
         
         mapView.removeAnnotations(mapView.annotations)
@@ -93,13 +93,13 @@ extension MapViewController: HandleMapSearch {
 }
 
 extension MapViewController : MKMapViewDelegate {
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         if annotation is MKUserLocation {
             // Return nil so map view draws "blue dot" for standard user location
             return nil
         }
         let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView?.pinTintColor = UIColor.customCyanColor()
         pinView?.canShowCallout = true
@@ -107,9 +107,9 @@ extension MapViewController : MKMapViewDelegate {
 
         
         let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: CGPointZero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "Forward-50") ?? UIImage(), forState: .Normal)
-        button.addTarget(self, action: #selector(getLocation), forControlEvents: .TouchUpInside)
+        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        button.setBackgroundImage(UIImage(named: "Forward-50") ?? UIImage(), for: UIControlState())
+        button.addTarget(self, action: #selector(getLocation), for: .touchUpInside)
         pinView?.rightCalloutAccessoryView = button
         self.selectedAnnotation = annotation
         return pinView

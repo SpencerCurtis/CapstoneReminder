@@ -14,7 +14,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.animateWithDuration(2.0, delay: 0.3, options: [], animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.3, options: [], animations: {
             self.bodyLabel.alpha = 1.0
             }, completion: nil)
 
