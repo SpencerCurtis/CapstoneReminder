@@ -128,8 +128,10 @@ class ReminderListTableViewController: UITableViewController, CLLocationManagerD
 extension ReminderListTableViewController: ReminderTableViewCellDelegate {
     
     func reminderCellTapped(_ checkboxButton: UIButton, sender: ReminderTableViewCell) {
-        let indexPath = tableView.indexPath(for: sender)!
+        guard let indexPath = tableView.indexPath(for: sender) else { return }
+        
         var reminder: Reminder?
+        
         if reminderFilterSegmentedControl.selectedSegmentIndex == 0 {
             reminder = ReminderController.sharedController.incompleteReminders[indexPath.row]
         } else if reminderFilterSegmentedControl.selectedSegmentIndex == 1 {

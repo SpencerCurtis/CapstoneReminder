@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AudioToolbox
+import UserNotifications
 
 class NotificationController {
     
@@ -28,13 +29,25 @@ class NotificationController {
     }
     
     func notificationForReminder(_ reminder: Reminder) {
-        let notification = UILocalNotification()
-        notification.alertBody = reminder.title
-        notification.fireDate = Date()
-        notification.soundName = UILocalNotificationDefaultSoundName
+        guard let reminderTitle = reminder.title else { NSLog("No title found for reminder, cannot create a notification."); return }
         
-        UIApplication.shared.presentLocalNotificationNow(notification)
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "alert"), object: nil)
+        let identifier = "reminder"
+        let content = UNMutableNotificationContent()
+    
+        content.body = reminderTitle
+        
+        content.sound = UNNotificationSound.default()
+        
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            guard let error = error else { print("Successfully scheduled notification"); return }
+            print(error.localizedDescription)
+        }
     }
     
 }

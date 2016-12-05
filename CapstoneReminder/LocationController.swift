@@ -20,6 +20,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
+    var hasLocation = Notification.Name(rawValue: "hasLocation")
+    
     var reminder: Reminder?
     
     var atALocationTextName: String?
@@ -37,21 +39,27 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.pausesLocationUpdatesAutomatically = true
     }
     
-    var remindersUsingLocationCount = 0
+    var remindersUsingLocationCount: Int {
+        return UserDefaults.standard.integer(forKey: "remindersUsingLocationCount")
+    }
     
     func increaseLocationCount() {
+        var remindersUsingLocationCount = UserDefaults.standard.integer(forKey: "remindersUsingLocationCount")
         remindersUsingLocationCount += 1
+        UserDefaults.standard.set(remindersUsingLocationCount, forKey: "remindersUsingLocationCount")
     }
     
     func decreaseLocationCount() {
-        remindersUsingLocationCount -= 1
+        var remindersUsingLocationCount = UserDefaults.standard.integer(forKey: "remindersUsingLocationCount")
+        if remindersUsingLocationCount > 0 { remindersUsingLocationCount -= 1 }
+        UserDefaults.standard.set(remindersUsingLocationCount, forKey: "remindersUsingLocationCount")
         
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         currentLocation = locations.last
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "hasLocation"), object: nil)
+        NotificationCenter.default.post(name: hasLocation, object: self)
     }
     
     func displayAlert(_ viewController: UIViewController, reminder: Reminder) {

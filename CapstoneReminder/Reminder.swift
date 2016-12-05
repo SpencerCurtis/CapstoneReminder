@@ -90,12 +90,12 @@ extension Reminder {
         
         self.init(entity: entity, insertInto: context)
         
-        guard let alertLabelText = dictionary[kAlertLabelText] as? String, let creationDate = dictionary[kCreationDate] as? Date, let hasBeenNotified = dictionary[kHasBeenNotified] as? NSNumber, let locationLatitude = dictionary[kLocationLatitude] as? NSNumber, let locationLongitude = dictionary[kLocationLongitude] as? NSNumber, let notes = dictionary[kNotes] as? String else { return nil }
+        guard let alertLabelText = dictionary[kAlertLabelText] as? String, let creationDate = dictionary[kCreationDate] as? Date, let hasBeenNotified = dictionary[kHasBeenNotified] as? NSNumber, let locationLatitude = dictionary[kLocationLatitude] as? NSNumber, let isComplete = dictionary[kIsComplete] as? NSNumber, let locationLongitude = dictionary[kLocationLongitude] as? NSNumber, let notes = dictionary[kNotes] as? String else { return nil }
         
         self.alertLabelText = alertLabelText
         self.creationDate = creationDate
         self.hasBeenNotified = hasBeenNotified
-        self.isComplete = false
+        self.isComplete = isComplete
         self.locationLatitude = locationLatitude
         self.locationLongitude = locationLongitude
         self.notes = notes

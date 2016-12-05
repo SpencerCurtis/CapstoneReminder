@@ -8,30 +8,30 @@
     
     import UIKit
     import CoreLocation
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
+    // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+    // Consider refactoring the code to use the non-optional operators.
+    fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+        switch (lhs, rhs) {
+        case let (l?, r?):
+            return l < r
+        case (nil, _?):
+            return true
+        default:
+            return false
+        }
+    }
+    
+    // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+    // Consider refactoring the code to use the non-optional operators.
+    fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+        switch (lhs, rhs) {
+        case let (l?, r?):
+            return l > r
+        default:
+            return rhs < lhs
+        }
+    }
+    
     
     class ReminderDetailViewController: UIViewController, CLLocationManagerDelegate {
         
@@ -158,11 +158,14 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
         @IBAction func saveButtonTapped(_ sender: AnyObject) {
             if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location == nil {
                 startActivityIndicator()
+                
                 LocationController.sharedController.locationManager.requestLocation()
                 if LocationController.sharedController.locationManager.location != nil {
                     self.stopActivityIndicator()
+                    navigationController?.pop(animated: true)
                 } else {
                     LocationController.sharedController.locationManager.requestLocation()
+                    self.saveButtonTapped(sender)
                 }
                 
             } else if alertSegmentedControl.selectedSegmentIndex == 1 && LocationController.sharedController.locationManager.location != nil {
@@ -196,7 +199,11 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
         }
         
         func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+            
+            // What is this doing?
             self.titleTextField = textField
+            
+            
             checkIfTextFieldIsEmpty()
             return true
         }
@@ -206,17 +213,18 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
         }
         
         func startActivityIndicator() {
-            activityIndicator.startAnimating()
-            saveButton.isEnabled = false
-            header.backBarButtonItem?.isEnabled = false
-            view.addSubview(activityIndicator)
-            updatingLocationView.isHidden = false
+            if !activityIndicator.isAnimating {
+                activityIndicator.startAnimating()
+                saveButton.isEnabled = false
+                header.backBarButtonItem?.isEnabled = false
+                view.addSubview(activityIndicator)
+                updatingLocationView.isHidden = false
+            }
         }
         
         func stopActivityIndicator() {
             activityIndicator.stopAnimating()
             updatingLocationView.isHidden = true
-            navigationController?.pop(animated: true)
         }
         
         func displayAlertForReminder(_ reminder: Reminder) {
@@ -264,7 +272,8 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
                 latitude = location?.coordinate.latitude
                 longitude = location?.coordinate.longitude
                 
-                if alertSegmentedControl.selectedSegmentIndex == 0 {
+                switch alertSegmentedControl.selectedSegmentIndex {
+                case 0:
                     if let title = titleTextField.text {
                         
                         let reminderTimeString = formatter.string(from: reminderTime)
@@ -273,17 +282,21 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
                         ReminderController.sharedController.addReminder(newReminder)
                         AlarmController.sharedController.sendNotificationForReminderWithTime(newReminder, fireDate: alertTimeDatePicker.date)
                     }
-                } else if alertSegmentedControl.selectedSegmentIndex == 1, let title = titleTextField.text, let longitude = longitude, let latitude = latitude {
                     
-                    let newReminder = Reminder(title: title, notes: notes!, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
-                    ReminderController.sharedController.addReminder(newReminder)
-                    LocationController.sharedController.remindersUsingLocationCount += 1
-                } else if alertSegmentedControl.selectedSegmentIndex == 2 {
+                    
+                case 1:
+                    
+                    if let title = titleTextField.text, let longitude = longitude, let latitude = latitude {
+                        
+                        let newReminder = Reminder(title: title, notes: notes!, alertLabelText: "Upon Moving", latitude: latitude, longitude: longitude)
+                        ReminderController.sharedController.addReminder(newReminder)
+                        LocationController.sharedController.remindersUsingLocationCount += 1
+                    }
+                case 2:
                     if let location = LocationController.sharedController.selectedLocation {
                         let reminder = Reminder(title: title!, notes: notes!, alertLabelText: "Upon Arriving", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                         ReminderController.sharedController.addReminder(reminder)
                         LocationController.sharedController.remindersUsingLocationCount += 1
-                        
                     }
                 }
             }
@@ -327,7 +340,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
         //        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //            if segue.identifier == "toMapView" {
         //            }
-        //            
+        //
         //        }
     }
     

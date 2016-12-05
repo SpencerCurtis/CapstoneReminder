@@ -46,6 +46,7 @@ class ReminderController {
             reminders.sort(by: {$0.creationDate?.timeIntervalSince1970 > $1.creationDate?.timeIntervalSince1970})
             return reminders
         } catch {
+            print(error.localizedDescription)
             return []
         }
     }
